@@ -26,7 +26,7 @@ function App() {
         </p>        
       </div>
       <p className="read-the-docs">
-        Clicca qui per andare avanti
+        Clicca qui per andare avanti, oppure non fare niente
       </p>
       
     </>
