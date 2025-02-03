@@ -1,0 +1,111 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.box {
+    background: white;
+    max-width: 800px; /* Or whatever max width makes sense */
+    padding: 20px; /* Add some padding around content */
+}
+
+.button {
+    width: 292px;
+    height: 56px;
+    background: black;
+    border-radius: 30px;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.button-text {
+    color: white;
+    font-size: 40px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.profile-image {
+    width: 185px;
+    height: 178px;
+    border-radius: 100px;
+    border: 2px solid black;
+    margin-top: 20px;
+}
+
+.back-button {
+    width: 292px;
+    height: 44px;
+    border-radius: 30px;
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.back-button-text {
+    color: black;
+    font-size: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.input-label {
+    width: 528px;
+    color: rgb(0, 0, 0);
+    font-size: 35px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin-top: 20px;
+}
+
+.input-field input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 20px;
+    border-radius: 30px;
+}
+
+.input-field input::placeholder {
+    color: rgba(255, 252, 252, 0.3);
+
+.introduction {
+    width: 768px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+.bold-text {
+    font-weight: 700;
+}
+
+.support-image {
+    width: 500px;
+    height: 500px;
+    margin-top: 20px;
+}
+}

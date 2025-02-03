@@ -1,0 +1,65 @@
+/* Base structure for Home.css */
+
+body 
+{
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Soft background */
+    margin: 0;
+    padding: 0;
+}
+
+
+.titoloBenvenuto 
+{
+    font-size: 150px;
+    text-align: center;
+    margin-top: -50px;
+    margin-left: 0%;
+    font-weight: bold;
+    background: linear-gradient(to right, orange, green);
+    -webkit-background-clip: text;
+    color: transparent;
+
+}
+
+.robotPulsante 
+{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 400px;
+}
+
+.logoBeFluent 
+{
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+  }
+
+.login-button
+{
+    position: absolute;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 80px;
+    background: linear-gradient(to right, orange, green);
+    color: rgb(0, 0, 0);
+    font-size: 21px;
+    border: 4px solid #000000;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: 0.2s;
+}  
+
+.login-button:hover
+{
+    background: linear-gradient(to right, green, orange);
+}
+
