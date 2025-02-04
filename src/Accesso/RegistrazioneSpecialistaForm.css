@@ -1,147 +1,146 @@
 /* Reset generale */
 body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    height: 100%;
-    background-color: #ffffff;
-  }
-  
-  /* Logo: rimane a destra, posizionato in maniera assoluta */
-  .logo-registrazione {
-    position: absolute;
-    top: 10px;
-    right: 900px;
-    width: 100px;  
-  }
-
-  .logoTesto-registrazione
-  {
-    position: absolute;
-    top: 10px;
-    right: 0px;
-    width: 350px;  
-  }
-  
-  /* Contenitore principale per il resto degli elementi (titolo, form e pulsante) */
-  /* Spostato verso l'alto per dare maggiore importanza agli elementi principali */
-  .registrazione-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: -50px;  /* Regola questo valore per spostare il contenuto verso l'alto */
-    padding-top: 20px;
-  }
-  
-  /* Titolo della pagina */
-  h1 {
-    font-size: 40px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Form di registrazione */
-  .registrazione-form {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    border: 5px solid #000000;
-    margin: 0 auto;
-  }
-  
-  /* Disposizione a due colonne per le righe del form */
-  .form-row {
-    display: flex;
-    gap: 80px;
-    margin-bottom: 30px;
-  }
-  
-  .form-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    color: #333;
-    text-align: left;
-    padding: 20px;
-    font-size: 20px;
-  }
-  
-  /* Stili per gli input */
-  input {
-    padding: 12px;
-    border-radius: 50px;
-    border: 2px solid #000000;
-    font-size: 16px;
-    margin-top: 5px;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #007BFF;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-
-  /* Pulsante di submit */
-  button {
-    width: 100%;
-    padding: 15px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Pulsante "Torna Indietro" */
-  .back-button {
-    margin-top: 20px;
-    background: #000000;
-    border: 2px solid black;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #ffffff;
-  }
-
-  .pulsanteRegistratiSpecialista
-  {
-    margin-top: 20px;
-    background: linear-gradient(to right, orange, green);
-    border: 2px solid black;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  input {
-    padding: 12px;
-    border-radius: 50px;
-    border: 2px solid #f2f2f2;
-    font-size: 16px;
-    margin-top: 5px;
-    background-color: rgb(197, 197, 197);
-    color: #000000;
-  }
-
-  input::placeholder {
-    color: #000000; /* Colore del testo placeholder */
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  background-color: #ffffff;
 }
 
+/* Logo: rimane a destra, posizionato in maniera assoluta */
+.logoOmino-registrazioneSpecialista {
+  position: absolute;
+  top: 10px;
+  right: 47.79%;
+  width: 100px;  
+}
 
-  
+.logoTesto-registrazioneSpecialista {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  width: 350px;  
+}
+
+/* Contenitore principale per il resto degli elementi (titolo, form e pulsante) */
+/* Spostato verso l'alto per dare maggiore importanza agli elementi principali */
+.registrazione-containerSpecialista {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 125px;  /* Regola questo valore per spostare il contenuto verso l'alto */
+  padding-top: 20px;
+}
+
+/* Titolo della pagina */
+.titleRegistrazioneSpecialista {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form di registrazione */
+.registrazioneSpecialista-form {
+  width: 650px;
+  padding: 1%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border: 5px solid #000000;
+  margin: 10px;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+/* Disposizione a due colonne per le righe del form */
+.form-rowRegistrazioneSpecialista {
+  display: flex;
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center vertically */
+  gap: 0px;
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+
+}
+
+/* Stili per i gruppi di input all'interno del form */
+.form-groupRegistrazioneSpecialista {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  color: #333;
+  text-align: left;
+  padding: 30px;
+  font-size: 20px;
+  margin-left: 0%;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  width: 100%; /* Increase the width of the form group */
+  margin: 0 auto; /* Center the form group */
+}
+
+/* Stili per gli input all'interno del form */
+.registrazioneSpecialista-form input {
+  padding: 20px; /* Increase padding for larger input fields */
+  border-radius: 50px;
+  border: 2px solid #f2f2f2;
+  font-size: 18px; /* Increase font size */
+  margin-top: 10px; /* Increase margin-top */
+  background-color: rgb(197, 197, 197);
+  color: #000000;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  width: 100%; /* Make input fields take full width */
+}
+
+.registrazioneSpecialista-form input:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.registrazioneSpecialista-form input::placeholder {
+  color: #000000; /* Colore del testo placeholder */
+}
+
+/* Pulsante di submit */
+.registrazioneSpecialista-form button {
+  width: 100%;
+  padding: 20px; /* Increase padding for larger button */
+  border-radius: 50px;
+  border: 2px solid #f2f2f2;
+  font-size: 18px; /* Increase font size */
+  margin-top: 10px; /* Increase margin-top */
+  background-color: rgb(197, 197, 197);
+  color: #000000;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+/* Pulsante "Torna Indietro" */
+.back-button-registrazioneSpecialista {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #000000;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  z-index: 1000;
+  color: white;
+}
+
+/* Pulsante per registrarsi (stile personalizzato) */
+.pulsanteRegistratiSpecialista {
+  margin-top: 20px;
+  background: linear-gradient(to right, orange, green);
+  border: 2px solid black;
+  padding: 20px 40px; /* Increase padding for larger button */
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px; /* Increase font size */
+  color: #ffffff;
+}

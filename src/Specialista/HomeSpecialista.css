@@ -1,0 +1,124 @@
+
+
+/* HomeSpecialista.css */
+  
+  /* Testo di benvenuto */
+  
+  .welcome-text {
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 80px;
+    text-align: center;
+    z-index: 2; /* Aggiunto per garantire che il testo sia sopra la background image */
+    color: black;
+    right: 8%;
+  }
+  
+
+  
+  /* Pulsante "Elenco Completo" */
+  .button.elenco-completo-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .button.elenco-completo-button:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Ombra leggera */
+  transform: translateY(4px);  /* Sposta il pulsante verso il basso di 4px */
+  }
+  
+  .button-text {
+    font-size: 16px;
+  }
+  
+  /* Pulsanti di navigazione (pulsanti sopra a sinistra) */
+  .navigation-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    gap: 10px;
+  }
+  
+  .nav-button, .settings-button, .strumenti-button {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+    margin: 0;
+    border: 5px solid black;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+/* Aggiungi ombra più visibile */
+.nav-button:hover, .settings-button:hover, .strumenti-button:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Ombra leggera */
+    transform: translateY(4px);  /* Sposta il pulsante verso il basso di 4px */
+  }
+  
+  
+  
+  .home-button { background-color: #4CAF50; }
+  .bambini-button { background-color: rgb(160, 208, 28); }
+  .report-button { background-color: #afc61c; }
+  .logout-button-home { background-color: #b68723; }
+  .settings-button { background-color: #d8b30e; }
+  .strumenti-button { background-color: orange; }
+  
+ 
+  
+  /* Immagine del profilo (icona Dottore) */
+  .profile-image-homeS {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 2;
+  }
+  
+/* Logo BeFluent */
+.logoTesto-homeS {
+  position: absolute;
+  top: 30%;           
+  left: 50%;           
+  transform: translate(-50%, -50%); 
+  width: 100px;        
+  width: 1000px;         /* Ingrandisci la larghezza */
+  height: auto;         /* Mantieni le proporzioni */
+}
+  
+  
+  /* Centrare il contenuto principale (come "Benvenuto dott./ssa") */
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px; /* Distanza dalla parte superiore */
+    position: relative; /* Cambia posizione per evitare conflitti */
+    z-index: 2;
+  }
+  
+  /* Sezione Elenco Completo */
+  .elenco-completo-button {
+    margin-top: 20px;
+    
+  }
+  
+  

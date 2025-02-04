@@ -24,16 +24,17 @@ const RegistrazioneSpecialistaForm = () => {
   return (
     <>
       {/* Logo posizionato a destra in modo assoluto */}
-      <img src="/BeFluent_logo_omino.png" alt="Logo" className="logo-registrazione" />
-      <img src="/BeFluent_logo_testo.png" alt="Logo" className="logoTesto-registrazione" />
+      <img src="/BeFluent_logo_omino.png" alt="Logo" className="logoOmino-registrazioneSpecialista" />
+      <img src="/BeFluent_logo_testo.png" alt="Logo" className="logoTesto-registrazioneSpecialista" />
+      
       {/* Contenitore per il resto degli elementi, spostato verso l'alto */}
-      <div className="registrazione-container">
-        <h1>Registrati come Specialista</h1>
+      <div className="registrazione-containerSpecialista">
+        <h1 className="titleRegistrazioneSpecialista">Registrati come Specialista</h1>
 
-        <form onSubmit={handleSubmit} className="registrazione-form">
+        <form onSubmit={handleSubmit} className="registrazioneSpecialista-form">
           {/* Prima riga: Nome e Cognome */}
-          <div className="form-row">
-            <div className="form-group">
+          <div className="form-rowRegistrazioneSpecialista">
+            <div className="form-groupRegistrazioneSpecialista">
               <label htmlFor="nome">Nome</label>
               <input
                 type="text"
@@ -44,7 +45,7 @@ const RegistrazioneSpecialistaForm = () => {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-groupRegistrazioneSpecialista">
               <label htmlFor="cognome">Cognome</label>
               <input
                 type="text"
@@ -52,39 +53,36 @@ const RegistrazioneSpecialistaForm = () => {
                 value={formData.cognome}
                 onChange={handleChange}
                 placeholder="Inserisci il tuo cognome"
-
               />
             </div>
           </div>
 
           {/* Seconda riga: Email e Username */}
+          <div className="form-groupRegistrazioneSpecialista">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Inserisci la tua email"
+            />
+          </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Inserisci la tua email"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                placeholder="Crea un username"
-              />
-            </div>
-
+          <div className="form-groupRegistrazioneSpecialista">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Crea un username"
+            />
+          </div>
 
           {/* Terza riga: Password e Conferma Password */}
-          <div className="form-row">
-            <div className="form-group">
+          <div className="form-rowRegistrazioneSpecialista">
+            <div className="form-groupRegistrazioneSpecialista">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -95,7 +93,7 @@ const RegistrazioneSpecialistaForm = () => {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-groupRegistrazioneSpecialista">
               <label htmlFor="confermaPassword">Conferma Password</label>
               <input
                 type="password"
@@ -107,11 +105,13 @@ const RegistrazioneSpecialistaForm = () => {
             </div>
           </div>
 
-          <button className="pulsanteRegistratiSpecialista" type="submit">Registrati</button>
+          <button className="pulsanteRegistratiSpecialista" type="submit">
+            Registrati
+          </button>
         </form>
 
         {/* Pulsante "Torna Indietro" */}
-        <div className="back-button" onClick={() => window.history.back()}>
+        <div className="back-button-registrazioneSpecialista" onClick={() => window.history.back()}>
           TORNA INDIETRO
         </div>
       </div>

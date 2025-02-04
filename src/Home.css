@@ -18,11 +18,12 @@ body
     font-weight: bold;
     background: linear-gradient(to right, orange, green);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 
 }
 
-.robotPulsante 
+.robotPulsanteInizio 
 {
     position: absolute;
     top: 80%;
@@ -32,15 +33,10 @@ body
     height: 400px;
 }
 
-.logoBeFluent 
+.logoBeFluentInizio
 {
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    width: 400px;
-    height: 200px;
-    transform: translate(-50%, -50%);
-  }
+    width: 50%;
+}
 
 .login-button
 {

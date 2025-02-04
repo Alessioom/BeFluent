@@ -8,7 +8,7 @@ function Login() {
       <img
         src="/BeFluent_logo.png"
         alt="Logo"
-        className="logo"
+        className="logoDoppiaScelta"
       />
       
       <div className="intro">
@@ -16,7 +16,7 @@ function Login() {
         Scegli il tuo percorso e inizia l'avventura! 🌟
       </div>
       
-      <div className="button-container">
+      <div className="button-containerDoppiaScelta">
         <div className="sectionBambino">
           <p>
             Ehi, piccolo eroe delle parole, entra nel tuo mondo magico e gioca imparando!

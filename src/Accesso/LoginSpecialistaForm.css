@@ -1,8 +1,7 @@
 /* ======================================= */
 /*            GLOBAL STYLES              */
 /* ======================================= */
-body,
-html {
+body, html {
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
@@ -11,9 +10,9 @@ html {
 }
 
 /* ======================================= */
-/*           BACKGROUND BOX              */
+/*           BACKGROUND BOX               */
 /* ======================================= */
-.bg-box {
+.bg-box-LoginSpecialista {
   position: absolute;
   top: 0;
   left: 0;
@@ -24,75 +23,55 @@ html {
 }
 
 /* ======================================= */
-/*              BACK BUTTON              */
+/*              LOGO & IMAGES             */
 /* ======================================= */
-.back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px; /* Regola questo valore per spostare il pulsante */
-  background: #ffffff;
-  border: 2px solid #000;
-  padding: 10px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  z-index: 1000;
+.logo-container-LoginSpecialista {
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
 }
 
-/* ======================================= */
-/*       PROFILE IMAGE (ICONA DOTT.)     */
-/* ======================================= */
-
-.profile-image {
+.profileDottoreLoginSpecialista {
   position: absolute;
-  top: 20px;
-  right: 100px; /* Cambia questo valore per spostarla ulteriormente a destra */
-  width: 100px;   /* Imposta la larghezza desiderata */
-  height: 100px;  /* Imposta l'altezza desiderata */
+  top: 70px;
+  right: -880px;
+  width: 100px;
   border-radius: 50%;
   border: 3px solid #834040;
   z-index: 1000;
 }
 
-/* ======================================= */
-/*           MAIN IMAGE / LOGO           */
-/* ======================================= */
-.logoFormSpecialista {
-
+.logoOminoLoginSpecialista {
   position: absolute;
-  top: 0%;
-  left: 37.5%;
-  width: 25%;
+  top: 0px;
+  right: -40px;
+  width: 100px;
+}
 
+.logoTestoLoginSpecialista {
+  position: absolute;
+  top: 0px;
+  right: -1000px;
+  width: 350px;
 }
 
 /* ======================================= */
-/*         REGISTRATION SECTION          */
+/*            FORM CONTAINER              */
 /* ======================================= */
-.register-container {
-  position: fixed;
-  text-align: center;
-  margin-top: 380px;
-  color: #000;
-  left : 45.5%;
-}
-
-/* ======================================= */
-/*            FORM CONTAINER             */
-/* ======================================= */
-.form-container {
-  position: absolute;  
-  left: 35%;
+.form-containerLoginSpecialista {
+  position: absolute;
+  left: 38%;
   max-width: 500px;
-  margin-top: -230px;
+  margin-top: 200px;
   background: rgba(255, 255, 255, 0.8);
   border: 2px solid #ddd;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* Titolo del form */
-.title {
+.titlePaginaLoginSpecialista {
   font-size: 24px;
   font-weight: 600;
   text-align: center;
@@ -101,19 +80,19 @@ html {
 }
 
 /* ======================================= */
-/*           INPUT GROUPS                */
+/*            INPUT FIELDS                */
 /* ======================================= */
-.input-group {
+.input-groupLoginSpecialista {
   margin-bottom: 20px;
 }
 
-.input-label {
+.input-labelLoginSpecialista {
   font-size: 16px;
   color: #333;
   margin-bottom: 5px;
 }
 
-.input-field {
+.input-fieldLoginSpecialista {
   width: 100%;
   padding: 14px 20px;
   font-size: 16px;
@@ -124,10 +103,10 @@ html {
 }
 
 /* ======================================= */
-/*             BUTTONS                   */
+/*              BUTTONS                   */
 /* ======================================= */
-.submit-button,
-.forgot-password {
+.submit-buttonLoginSpecialista,
+.forgot-passwordLoginSpecialista {
   width: 100%;
   padding: 16px 0;
   border-radius: 30px;
@@ -139,39 +118,68 @@ html {
   margin-top: 15px;
 }
 
-.submit-button {
+.submit-buttonLoginSpecialista {
   background-color: #28a745;
   color: #fff;
 }
 
-.forgot-password {
+.forgot-passwordLoginSpecialista {
   background-color: orange;
   color: #fff;
 }
 
+.back-buttonLoginSpecialista {
+  position: absolute;
+  top: -230px;
+  left: -737.5px;
+  background: #000000;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+}
+
 /* ======================================= */
-/*            RESPONSIVE STYLES          */
+/*         REGISTRATION SECTION           */
+/* ======================================= */
+.register-containerLoginSpecialista {
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  margin-top: 20px;
+}
+
+.register-buttonLoginSpecialista {
+  background: #d64141;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* ======================================= */
+/*          RESPONSIVE STYLES             */
 /* ======================================= */
 @media (max-width: 768px) {
-  .profile-image {
+  .profileDottoreLoginSpecialista {
     width: 80px;
-    height: 80px;
   }
 
-  .main-image {
-    width: 100%;
-  }
-
-  .form-container {
+  .form-containerLoginSpecialista {
     width: 80%;
   }
 
-  .input-field {
+  .input-fieldLoginSpecialista {
     padding: 12px;
   }
 
-  .submit-button,
-  .forgot-password {
+  .submit-buttonLoginSpecialista,
+  .forgot-passwordLoginSpecialista {
     font-size: 16px;
   }
 }

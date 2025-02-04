@@ -1,0 +1,154 @@
+/* Stili generali */
+* {
+    color: #333;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .elenco-bambini {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 0;
+  }
+  
+  .main-content {
+    padding: 100px;
+  }
+  
+  /* Lista bambini */
+  .children-list-elenco-bambini {
+    margin-top: 15px;
+  }
+  
+  .children-list-elenco-bambini h2 {
+    color: #222;
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .child-item-elenco-bambini {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s;
+  }
+  
+  .child-item-elenco-bambini:hover {
+    background-color: #e3f2fd;
+  }
+  
+  .child-name-elenco-bambini {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  /* Pulsanti */
+  button {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    /*transition: background-color 0.3s, transform 0.2s;*/
+  }
+  
+  .add-child-button-elenco-bambini button {
+    background-color: green;
+    color: white;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .add-child-button-elenco-bambini button:hover {
+    background-color: orange;
+    transform: scale(1.05);
+  }
+  /*
+  .back-button-elenco {
+    background-color: orange;
+    color: white;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 15%;
+  }
+
+  
+  .back-button-elenco:hover {
+    background-color: green;
+    transform: scale(1.05);
+  }*/
+
+  .button-text-elenco {
+    font-size: 16px;
+  }
+
+  /* Pulsanti di navigazione (pulsanti sopra a sinistra) */
+  .navigation-buttons-elenco {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    gap: 10px;
+  }
+  
+  .nav-button-elenco, .settings-button-elenco, .back-button-elenco, .home-button-elenco {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+    margin: 0;
+    border: 5px solid black;
+    /*transition: transform 0.2s ease, box-shadow 0.2s ease;*/
+  }
+
+/* Aggiungi ombra più visibile */
+.nav-button-elenco:hover, .settings-button-elenco:hover, .back-button-elenco:hover, .home-button-elenco {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Ombra leggera */
+    background-color: orange;
+    transform: scale(1.05);
+  }
+  
+  
+  
+  .home-button-elenco { background-color: green; }
+  .report-button-elenco { background-color: green; }
+  .logout-button-elenco { background-color: green; }
+  .settings-button-elenco { background-color: green; }
+  .back-button-elenco { background-color: green; }
+
+  
+
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
