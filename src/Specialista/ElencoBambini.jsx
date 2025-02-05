@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './ElencoBambini.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import BackButton from "../Components/UI/BackButton-ui";
+import NavButton from "../Components/UI/NavButton";
+import LogoProfile from "../Components/UI/LogoProfile";
 
 function ElencoBambini() {
   const [bambini, setBambini] = useState([]);
+  const [key, setKey] = useState(0); // Aggiungiamo una chiave per forzare il rimontaggio della route
 
     // Fetch the list of children from your API or data source
     useEffect(() => {
@@ -26,8 +30,36 @@ function ElencoBambini() {
     fetchBambini();
   }, []);
 
+ 
+  const navigate = useNavigate(); // Initialize useNavigate
+  const location = useLocation(); // Rileva la posizione attuale della rotta
+
+  const handleBack = () => {
+    navigate(-1); // Navigate back one step in history
+  };
+
+  const handleBambiniClick = (e) => {
+    e.preventDefault();  // Impediamo la navigazione predefinita
+  
+    // Controlliamo se siamo già sulla pagina /Elenco/Bambini
+    if (location.pathname === '/Elenco/Bambini') {
+      // Cambiamo il percorso aggiungendo una "chiave" unica come parametro di query
+      navigate('/Elenco/Bambini?refresh=' + new Date().getTime(), { replace: true });
+    }
+  };
+
+
   return (
-    <div className="elenco-bambini">
+
+    <div>
+      <LogoProfile 
+        logoSrc="/BeFluent_logo_testo.png"
+        profileSrc="/iconaDottore.png"
+        logoClass="logoTesto-registrazioneSpecialista"
+        profileClass="logoDottore-registrazioneSpecialista"
+      />
+
+      <div className="elenco-bambini">
       <div className="header">
         {/* Your header content here */}
         <div className="title-elenco-bambini">ELENCO BAMBINI</div>
@@ -55,36 +87,20 @@ function ElencoBambini() {
         </div>
 
         <div className="navigation-buttons">
-        <Link to="/Home/Specialista"> 
-          <div className="nav-button-elenco home-button">
-            <div className="button-text">HOME</div>
-          </div>
-        
-        </Link>
-        <Link to="/report"> {/* Sostituisci con il percorso corretto */}
-          <div className="nav-button-elenco report-button">
-            <div className="button-text">REPORT</div>
-          </div>
-        </Link>
-        <Link to="/Logout"> {/* Sostituisci con il percorso corretto */}
-          <div className="nav-button-elenco logout-button-elenco">
-            <div className="button-text">LOGOUT</div>
-          </div>
-        </Link>
-        <Link to="/Impostazioni"> 
-          <div className="settings-button-elenco">
-            <div className="button-text">IMPOSTAZIONI</div>
-          </div>
-        </Link>
-        <div className="back-button-elenco" onClick={() => window.history.back()}>
-          TORNA INDIETRO
+          <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
+          <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" onClick={handleBambiniClick } /> 
+          <NavButton to="/report" className="report-button" text="REPORT" />
+          <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
+          <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
+          <NavButton to="/Strumenti" className="home-button" text="STRUMENTI" />
         </div>
+        <BackButton onClick={handleBack} /> {/* Add the BackButton component */}
+        <BackButton onClick={handleBack} /> {/* Add the BackButton component */}
       </div>
     </div>
   </div>
   );
 }
-
 export default ElencoBambini;
 
 

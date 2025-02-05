@@ -39,6 +39,7 @@
   }
   
   /* Pulsanti di navigazione (pulsanti sopra a sinistra) */
+  /*
   .navigation-buttons {
     display: flex;
     flex-direction: row;
@@ -63,10 +64,10 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-/* Aggiungi ombra più visibile */
+
 .nav-button:hover, .settings-button:hover, .strumenti-button:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Ombra leggera */
-    transform: translateY(4px);  /* Sposta il pulsante verso il basso di 4px */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    transform: translateY(4px);  
   }
   
   
@@ -76,28 +77,16 @@
   .report-button { background-color: #afc61c; }
   .logout-button-home { background-color: #b68723; }
   .settings-button { background-color: #d8b30e; }
-  .strumenti-button { background-color: orange; }
+  .strumenti-button { background-color: orange; }*/
   
- 
-  
-  /* Immagine del profilo (icona Dottore) */
-  .profile-image-homeS {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    z-index: 2;
-  }
+
+
   
 /* Logo BeFluent */
 .logoTesto-homeS {
   position: absolute;
-  top: 30%;           
-  left: 50%;           
-  transform: translate(-50%, -50%); 
+  top: 200px;           
+  left: 500px;           
   width: 100px;        
   width: 1000px;         /* Ingrandisci la larghezza */
   height: auto;         /* Mantieni le proporzioni */

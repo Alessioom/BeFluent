@@ -1,136 +1,232 @@
-/* Miglioramenti generali */
-body {
+/* Corpo della pagina */
+body-imp {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: #f5f5f5;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background: #f0f0f0;
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
+  position: relative;
 }
 
-.background-box {
-  width: 100%;
-  height: 100%;
+/* Contenitore principale per le impostazioni */
+.settings-container-imp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   position: absolute;
-  background: white;
-  z-index: -1;
+  bottom: 200px;
+  right: 1300px;
+  margin-left: -700px;
+  width: 600px;
+  margin-top: 100px;
+  padding-left: 10%;
 }
 
-/* Pulsanti in alto a sinistra */
-.nav-buttons {
+/* Contenitore per gli input */
+.inputs-container-imp {
   display: flex;
-  gap: 15px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-.nav-buttons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  height: 50px;
-  background: #eeeeee;
-  border-radius: 25px;
-  border: 2px solid black;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-  transition: background 0.3s;
-}
-
-.nav-buttons a:hover {
-  background: #dddddd;
-}
-
-/* Input in colonna */
-.inputs-container {
-  display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 20px;
-  margin-top: 50px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.field-label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.input-box {
+  margin-top: 30px;
+  align-items: center;
   width: 300px;
+  
+}
+
+
+.field-label-imp {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input box */
+.input-box-imp {
+  width: 100%;
   height: 40px;
-  border-radius: 20px;
-  border: 2px solid black;
+  border-radius: 10px;
+  border: 1px solid #ccc;
   padding: 5px 10px;
-  font-size: 16px;
+  font-size: 18px;
   background: white;
+  transition: border 0.3s;
+}
+
+/* Rendi gli input disabilitati visivamente diversi */
+.input-box-imp:disabled {
+  background: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.input-box-imp:focus {
+  border: 1px solid #007BFF;
+  outline: none;
 }
 
 /* Pulsanti in basso */
-.bottom-buttons {
+.bottom-buttons-imp {
   display: flex;
   gap: 15px;
   justify-content: center;
   margin-top: 50px;
 }
 
-.bottom-buttons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 40px;
-  background: #eeeeee;
-  border-radius: 20px;
-  border: 2px solid black;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-  transition: background 0.3s;
-}
 
-.bottom-buttons a:hover {
-  background: #dddddd;
-}
 
-/* Miglioramento degli altri elementi */
-.change-password-container,
-.delete-account-container {
-  margin-top: 20px;
+
+/* Contenitori per la modifica della password e la cancellazione dell'account */
+.change-password-container-imp,
+.delete-account-container-imp {
+  margin-top: -70px;
   padding: 10px;
-  border-radius: 20px;
-  border: 2px solid black;
+  border-radius: 25px;
+  border: 1px solid #ccc;
   text-align: center;
-  width: 250px;
+  width: 300px;
   font-weight: bold;
   cursor: pointer;
-  background: #eeeeee;
+  background: #f8f9fa;
+  transition: background 0.3s, transform 0.2s;
+  flex: 1;
+  background-color: green;
+  color: white;
+}
+
+
+.change-password-container-imp:hover {
+  background-color: rgb(0, 106, 0);
+  transform: scale(1.05);
+}
+
+.delete-account-container-imp:hover {
+  background-color: rgb(0, 106, 0);
+  transform: scale(1.05);
+}
+
+
+
+/* Contenitore per le notifiche */
+.notification-toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.notification-label {
+  font-size: 25px; /* Ingrandisce il testo della scritta */
+  margin-right: 10px; /* Distanza tra il testo e la checkbox */
+  
+}
+
+.notification-toggle input[type="checkbox"] {
+  display: none; /* Nascondi la casella di default */
+  
+}
+
+.notification-circle {
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 50px;
+  position: relative;
+  transition: background-color 0.3s;
+  left: 122px; /* Sposta il cerchio a destra */
+}
+
+.notification-circle:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  transition: left 0.3s;
+}
+
+.notification-toggle input[type="checkbox"]:checked + .notification-circle {
+  background-color: #4caf50; /* Colore verde per lo stato "attivo" */
+}
+
+.notification-toggle input[type="checkbox"]:checked + .notification-circle:before {
+  left: 22px; /* Sposta il cerchio a destra */
+}
+
+/* Box per la lingua */
+.language-box-imp {
+  align-self: flex-start;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+/* Pulsanti Modifica e Salva */
+.edit-button-imp, .save-button-imp {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  width: 250px;
+  cursor: pointer;
+  font-weight: bold;
   transition: background 0.3s;
 }
 
-.change-password-container:hover,
-.delete-account-container:hover {
-  background: #dddddd;
+.edit-button-imp {
+  background-color: orange;
+  color: white;
 }
 
-.language-box {
-  width: 200px;
-  height: 40px;
-  border-radius: 20px;
-  border: 2px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  background: white;
+.save-button-imp {
+  background-color: green;
+  color: white;
 }
+
+.edit-button-imp:hover {
+  background-color: rgb(206, 134, 0);
+}
+
+.save-button-imp:hover {
+  background-color: rgb(0, 107, 0);
+}
+
+.buttons-container-imp {
+  display: flex;
+  flex-direction: column;
+  gap: 100px; /* Distanza tra i due pulsanti */
+  margin-bottom: 15px; /* Distanza dal resto */
+}
+
+
+.preferences-container-imp {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+ /* margin-top: -10px;*/
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 380px;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.preferences-header {
+  position: relative;
+  top: -200px;
+  font-size: 25px;
+}
+
+.preferences-line {
+  position: relative;
+  top: -200px;
+  font-size: 25px;
+}
+

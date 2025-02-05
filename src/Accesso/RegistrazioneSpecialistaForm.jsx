@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './RegistrazioneSpecialistaForm.css';
+import BackButton from "../Components/UI/BackButton-ui";
+import LogoProfile from "../Components/UI/LogoProfile";
+
+
 
 const RegistrazioneSpecialistaForm = () => {
+
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleBack = () => {
+    navigate(-1); // Navigate back one step in history
+  };
+
+
   const [formData, setFormData] = useState({
     nome: '',
     cognome: '',
@@ -24,8 +37,13 @@ const RegistrazioneSpecialistaForm = () => {
   return (
     <>
       {/* Logo posizionato a destra in modo assoluto */}
-      <img src="/BeFluent_logo_omino.png" alt="Logo" className="logoOmino-registrazioneSpecialista" />
-      <img src="/BeFluent_logo_testo.png" alt="Logo" className="logoTesto-registrazioneSpecialista" />
+      <div>
+      <LogoProfile 
+        logoSrc="/BeFluent_logo_testo.png"
+        profileSrc="/iconaDottore.png"
+        logoClass="logoTesto-registrazioneSpecialista"
+        profileClass="logoDottore-registrazioneSpecialista"
+      />
       
       {/* Contenitore per il resto degli elementi, spostato verso l'alto */}
       <div className="registrazione-containerSpecialista">
@@ -111,9 +129,9 @@ const RegistrazioneSpecialistaForm = () => {
         </form>
 
         {/* Pulsante "Torna Indietro" */}
-        <div className="back-button-registrazioneSpecialista" onClick={() => window.history.back()}>
-          TORNA INDIETRO
-        </div>
+        <BackButton onClick={handleBack} />
+        
+      </div>
       </div>
     </>
   );

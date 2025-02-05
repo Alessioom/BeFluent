@@ -17,7 +17,8 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: white;
+    background: rgb(255, 255, 255);
+    
   }
   
   /* Messaggio di conferma logout */
@@ -81,31 +82,10 @@
     transform: scale(1.05);
 }
 
- 
-
   
   .button-text-logout {
     position: relative;
     z-index: 1;
-  }
-  
-  /* Immagine profilo dottore */
-  .profileDottore-image-logout {
-    position: absolute;
-    top: 70px;
-    right: 100px; /* Cambia questo valore per spostarla ulteriormente a destra */
-    width: 100px;   /* Imposta la larghezza desiderata */
-    border-radius: 50%;
-    border: 3px solid #834040;
-    z-index: 1000;
-  }
-  
-  /* Logo della piattaforma */
-  .logoTesto-logout {
-    position: absolute;
-    top: 10px;
-    right: 0px;
-    width: 350px;  
   }
   
  

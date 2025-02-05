@@ -7,20 +7,6 @@ body, html {
   background-color: #ffffff;
 }
 
-/* Logo: rimane a destra, posizionato in maniera assoluta */
-.logoOmino-registrazioneSpecialista {
-  position: absolute;
-  top: 10px;
-  right: 47.79%;
-  width: 100px;  
-}
-
-.logoTesto-registrazioneSpecialista {
-  position: absolute;
-  top: 10px;
-  right: 0px;
-  width: 350px;  
-}
 
 /* Contenitore principale per il resto degli elementi (titolo, form e pulsante) */
 /* Spostato verso l'alto per dare maggiore importanza agli elementi principali */
@@ -31,6 +17,7 @@ body, html {
   justify-content: flex-start;
   margin-top: 125px;  /* Regola questo valore per spostare il contenuto verso l'alto */
   padding-top: 20px;
+  margin-bottom: 100px;
 }
 
 /* Titolo della pagina */
@@ -118,19 +105,6 @@ body, html {
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
-/* Pulsante "Torna Indietro" */
-.back-button-registrazioneSpecialista {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #000000;
-  border: 2px solid #000;
-  padding: 10px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  z-index: 1000;
-  color: white;
-}
 
 /* Pulsante per registrarsi (stile personalizzato) */
 .pulsanteRegistratiSpecialista {

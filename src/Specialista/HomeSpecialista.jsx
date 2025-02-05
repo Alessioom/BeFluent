@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomeSpecialista.css'; 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import BackButton from "../Components/UI/BackButton-ui";
+import NavButton from "../Components/UI/NavButton";
+import LogoProfile from "../Components/UI/LogoProfile";
 
 function HomeSpecialista() {
   const nomeSpecialista = 'Mario Rossi'; // Sostituisci con il nome dello specialista
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  //per ricaricare la pagina cliccando il pulsante "Home"
-  const handleHomeClick = () => {
-    window.location.reload();
+
+  const handleBack = () => {
+    navigate(-1); // Navigate back one step in history
   };
 
+
+
   return (
+    <div>
+      {/* Logo posizionato a destra in modo assoluto */}
+    <LogoProfile 
+      logoSrc="/BeFluent_logo_testo.png"
+      profileSrc="/iconaDottore.png"
+      logoClass="logoTesto-registrazioneSpecialista"
+      profileClass="logoDottore-registrazioneSpecialista"
+    />
+
     <div className="home-specialista-container">
 
       <div className="welcome-text">
         Benvenuto/a dott./ssa {nomeSpecialista}
       </div>
-
-    
 
       <Link to="/Elenco/Bambini"> 
         <div className="button elenco-completo-button">
@@ -26,49 +39,22 @@ function HomeSpecialista() {
       </Link>
 
       <div className="navigation-buttons">
-        <Link to="/Home/Specialista" onClick={(e) => { e.preventDefault(); window.location.reload(); }}>
-          <div className="nav-button home-button">
-            <div className="button-text">HOME</div>
-          </div>
-        </Link>
-        <Link to="/Elenco/Bambini"> 
-          <div className="nav-button bambini-button">
-            <div className="button-text">BAMBINI</div>
-          </div>
-        </Link>
-        <Link to="/report"> {/* Sostituisci con il percorso corretto */}
-          <div className="nav-button report-button">
-            <div className="button-text">REPORT</div>
-          </div>
-        </Link>
-        <Link to="/Logout"> 
-          <div className="nav-button logout-button-home">
-            <div className="button-text">LOGOUT</div>
-          </div>
-        </Link>
-        <Link to="/Impostazioni"> 
-          <div className="settings-button">
-            <div className="button-text">IMPOSTAZIONI</div>
-          </div>
-        </Link>
-        <Link to="/strumenti"> {/* Sostituisci con il percorso corretto */}
-          <div className="strumenti-button">
-            <div className="button-text">STRUMENTI</div>
-          </div>
-        </Link>
-      </div>
+      <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
+      <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" /> 
+      <NavButton to="/report" className="report-button" text="REPORT" />
+      <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
+      <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
+      <NavButton to="/Strumenti" className="strumenti-button" text="STRUMENTI" />
 
-      {/* Profile Image (iconaDottore.png) */}
-      <img src="/iconaDottore.png" alt="Dottore" className="profile-image-homeS" />
-      
+      <BackButton onClick={handleBack} /> {/* Add the BackButton component */}
 
-     
 
       {/* testo befluent */}
-    <img src="/BeFluent_logo_testo.png" alt="Logo" className="logoTesto-homeS" />
+      <img src="/BeFluent_logo_testo.png" alt="Logo" className="logoTesto-homeS" />
        
     </div>
+  </div>
+</div>
   );
 }
-
 export default HomeSpecialista;

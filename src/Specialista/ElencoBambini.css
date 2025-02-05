@@ -81,30 +81,13 @@
     background-color: orange;
     transform: scale(1.05);
   }
-  /*
-  .back-button-elenco {
-    background-color: orange;
-    color: white;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-top: 20px;
-    width: 15%;
-  }
-
-  
-  .back-button-elenco:hover {
-    background-color: green;
-    transform: scale(1.05);
-  }*/
 
   .button-text-elenco {
     font-size: 16px;
   }
 
   /* Pulsanti di navigazione (pulsanti sopra a sinistra) */
+  /*
   .navigation-buttons-elenco {
     display: flex;
     flex-direction: row;
@@ -115,7 +98,7 @@
     gap: 10px;
   }
   
-  .nav-button-elenco, .settings-button-elenco, .back-button-elenco, .home-button-elenco {
+  .nav-button-elenco, .settings-button-elenco, .home-button-elenco {
     background-color: green;
     color: white;
     padding: 10px 20px;
@@ -126,12 +109,12 @@
     width: 200px;
     margin: 0;
     border: 5px solid black;
-    /*transition: transform 0.2s ease, box-shadow 0.2s ease;*/
-  }
+  }*/
 
 /* Aggiungi ombra più visibile */
-.nav-button-elenco:hover, .settings-button-elenco:hover, .back-button-elenco:hover, .home-button-elenco {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Ombra leggera */
+/*
+.nav-button-elenco:hover, .settings-button-elenco:hover, .home-button-elenco {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
     background-color: orange;
     transform: scale(1.05);
   }
@@ -142,7 +125,7 @@
   .report-button-elenco { background-color: green; }
   .logout-button-elenco { background-color: green; }
   .settings-button-elenco { background-color: green; }
-  .back-button-elenco { background-color: green; }
+*/
 
   
 

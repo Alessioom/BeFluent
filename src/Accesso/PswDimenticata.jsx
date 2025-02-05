@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './PswDimenticata.css';
+import BackButton from "../Components/UI/BackButton-ui";
+import LogoProfile from "../Components/UI/LogoProfile";
 
 const PswDimenticata = () => {
 
-    const handleBackClick = () => {
-        // Handle back button click (e.g., navigation)
-        console.log("Back button clicked");
-    };
+    const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleBack = () => {
+    navigate(-1); // Navigate back one step in history
+  };
 
     const handleSubmit = () => {
         // Handle submit button click (e.g., password reset logic)
@@ -16,17 +19,15 @@ const PswDimenticata = () => {
 
     return (
         <>
-            <img 
-                className="profileDottore-imagePSWPswDimenticata" 
-                src="/iconaDottore.png" 
-                alt="Profile" 
-            />
-
-            <img 
-                src="/BeFluent_logo_testo.png" 
-                alt="Logo" 
-                className="logoTesto-PswDimenticata" 
-            />
+      {/* Logo posizionato a destra in modo assoluto */}
+      <div>
+      <LogoProfile 
+        logoSrc="/BeFluent_logo_testo.png"
+        profileSrc="/iconaDottore.png"
+        logoClass="logoTesto-registrazioneSpecialista"
+        profileClass="logoDottore-registrazioneSpecialista"
+      />
+      </div>
 
             <div className="introductionPswDimenticata">
                Inserisci la tua email o il tuo username per avviare il recupero della password e tornare subito operativo.
@@ -41,12 +42,8 @@ const PswDimenticata = () => {
                 <div className="button-textPswDimenticata">INVIA</div>
             </div>
 
-            <div 
-                className="back-button-pswPswDimenticata" 
-                onClick={() => window.history.back()}
-            >
-                TORNA INDIETRO
-            </div>
+             {/* Pulsante "Torna Indietro" */}
+        <BackButton onClick={handleBack} />
         </>
     );
 };

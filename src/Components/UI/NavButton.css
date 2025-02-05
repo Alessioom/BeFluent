@@ -1,0 +1,87 @@
+/*.nav-button-elenco {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+    margin: 0;
+    border: 5px solid black;
+  }
+  
+  .nav-button-elenco:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
+    background-color: orange;
+    transform: scale(1.05);
+  }
+  
+  .home-button-elenco { background-color: green; }
+  .report-button-elenco { background-color: green; }
+  .logout-button-elenco { background-color: green; }
+  .settings-button-elenco { background-color: green; }
+  */
+  .navigation-buttons {
+    position: absolute; /* Posiziona i pulsanti fuori dal flusso normale */
+    top: 10px; /* Distanza dall'alto della pagina */
+    left: 10px; /* Distanza dal lato destro della pagina */
+    display: flex; /* Disporre i pulsanti orizzontalmente */
+    gap: 10px; /* Aggiungi spazio tra i pulsanti */
+    z-index: 1000; /* Assicurati che i pulsanti siano sopra gli altri contenuti */
+  }
+
+  .nav-button-elenco {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+    margin: 0;
+    border: 5px solid black;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .nav-button-elenco:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
+    background-color: orange;
+    transform: scale(1.05);
+  }
+  
+  .nav-button-elenco .button-text {
+    font-size: 16px;
+    color: white;
+  }
+  
+  .nav-button-elenco .home-button {
+    background-color: green;
+  }
+
+  .nav-button-elenco .bambini-button-elenco {
+    background-color: rgb(0, 0, 0);
+  }
+  
+  .nav-button-elenco .report-button {
+    background-color: blue;
+  }
+  
+  .nav-button-elenco .logout-button-elenco {
+    background-color: red;
+  }
+  
+  .nav-button-elenco .settings-button-elenco {
+    background-color: rgb(0, 0, 0);
+  }
+
+  .nav-button-elenco .strumenti-button-elenco {
+    background-color: rgb(0, 0, 0);
+  }
+
+
+
+
+  
+  
