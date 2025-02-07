@@ -19,7 +19,7 @@ function Home() {
       </div>
       <Link to="/login">
         <button className="login-button">
-          Clicca qui per continuare
+          Clicca qui per andare avanti
         </button>
       </Link>
 
