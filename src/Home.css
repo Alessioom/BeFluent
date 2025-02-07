@@ -33,9 +33,10 @@ body
     height: 400px;
 }
 
-.logoBeFluentInizio
+.logoBeFluentInizio1
 {
     width: 50%;
+    margin-top: -30%;
 }
 
 .login-button

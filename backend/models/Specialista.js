@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const SpecialistaSchema = new mongoose.Schema({
     nome: { type: String, required: true },
@@ -8,11 +8,6 @@ const SpecialistaSchema = new mongoose.Schema({
     password: { type: String, required: true }
 });
 
-const emailNormalized = formData.email.toLowerCase();
-// Confronta l'email con quella registrata nel database
-
-
 const Specialista = mongoose.model("Specialista", SpecialistaSchema);
-module.exports = Specialista;
 
-
+export default Specialista;

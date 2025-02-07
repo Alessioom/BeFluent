@@ -7,8 +7,10 @@ function Home() {
     <>
       <div>  
         <img src="BeFluent_logo.png" alt="BeFluent Logo" 
-        className="logoBeFluentInizio"
-        /> 
+        className="logoBeFluentInizio1"
+        />
+      </div>
+      <div> 
         <img src="robotPulsante.png" alt="Robot che sorregge pulsante"
         className="robotPulsanteInizio"
         />

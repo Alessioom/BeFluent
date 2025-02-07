@@ -1,20 +1,26 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const Specialista = require('./models/Specialista');
-const bcrypt = require('bcrypt'); // Importa bcrypt
-const jwt = require('jsonwebtoken'); // Importa JWT
-dotenv.config();
+import express, { json } from 'express';
+import { connect } from 'mongoose';
+import cors from 'cors';
+import Specialista from './models/Specialista.js'; // Assicurati che il tuo schema Specialista sia corretto
+import { genSalt, hash, compare } from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+
+dotenv.config(); // Carica variabili d'ambiente
+
+
 const app = express();
-app.use(express.json());
+app.use(json());
 app.use(cors());
+
 // Connessione a MongoDB
-mongoose.connect(process.env.MONGO_URI, {
+connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 }).then(() => console.log("✅ Connesso a MongoDB"))
   .catch(err => console.error(err));
+
 // 📌 API per registrare uno specialista con password criptata
 app.post('/registrazione/specialista', async (req, res) => {
     try {
@@ -26,13 +32,14 @@ app.post('/registrazione/specialista', async (req, res) => {
         const usernameEsistente = await Specialista.findOne({ username });
         if (emailEsistente) return res.status(400).json({ error: "Email già registrata!" });
         if (usernameEsistente) return res.status(400).json({ error: "Username già esistente!" });
+        
         // 🔒 CRITTOGRAFA la password prima di salvarla
-        const salt = await bcrypt.genSalt(10);
-        const passwordHash = await bcrypt.hash(password, salt);
+        const salt = await genSalt(10);
+        const passwordHash = await hash(password, salt);
         const nuovoSpecialista = new Specialista({
             nome,
             cognome,
-            email,
+            email: email.toLowerCase(),  // Converte l'email in minuscolo
             username,
             password: passwordHash // Salva la password crittografata
         });
@@ -43,17 +50,18 @@ app.post('/registrazione/specialista', async (req, res) => {
         res.status(500).json({ error: "Errore durante la registrazione" });
     }
 });
+
 // 📌 API per effettuare il login di uno specialista
 app.post('/login/specialista', async (req, res) => {
     try {
         const { email, password } = req.body;
         // Trova lo specialista per email
-        const specialista = await Specialista.findOne({ email });
+        const specialista = await Specialista.findOne({ email: email.toLowerCase() });
         if (!specialista) {
             return res.status(400).json({ error: "Email non registrata!" });
         }
         // 🔑 Confronta la password inserita con quella salvata nel DB
-        const passwordValida = await bcrypt.compare(password, specialista.password);
+        const passwordValida = await compare(password, specialista.password);
         if (!passwordValida) {
             return res.status(400).json({ error: "Password errata!" });
         }
@@ -69,6 +77,8 @@ app.post('/login/specialista', async (req, res) => {
         res.status(500).json({ error: "Errore durante il login" });
     }
 });
+
+
 // Avviare il server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server avviato su http://localhost:${PORT}`));
