@@ -16,27 +16,49 @@
   }
   
 
-  
-  /* Pulsante "Elenco Completo" */
-  .button.elenco-completo-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+/* Pulsante "Elenco Completo" */
+.button.elenco-completo-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  border: 4px solid black;
+  transition: box-shadow 0.2s ease;
+}
 
-  .button.elenco-completo-button:hover {
+/* Effetto hover con animazione di pulsazione */
+.button.elenco-completo-button:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Ombra leggera */
-  transform: translateY(4px);  /* Sposta il pulsante verso il basso di 4px */
+  animation: heartbeat 1.5s ease-in-out infinite;  /* Aggiunta dell'animazione di pulsazione */
+}
+
+/* Animazione di pulsazione */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
   }
-  
-  .button-text {
-    font-size: 16px;
+  25% {
+    transform: scale(1.1);
   }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Testo del pulsante */
+.button-text {
+  font-size: 16px;
+  color: white;
+}
   
   /* Pulsanti di navigazione (pulsanti sopra a sinistra) */
   /*

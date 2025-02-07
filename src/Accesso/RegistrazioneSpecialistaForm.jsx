@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './RegistrazioneSpecialistaForm.css';
 import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
 
-
-
 const RegistrazioneSpecialistaForm = () => {
-
-  const navigate = useNavigate(); // Initialize useNavigate
-
-  const handleBack = () => {
-    navigate(-1); // Navigate back one step in history
-  };
-
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     nome: '',
@@ -24,114 +17,89 @@ const RegistrazioneSpecialistaForm = () => {
     confermaPassword: '',
   });
 
+  const [messaggio, setMessaggio] = useState('');
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Inserisci qui la logica per l'invio del form (ad es. chiamata API)
+
+  // Normalizza l'email in minuscolo
+  const emailNormalizzata = formData.email.toLowerCase();
+
+  // Crea una nuova copia dei dati del form con l'email normalizzata
+  const formDataNormalizzato = { ...formData, email: emailNormalizzata };
+
+    try {
+      const res = await axios.post('http://localhost:5000/registrazione/specialista', formDataNormalizzato);
+      setMessaggio(res.data.message);
+      setTimeout(() => navigate('/login'), 2000); // Reindirizza dopo 2 secondi
+    } catch (error) {
+      setMessaggio(error.response?.data?.error || "Errore durante la registrazione");
+    }
   };
 
   return (
     <>
-      {/* Logo posizionato a destra in modo assoluto */}
       <div>
-      <LogoProfile 
-        logoSrc="/BeFluent_logo_testo.png"
-        profileSrc="/iconaDottore.png"
-        logoClass="logoTesto-registrazioneSpecialista"
-        profileClass="logoDottore-registrazioneSpecialista"
-      />
-      
-      {/* Contenitore per il resto degli elementi, spostato verso l'alto */}
-      <div className="registrazione-containerSpecialista">
-        <h1 className="titleRegistrazioneSpecialista">Registrati come Specialista</h1>
+        <LogoProfile 
+          logoSrc="/BeFluent_logo_testo.png"
+          profileSrc="/iconaDottore.png"
+          logoClass="logoTesto-registrazioneSpecialista"
+          profileClass="logoDottore-registrazioneSpecialista"
+        />
 
-        <form onSubmit={handleSubmit} className="registrazioneSpecialista-form">
-          {/* Prima riga: Nome e Cognome */}
-          <div className="form-rowRegistrazioneSpecialista">
-            <div className="form-groupRegistrazioneSpecialista">
-              <label htmlFor="nome">Nome</label>
-              <input
-                type="text"
-                name="nome"
-                value={formData.nome}
-                onChange={handleChange}
-                placeholder="Inserisci il tuo nome"
-              />
+        <div className="registrazione-containerSpecialista">
+          <h1 className="titleRegistrazioneSpecialista">Registrati come Specialista</h1>
+
+          <form onSubmit={handleSubmit} className="registrazioneSpecialista-form">
+            <div className="form-rowRegistrazioneSpecialista">
+              <div className="form-groupRegistrazioneSpecialista">
+                <label htmlFor="nome">Nome</label>
+                <input type="text" name="nome" value={formData.nome} onChange={handleChange} required />
+              </div>
+
+              <div className="form-groupRegistrazioneSpecialista">
+                <label htmlFor="cognome">Cognome</label>
+                <input type="text" name="cognome" value={formData.cognome} onChange={handleChange} required />
+              </div>
             </div>
 
             <div className="form-groupRegistrazioneSpecialista">
-              <label htmlFor="cognome">Cognome</label>
-              <input
-                type="text"
-                name="cognome"
-                value={formData.cognome}
-                onChange={handleChange}
-                placeholder="Inserisci il tuo cognome"
-              />
-            </div>
-          </div>
-
-          {/* Seconda riga: Email e Username */}
-          <div className="form-groupRegistrazioneSpecialista">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Inserisci la tua email"
-            />
-          </div>
-
-          <div className="form-groupRegistrazioneSpecialista">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              placeholder="Crea un username"
-            />
-          </div>
-
-          {/* Terza riga: Password e Conferma Password */}
-          <div className="form-rowRegistrazioneSpecialista">
-            <div className="form-groupRegistrazioneSpecialista">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Crea una password"
-              />
+              <label htmlFor="email">Email</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
             </div>
 
             <div className="form-groupRegistrazioneSpecialista">
-              <label htmlFor="confermaPassword">Conferma Password</label>
-              <input
-                type="password"
-                name="confermaPassword"
-                value={formData.confermaPassword}
-                onChange={handleChange}
-                placeholder="Conferma la tua password"
-              />
+              <label htmlFor="username">Username</label>
+              <input type="text" name="username" value={formData.username} onChange={handleChange} required />
             </div>
-          </div>
 
-          <button className="pulsanteRegistratiSpecialista" type="submit">
-            Registrati
-          </button>
-        </form>
+            <div className="form-rowRegistrazioneSpecialista">
+              <div className="form-groupRegistrazioneSpecialista">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+              </div>
 
-        {/* Pulsante "Torna Indietro" */}
-        <BackButton onClick={handleBack} />
-        
-      </div>
+              <div className="form-groupRegistrazioneSpecialista">
+                <label htmlFor="confermaPassword">Conferma Password</label>
+                <input type="password" name="confermaPassword" value={formData.confermaPassword} onChange={handleChange} required />
+              </div>
+            </div>
+
+
+              <button className="pulsanteRegistratiSpecialista" type="submit">
+              Registrati
+              </button>
+
+          </form>
+
+          {messaggio && <p>{messaggio}</p>}
+
+          <BackButton onClick={() => navigate(-1)} />
+        </div>
       </div>
     </>
   );

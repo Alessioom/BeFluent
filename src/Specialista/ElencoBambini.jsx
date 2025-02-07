@@ -90,9 +90,9 @@ function ElencoBambini() {
           <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
           <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" onClick={handleBambiniClick } /> 
           <NavButton to="/report" className="report-button" text="REPORT" />
-          <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
           <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
           <NavButton to="/Strumenti" className="home-button" text="STRUMENTI" />
+          <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
         </div>
         <BackButton onClick={handleBack} /> {/* Add the BackButton component */}
         <BackButton onClick={handleBack} /> {/* Add the BackButton component */}

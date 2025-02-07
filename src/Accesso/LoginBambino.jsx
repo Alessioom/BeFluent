@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LoginBambino.css';
+import BackButton from "../Components/UI/BackButton-ui";
 
 function LoginBambino() {
   return (
@@ -12,11 +13,15 @@ function LoginBambino() {
         Bentornato, piccolo esploratore! Oggi imparare sarà ancora più divertente! 🎈
       </div>
 
-      
+      <div>
+      <img src="/robotLoginBambino.png" className="robotLoginBambino"  alt="Robot" />
+      </div>
+
+  
+
       {/* Pulsante Torna Indietro */}
-      <div className="backButtonLoginBambino" onClick={() => window.history.back()}>
-          TORNA INDIETRO
-        </div>
+      <BackButton />
+
       {/* Form di Login */}
       <div className="loginContainerLoginBambino">
         <div className="loginBoxLoginBambino">

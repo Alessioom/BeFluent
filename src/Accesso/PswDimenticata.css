@@ -1,87 +1,82 @@
 .containerPswDimenticata {
     width: 100%;
     height: 100%;
-    position: relative;
-    background: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    padding: 20px;
 }
 
 .boxPswDimenticata {
-    background: rgb(255, 255, 255);
-    max-width: 800px; /* Or whatever max width makes sense */
-    padding: 20px; /* Add some padding around content */
+    background: white;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .buttonPswDimenticata {
-    width: 292px;
-    height: 56px;
-    background: green;
-    border-radius: 30px;
-    border: 5px solid black;
+    width: 100%;
+    max-width: 300px;
+    height: 50px;
+    background: #4CAF50;
+    border-radius: 25px;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-    margin-left: 250px;
-    cursor: pointer; /* Indicate it's clickable */
-}
-
-
-.button-textPswDimenticata {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
     color: white;
-    font-size: 40px;
-    font-family: 'Inter', sans-serif;
-
+    margin-top: 20px;
 }
 
-.buttonPswDimenticata:hover{
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
-    background-color: orange;
+.buttonPswDimenticata:hover {
+    background-color: #ff9800;
     transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .input-labelPswDimenticata {
-    width: 528px;
-    color: rgb(0, 0, 0);
-    font-size: 35px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    word-wrap: break-word;
-    margin-top: 20px;
-    margin-left: -100px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 15px;
+    color: #333;
 }
 
 .input-fieldPswDimenticata input {
     width: 100%;
-    padding: 14px 20px;
+    padding: 12px;
     font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     background-color: #f9f9f9;
+    transition: 0.3s;
     box-sizing: border-box;
 }
 
-.input-fieldPswDimenticata input::placeholder {
-    color: rgba(255, 252, 252, 0.3);
+.input-fieldPswDimenticata input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 .introductionPswDimenticata {
-    width: 768px;
-    text-align: center;
-    color: rgb(0, 0, 0);
-    font-size: 30px;
-    /*margin-top: 150px;*/
-    top: -50px;
-    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 15px;
 }
 
-
 .support-imagePswDimenticata {
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
     margin-top: 20px;
 }

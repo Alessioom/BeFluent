@@ -68,10 +68,6 @@
     background-color: blue;
   }
   
-  .nav-button-elenco .logout-button-elenco {
-    background-color: red;
-  }
-  
   .nav-button-elenco .settings-button-elenco {
     background-color: rgb(0, 0, 0);
   }
@@ -79,6 +75,11 @@
   .nav-button-elenco .strumenti-button-elenco {
     background-color: rgb(0, 0, 0);
   }
+
+  .nav-button-elenco .logout-button-elenco {
+    background-color: red;
+  }
+  
 
 
 

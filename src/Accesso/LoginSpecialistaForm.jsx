@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './LoginSpecialistaForm.css';
 import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
 
 const LoginSpecialistaForm = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [messaggio, setMessaggio] = useState('');
 
-  const handleLogin = () => {
-    navigate('/Home/Specialista');
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
-
-  const handleBack = () => {
-    navigate(-1); // Navigate back one step in history
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/login/specialista', formData);
+      localStorage.setItem('token', res.data.token); // Salva il token nel localStorage
+      setMessaggio(res.data.message);
+      setTimeout(() => navigate('/Home/Specialista'), 2000);
+    } catch (error) {
+      setMessaggio(error.response?.data?.error || "Errore durante il login");
+    }
   };
 
   return (
@@ -43,19 +57,41 @@ const LoginSpecialistaForm = () => {
             Accedi per scoprire strumenti e risorse pensati per aiutarti a sostenere i tuoi piccoli campioni. 🧩📚
           </h2>
 
-          <div className="input-groupLoginSpecialista">
-            <label htmlFor="email" className="input-labelLoginSpecialista">Email</label>
-            <input type="email" id="email" className="input-fieldLoginSpecialista" aria-label="Email" />
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="input-groupLoginSpecialista">
+              <label htmlFor="email" className="input-labelLoginSpecialista">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                className="input-fieldLoginSpecialista" 
+                aria-label="Email" 
+                value={formData.email}
+                onChange={handleChange}
+                required 
+              />
+            </div>
 
-          <div className="input-groupLoginSpecialista">
-            <label htmlFor="password" className="input-labelLoginSpecialista">Password</label>
-            <input type="password" id="password" className="input-fieldLoginSpecialista" aria-label="Password" />
-          </div>
+            <div className="input-groupLoginSpecialista">
+              <label htmlFor="password" className="input-labelLoginSpecialista">Password</label>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                className="input-fieldLoginSpecialista" 
+                aria-label="Password" 
+                value={formData.password}
+                onChange={handleChange}
+                required 
+              />
+            </div>
 
-          <button className="submit-buttonLoginSpecialista" onClick={handleLogin} aria-label="Login">
-            ENTRA
-          </button>
+            <button type="submit" className="submit-buttonLoginSpecialista" aria-label="Login">
+              ENTRA
+            </button>
+          </form>
+
+          {messaggio && <p>{messaggio}</p>}
 
           <Link to="/Psw/Dimenticata">
             <button className="forgot-passwordLoginSpecialista" aria-label="Password dimenticata">
@@ -71,7 +107,7 @@ const LoginSpecialistaForm = () => {
             </Link>
           </div>
 
-          <BackButton onClick={handleBack} /> {/* Add the BackButton component */}
+          <BackButton onClick={() => navigate(-1)} /> {/* Add the BackButton component */}
         </div>
       </div>
     </>
