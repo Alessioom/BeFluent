@@ -1,0 +1,103 @@
+/* Contenitore principale della registrazione del bambino */
+.container-registrazioneBambino {
+    width: 500px;
+    margin: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+    top: 12%;
+    left: 25%;
+    position: absolute;
+    font-size: 20px;
+}
+
+/* Titolo della registrazione del bambino */
+.titolo-registrazioneBambino {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Messaggio di successo della registrazione */
+.successo-registrazioneBambino {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Messaggio di errore della registrazione */
+.errore-registrazioneBambino {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Form di registrazione del bambino */
+.form-registrazioneBambino {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Input del form di registrazione del bambino */
+.input-registrazioneBambino {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: white;
+}
+
+/* Bottone di registrazione del bambino */
+.bottone-registrazioneBambino {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Hover del bottone di registrazione del bambino */
+.bottone-registrazioneBambino:hover {
+    background-color: #ffae00;
+}
+
+/* Logo della registrazione del bambino */
+.logo-registrazioneBambino {
+    position: absolute;
+    width: 30%;
+    top: 10%;
+    left: 35%;
+}
+
+/* Immagine del robot nella registrazione del bambino */
+.robot-registrazioneBambino {
+    position: absolute;
+    width: 15%;
+    top: 500px;
+    right: 25%;
+}
+
+/* Testo della registrazione del bambino */
+.testoRegistrazioneBambino {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: #333;
+}
+
+/* Immagine del dottore nella registrazione del bambino */
+.dottore-registrazioneBambino {
+    position: absolute;
+    width: 8%;
+    top: 5%;
+    left: 65%;
+}

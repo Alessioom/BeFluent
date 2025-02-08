@@ -15,6 +15,7 @@ const RegistrazioneSpecialistaForm = () => {
     username: '',
     password: '',
     confermaPassword: '',
+    ID: ''
   });
 
   const [messaggio, setMessaggio] = useState('');
@@ -89,6 +90,12 @@ const RegistrazioneSpecialistaForm = () => {
               </div>
             </div>
 
+
+
+            <div className="form-groupRegistrazioneSpecialista">
+              <label htmlFor="ID">ID</label>
+              <input type="text" name="ID" value={formData.ID} onChange={handleChange} required />
+            </div>
 
               <button className="pulsanteRegistratiSpecialista" type="submit">
               Registrati

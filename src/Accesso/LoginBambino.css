@@ -87,3 +87,17 @@
     top: 22%;
     left: 36%;
   }
+
+  .successoLoginBambino {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.erroreLoginBambino {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}

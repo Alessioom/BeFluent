@@ -1,0 +1,52 @@
+/* Contenitore dei pulsanti */
+.buttons-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+  }
+  
+  /* Pulsante generico */
+  .button {
+    width: 180px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Hover effect per i pulsanti */
+  .button:hover {
+    background-color: #ff6600;
+    transform: scale(1.05);
+  }
+  
+  /* Stile specifico per il pulsante HOME */
+  .home-button {
+    background-color: #34b3a0; /* Colore verde acqua per "HOME" */
+  }
+  
+  .home-button:hover {
+    background-color: #28a08b;
+  }
+  
+  /* Stile specifico per il pulsante RICOMPENSE */
+  .rewards-button {
+    background-color: #f4a300; /* Colore giallo per "RICOMPENSE" */
+  }
+  
+  .rewards-button:hover {
+    background-color: #e38b00;
+  }
+  

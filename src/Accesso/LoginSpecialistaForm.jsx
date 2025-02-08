@@ -4,8 +4,10 @@ import axios from 'axios';
 import './LoginSpecialistaForm.css';
 import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
+import { useAuth } from './AuthContext';
 
 const LoginSpecialistaForm = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [messaggio, setMessaggio] = useState('');
@@ -22,6 +24,7 @@ const LoginSpecialistaForm = () => {
     try {
       const res = await axios.post('http://localhost:5000/login/specialista', formData);
       localStorage.setItem('token', res.data.token); // Salva il token nel localStorage
+      login(res.data.token, res.data.specialistaId); // Usa il contesto per memorizzare l'informazione
       setMessaggio(res.data.message);
       setTimeout(() => navigate('/Home/Specialista'), 2000);
     } catch (error) {
