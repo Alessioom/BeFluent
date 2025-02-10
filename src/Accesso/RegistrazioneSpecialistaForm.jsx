@@ -15,7 +15,7 @@ const RegistrazioneSpecialistaForm = () => {
     username: '',
     password: '',
     confermaPassword: '',
-    ID: ''
+    //ID: ''
   });
 
   const [messaggio, setMessaggio] = useState('');
@@ -33,11 +33,14 @@ const RegistrazioneSpecialistaForm = () => {
   // Crea una nuova copia dei dati del form con l'email normalizzata
   const formDataNormalizzato = { ...formData, email: emailNormalizzata };
 
+  console.log("Dati inviati per la registrazione:", formDataNormalizzato);
+
     try {
       const res = await axios.post('http://localhost:5000/registrazione/specialista', formDataNormalizzato);
       setMessaggio(res.data.message);
       setTimeout(() => navigate('/login'), 2000); // Reindirizza dopo 2 secondi
     } catch (error) {
+      console.error("Errore nella registrazione:", error);
       setMessaggio(error.response?.data?.error || "Errore durante la registrazione");
     }
   };
@@ -92,11 +95,11 @@ const RegistrazioneSpecialistaForm = () => {
 
 
 
-            <div className="form-groupRegistrazioneSpecialista">
+            {/*<div className="form-groupRegistrazioneSpecialista">
               <label htmlFor="ID">ID</label>
               <input type="text" name="ID" value={formData.ID} onChange={handleChange} required />
             </div>
-
+*/}
               <button className="pulsanteRegistratiSpecialista" type="submit">
               Registrati
               </button>

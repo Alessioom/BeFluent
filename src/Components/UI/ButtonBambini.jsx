@@ -1,7 +1,7 @@
 import React from "react";
 import './ButtonBambini.css';
 
-const Buttons = () => {
+const ButtonBambini = () => {
   return (
     <div className="buttons-container">
       <button className="button home-button">HOME</button>
@@ -10,4 +10,4 @@ const Buttons = () => {
   );
 };
 
-export default ButtonsBambini;
+export default ButtonBambini;

@@ -14,6 +14,8 @@ import Logout from './Specialista/Logout';
 import Impostazioni from './Specialista/Impostazioni';
 import NavButton from './Components/UI/NavButton';
 import RegistrazioneBambino from './Specialista/RegistrazioneBambino';
+import HomeBambini from './Bambini/HomeBambini';
+
 //import Home from './Home';  // Componenti per le varie pagine
 //import Report from './Report';
 //import Logout from './Logout';
@@ -40,6 +42,7 @@ function App() {
       <Route path="/Elenco/Bambini/refresh" element={<></>} /> {/* Questa rotta non mostrerà nulla */}
       <Route path="/Impostazioni" element={<Impostazioni />} />
       <Route path="/Registrazione/Bambino" element={<RegistrazioneBambino />} />
+      <Route path="/PaginaBambini" element={<HomeBambini />} />
     </Routes>
     </AuthProvider>
   )

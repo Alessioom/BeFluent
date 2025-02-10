@@ -39,36 +39,55 @@ connect(process.env.MONGO_URI, {
 }).then(() => console.log("✅ Connesso a MongoDB"))
   .catch(err => console.error(err));
 
-// 📌 API per registrare uno specialista con password criptata
-app.post('/registrazione/specialista', async (req, res) => {
-    try {
-        const { nome, cognome, email, username, password, confermaPassword, specialistaId } = req.body;
-        if (password !== confermaPassword) {
-            return res.status(400).json({ error: "Le password non coincidono!" });
-        }
-        const emailEsistente = await Specialista.findOne({ email });
-        const usernameEsistente = await Specialista.findOne({ username });
-        if (emailEsistente) return res.status(400).json({ error: "Email già registrata!" });
-        if (usernameEsistente) return res.status(400).json({ error: "Username già esistente!" });
-        
-        // 🔒 CRITTOGRAFA la password prima di salvarla
-        const salt = await genSalt(10);
-        const passwordHash = await hash(password, salt);
-        const nuovoSpecialista = new Specialista({
-            nome,
-            cognome,
-            email: email.toLowerCase(),  // Converte l'email in minuscolo
-            username,
-            password: passwordHash, // Salva la password crittografata
-            
-        });
-        await nuovoSpecialista.save();
-        res.status(201).json({ message: "✅ Specialista registrato con successo!" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Errore durante la registrazione" });
-    }
-});
+  import validator from 'validator';
+
+  app.post('/registrazione/specialista', async (req, res) => {
+      try {
+          const { nome, cognome, email, username, password, confermaPassword /*, specialistaId */ } = req.body;
+  
+          if (password !== confermaPassword) {
+              return res.status(400).json({ error: "Le password non coincidono!" });
+          }
+  
+          // Verifica se l'email è valida
+          if (!validator.isEmail(email)) {
+              return res.status(400).json({ error: "Email non valida!" });
+          }
+  
+          const emailEsistente = await Specialista.findOne({ email });
+          const usernameEsistente = await Specialista.findOne({ username });
+          //const specialistaIdEsistente = await Specialista.findOne({ specialistaId });
+          if (emailEsistente) return res.status(400).json({ error: "Email già registrata!" });
+          if (usernameEsistente) return res.status(400).json({ error: "Username già esistente!" });
+          // if (specialistaIdEsistente) return res.status(400).json({ error: "ID già utilizzato!" });
+  
+          // 🔒 CRITTOGRAFA la password prima di salvarla
+          console.log('Dati ricevuti:', req.body);
+          const salt = await genSalt(10);
+          console.log('Salt generato:', salt);
+          const passwordHash = await hash(password, salt);
+          console.log('Password hashata:', passwordHash);
+  
+          const nuovoSpecialista = new Specialista({
+              nome,
+              cognome,
+              email: email.toLowerCase(),  // Converte l'email in minuscolo
+              username,
+              password: passwordHash, // Salva la password crittografata
+              //specialistaId, // Salva l'ID fornito dall'utente
+          });
+          await nuovoSpecialista.save();
+          res.status(201).json({ message: "✅ Specialista registrato con successo!" });
+      } catch (error) {
+          if (error.name === 'ValidationError') {
+              // Se c'è un errore di validazione (come email non valida), invia un messaggio specifico
+              res.status(400).json({ error: error.message });
+          } else {
+              res.status(500).json({ error: "Errore durante la registrazione" });
+          }
+      }
+  });
+  
 
 // 📌 API per effettuare il login di uno specialista
 app.post('/login/specialista', async (req, res) => {
@@ -136,20 +155,24 @@ app.post('/registrazione/bambino', authMiddleware, async (req, res) => {
 
 // 📌 API per effettuare il login di un bambino
 app.post('/login/bambino', async (req, res) => {
+    const { ID } = req.body;
+
     try {
-        const {ID} = req.body;
-        // Trova il bambino per ID
         const bambino = await Bambino.findOne({ ID });
+
         if (!bambino) {
-            return res.status(400).json({ error: "ID non registrato!" });
+            return res.status(400).json({ error: 'ID non trovato' });
         }
-        res.status(200).json({ message: "✅ Login riuscito!"});
+
+        res.json({ 
+            message: 'Login riuscito',
+            bambinoId: bambino._id  // 🔥 Assicurati che il server restituisca questo campo!
+        });
+
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Errore durante il login" });
+        res.status(500).json({ error: 'Errore del server' });
     }
-}
-);
+});
 
 app.get('/bambini', authMiddleware, async (req, res) => {
     try {
@@ -159,6 +182,20 @@ app.get('/bambini', authMiddleware, async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Errore nel recupero dei bambini" });
+    }
+});
+
+
+// 📌 API per recuperare un bambino per ID
+app.get('/bambino/:id', async (req, res) => {
+    try {
+        const bambino = await Bambino.findById(req.params.id);
+        if (!bambino) {
+            return res.status(404).json({ error: 'Bambino non trovato' });
+        }
+        res.json(bambino);
+    } catch (error) {
+        res.status(500).json({ error: 'Errore nel recupero del bambino' });
     }
 });
 
