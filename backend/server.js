@@ -74,23 +74,24 @@ app.post('/registrazione/specialista', async (req, res) => {
 app.post('/login/specialista', async (req, res) => {
     try {
         const { email, password } = req.body;
-        // Trova lo specialista per email
         const specialista = await Specialista.findOne({ email: email.toLowerCase() });
         if (!specialista) {
             return res.status(400).json({ error: "Email non registrata!" });
         }
-        // Confronta la password inserita con quella salvata nel DB
         const passwordValida = await compare(password, specialista.password);
         if (!passwordValida) {
             return res.status(400).json({ error: "Password errata!" });
         }
-        // Genera un token JWT
         const token = jwt.sign(
             { id: specialista._id, email: specialista.email },
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
-        res.status(200).json({ message: "✅ Login riuscito!", token });
+        res.status(200).json({ 
+            message: "✅ Login riuscito!", 
+            token, 
+            specialistaId: specialista._id  // Ritorna l'ID dello specialista
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Errore durante il login" });

@@ -63,11 +63,11 @@ export const AuthProvider = ({ children }) => {
 
   // Funzione di login
   const login = (token, specialistaId) => {
-
-    console.log('Specialista ID:', specialistaId);
+    localStorage.setItem('token', token);
+    localStorage.setItem('specialistaId', specialistaId); // Salva anche l'ID dello specialista
     setAuth({ token, specialistaId });
-    console.log(localStorage.getItem('token'));
-  };
+};
+
 
   // Funzione di logout
   const logout = () => {

@@ -43,7 +43,10 @@ const RegistrazioneBambino = () => {
     
         try {
             // Modifica l'endpoint per inviare la richiesta POST
-            const response = await axios.post('http://localhost:5000/registrazione/bambino', bambinoData);
+            const response = await axios.post('http://localhost:5000/registrazione/bambino', 
+                bambinoData,
+                { headers: { Authorization: `Bearer ${token}` } } // <-- Passa il token JWT
+            );
             setMessaggio(response.data.message);
             setFormData({
                 nome: '',
