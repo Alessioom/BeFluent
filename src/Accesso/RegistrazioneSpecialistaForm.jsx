@@ -13,6 +13,7 @@ const RegistrazioneSpecialistaForm = () => {
     cognome: '',
     email: '',
     username: '',
+    sesso: '',
     password: '',
     confermaPassword: '',
     //ID: ''
@@ -79,6 +80,15 @@ const RegistrazioneSpecialistaForm = () => {
             <div className="form-groupRegistrazioneSpecialista">
               <label htmlFor="username">Username</label>
               <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+            </div>
+
+            <div className="form-groupRegistrazioneSpecialista">
+            <label htmlFor="sesso">Sesso</label>
+            <select name="sesso" value={formData.sesso} onChange={handleChange} required>
+            <option value="">Seleziona il sesso</option>
+            <option value="maschio">maschio</option>
+            <option value="femmina">femmina</option>
+            </select>
             </div>
 
             <div className="form-rowRegistrazioneSpecialista">

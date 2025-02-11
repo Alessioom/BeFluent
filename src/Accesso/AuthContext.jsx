@@ -24,32 +24,24 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       const getSpecialistaId = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/bambini/specialista', {
+          // Estrai l'ID dello specialista dal token o dal localStorage
+          const decodedToken = jwt.decode(token); // Assicurati di aver installato la libreria 'jwt-decode'
+          const specialistaId = decodedToken.id;
+ 
+          const response = await axios.get(`http://localhost:5000/specialista/${specialistaId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
   
-          if (response && response.data && response.data.specialistaId) {
-            const specialistaId = response.data.specialistaId;
-  
-            // Validazione lato frontend (lunghezza di un ObjectId di MongoDB)
-            const isValidId = typeof specialistaId === 'string' && specialistaId.length === 24 && /^[a-fA-F0-9]+$/.test(specialistaId);
-  
-            if (!isValidId) {
-              console.log("Errore: ID dello specialista non valido!");
-              setAuth({ token: null, specialistaId: null });
-              localStorage.removeItem('token');
-              return;
-            }
-  
-            // Se è valido, lo salviamo nello stato
+          if (response && response.data) {
+            // Verifica se l'ID è valido (puoi fare altre validazioni se necessario)
             setAuth({ token, specialistaId });
           } else {
-            console.log("Errore: ID dello specialista non trovato!");
+            console.log("Errore: Dati dello specialista non trovati!");
             setAuth({ token: null, specialistaId: null });
             localStorage.removeItem('token');
           }
         } catch (error) {
-          console.log('Errore durante il recupero dell\'ID dello specialista', error);
+          console.log('Errore durante il recupero dei dati dello specialista', error);
           setAuth({ token: null, specialistaId: null });
           localStorage.removeItem('token');
         }
@@ -62,6 +54,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Funzione di login
+  
   const login = (token, specialistaId) => {
     localStorage.setItem('token', token);
     localStorage.setItem('specialistaId', specialistaId); // Salva anche l'ID dello specialista

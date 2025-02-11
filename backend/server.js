@@ -46,7 +46,7 @@ connect(process.env.MONGO_URI, {
 
   app.post('/registrazione/specialista', async (req, res) => {
       try {
-          const { nome, cognome, email, username, password, confermaPassword /*, specialistaId */ } = req.body;
+          const { nome, cognome, email, username, password, confermaPassword, sesso /*, specialistaId */ } = req.body;
   
           if (password !== confermaPassword) {
               return res.status(400).json({ error: "Le password non coincidono!" });
@@ -77,6 +77,7 @@ connect(process.env.MONGO_URI, {
               email: email.toLowerCase(),  // Converte l'email in minuscolo
               username,
               password: passwordHash, // Salva la password crittografata
+              sesso,
               //specialistaId, // Salva l'ID fornito dall'utente
           });
           await nuovoSpecialista.save();
@@ -105,14 +106,16 @@ app.post('/login/specialista', async (req, res) => {
             return res.status(400).json({ error: "Password errata!" });
         }
         const token = jwt.sign(
-            { id: specialista._id, email: specialista.email },
+            { id: specialista._id, email: specialista.email, nome: specialista.nome },
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
         res.status(200).json({ 
             message: "✅ Login riuscito!", 
             token, 
-            specialistaId: specialista._id  // Ritorna l'ID dello specialista
+            specialistaId: specialista._id,  // Ritorna l'ID dello specialista
+            nome: specialista.nome  // Ritorna il nome dello specialista
+
         });
     } catch (error) {
         console.error(error);

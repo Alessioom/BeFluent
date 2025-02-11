@@ -21,6 +21,8 @@ import CambioPsw from './Specialista/CambioPsw';
 //import Logout from './Logout';
 import { AuthProvider } from './Accesso/AuthContext';
 import PaginaBambino from './Specialista/PaginaBambino'
+import EserciziGiornalieri from './Bambini/EserciziGiornalieri';
+import GiudizioOrtografico1 from './Bambini/GiudizioOrtografico1';
 
 
 
@@ -32,7 +34,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/login/bambino" element={<LoginBambino />} />
-      <Route path="/home/specialista/:specialistaId" element={<HomeSpecialista />} />
+      <Route path="/Home/Specialista/:specialistaId" element={<HomeSpecialista />} />
       <Route path="/login/specialista/form" element={<LoginSpecialistaForm />} />
       <Route path="/Registrazione/Specialista" element={<RegistrazioneSpecialista />} />
       <Route path="/Registrazione/Specialista/Form" element={<RegistrazioneSpecialistaForm />} />
@@ -46,6 +48,8 @@ function App() {
       <Route path="/Home/Bambini" element={<HomeBambini />} />
       <Route path="/Cambio/Psw" element={<CambioPsw />} />
       <Route path="/Pagina/Bambino/:id" element={<PaginaBambino />} />
+      <Route path="/Esercizi/Giornalieri" element={<EserciziGiornalieri />} />
+      <Route path="/Giudizio/Ortografico/1" element={<GiudizioOrtografico1 />} />
     </Routes>
     </AuthProvider>
   )

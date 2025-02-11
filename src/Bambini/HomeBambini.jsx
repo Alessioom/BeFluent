@@ -44,11 +44,11 @@ const HomeBambini = () => {
             <button className="cardTestIniziale">
                 <div className="card-title">TEST INIZIALE</div>
             </button>
-
-            <button className="cardEserciziGiornalieri">
-                <div className="card-title">ESERCIZI GIORNALIERI</div>
-            </button>
-
+            <Link to="/Esercizi/Giornalieri">
+                <button className="cardEserciziGiornalieri">
+                    <div className="card-title">ESERCIZI GIORNALIERI</div>
+                </button>
+            </Link>
             <button className="cardDialogoEsperto">
                 <div className="card-title">PARLA CON IL TUO ESPERTO</div>
             </button>

@@ -51,8 +51,6 @@ body, html {
   display: flex;
   justify-content: space-between; /* Space between items */
   align-items: center; /* Center vertically */
-  gap: 0px;
-  margin-bottom: 10px;
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 
 }
@@ -73,13 +71,32 @@ body, html {
   margin: 0 auto; /* Center the form group */
 }
 
+.form-groupRegistrazioneSpecialista label {
+  color: #333; /* Colore del testo dell'etichetta */
+}
+
+.form-groupRegistrazioneSpecialista select {
+  color: #000000; /* Colore del testo all'interno del select */
+  background-color: #c2c2c2; /* Colore di sfondo del select */
+  border: 1px solid #bcbcbc; /* Colore del bordo */
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.form-groupRegistrazioneSpecialista select:focus {
+  border-color: #0056b3; /* Colore del bordo quando il select è attivo */
+  outline: none; /* Rimuove il contorno blu predefinito */
+}
+
+
 /* Stili per gli input all'interno del form */
 .registrazioneSpecialista-form input {
-  padding: 20px; /* Increase padding for larger input fields */
+  padding: 10px; /* Increase padding for larger input fields */
   border-radius: 50px;
   border: 2px solid #f2f2f2;
   font-size: 18px; /* Increase font size */
-  margin-top: 10px; /* Increase margin-top */
+  margin-top: 5px; /* Increase margin-top */
+  margin-bottom: 5px;
   background-color: rgb(197, 197, 197);
   color: #000000;
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */

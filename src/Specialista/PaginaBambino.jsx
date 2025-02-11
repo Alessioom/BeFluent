@@ -9,7 +9,7 @@ import axios from 'axios';
 const PaginaBambino = () => {
     const { id } = useParams();  // Ottieni l'ID del bambino dalla rotta
     console.log("ID Bambino:", id); // Verifica che l'ID venga correttamente recuperato
-    const [bambini, setBambini] = useState(null);  // Stato per i bambini
+    const [bambino, setBambino] = useState(null);  // Stato per i bambini
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const PaginaBambino = () => {
         try {
             const response = await axios.get(`http://localhost:5000/bambino/${id}`);
             console.log("Risposta API:", response.data);
-            setBambini(response.data); // Imposta i dati del bambino nello stato
+            setBambino(response.data); // Imposta i dati del bambino nello stato
             setLoading(false);
         } catch (error) {
             console.error("Errore nel recupero dei dati del bambino:", error);
@@ -82,6 +82,11 @@ const PaginaBambino = () => {
         <BackButton onClick={handleBack} />
       </div>
 
+        <div className="bambino-container">
+      <div className="titolo-bambino"> Benvenuto nella pagina di:</div>
+      <div className="informazioni-bambino"> {bambino.nome} {bambino.cognome} </div>
+</div>
+
        {/* Table for displaying bambino data */}
        <div className="bambino-table-container">
                 <table className="bambino-table">
@@ -90,7 +95,9 @@ const PaginaBambino = () => {
                             <th>Nome</th>
                             <th>Cognome</th>
                             <th>Data di Nascita</th>
+                            <th>Sesso</th>
                             <th>Email Genitore</th>
+                            <th>Opzioni</th>
                             {/*<th>Comune di Nascita</th>
                             <th>Comune di Residenza</th>
                             <th>Via di Residenza</th>
@@ -104,7 +111,7 @@ const PaginaBambino = () => {
                         <tr key={bambino._id}>
                             <td>{bambino.nome}</td>
                             <td>{bambino.cognome}</td>
-                            <td>{bambino.dataDiNascita}</td>
+                            <td>{new Date(bambino.dataDiNascita).toLocaleDateString('it-IT')}</td>
                             <td>{bambino.sesso}</td>
                             <td>{bambino.emailGenitore}</td>
                             {/*<td>{bambino.comuneDiNascita}</td>

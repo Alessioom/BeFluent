@@ -26,7 +26,7 @@ const LoginSpecialistaForm = () => {
       localStorage.setItem('token', res.data.token); // Salva il token nel localStorage
       login(res.data.token, res.data.specialistaId); // Usa il contesto per memorizzare l'informazione
       setMessaggio(res.data.message);
-      setTimeout(() => navigate('/Home/Specialista'), 2000);
+      setTimeout(() => navigate(`/Home/Specialista/${res.data.specialistaId}`), 2000);
     } catch (error) {
       setMessaggio(error.response?.data?.error || "Errore durante il login");
     }
