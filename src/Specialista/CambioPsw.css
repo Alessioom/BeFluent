@@ -7,55 +7,89 @@
     padding: 0;
 }
 
-/* Contenitore principale per la sezione Cambio Password */
+/* Contenitore principale */
 .container-cambio {
-    position: relative; /* Contesto di posizionamento per gli elementi assoluti */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra gli elementi orizzontalmente */
+    justify-content: center; /* Centra verticalmente se ha un'altezza fissa */
+    width: 1000px;
+    height: auto;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Sfondo della pagina */
-.background-cambio {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 100%; /* Copre l'intera larghezza della pagina */
-    height: 100%; /* Copre l'intera altezza della pagina */
-    background-color: #f8f9fa; /* Colore di sfondo neutro */
-    z-index: -1; /* Mantenere dietro gli altri elementi */
-}
-
-/* Titolo principale della sezione Cambio Password */
+/* Titolo */
 .title-cambio {
-    position: absolute;
-    top: 20px; /* Distanza dalla parte superiore */
-    left: 50%; /* Centrato orizzontalmente */
-    transform: translateX(-50%); /* Centra esattamente l'elemento */
     font-family: 'Inter', sans-serif;
     font-size: 40px;
     font-weight: 700;
-    color: #333; /* Colore grigio scuro */
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* Contenitore per ogni input */
+.field-cambio {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra la label e l'input */
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+
+}
+
+/* Label */
+.label-cambio {
+    font-size: 18px;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 5px;
+    text-align: center; /* Centra il testo */
+    display: block;
+}
+
+/* Input */
+.input-cambio {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border: 2px solid #ddd;
+    background-color: #fff;
+    padding-left: 15px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
     text-align: center;
 }
 
-/* Etichette per i campi di input */
-.label-cambio {
-    position: absolute;
-    font-family: 'Inter', sans-serif;
-    font-size: 18px; /* Dimensione più piccola per le etichette */
-    font-weight: 400;
-    color: #555; /* Colore grigio chiaro */
-    margin-bottom: 5px;
+.input-cambio:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
-/* Stili per gli input dei campi di password */
-.input-cambio {
-    position: absolute;
-    width: 80%; /* Adattabile per schermi più piccoli */
-    max-width: 629px; /* Larghezza massima per evitare sovradimensionamenti */
+
+.button-cambio {
+    width: 400px;
     height: 50px;
-    border-radius: 25px; /* Bordo arrotondato per un aspetto morbido */
-    border: 2px solid #ddd; /* Bordo chiaro per un aspetto delicato */
-    background-color: #fff; /* Bianco per maggiore chiarezza */
-    padding-left: 15px;
-    font-size: 16px; /* Buona leggibilità */
-    transition: border-color 0.3s ease; /* Effetto di transizione per il bordo */
+    border-radius: 25px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.2s
+}
+
+.button-cambio:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }

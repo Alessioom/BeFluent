@@ -24,8 +24,8 @@
     font-size: 60px;
     font-weight: 700;
     color: #000000;
-    margin-top: -220px;
-    margin-left: 200px;
+    top: 50px;
+    left: 750px;
   }
 
   .cardEserciziGiornalieri {
@@ -38,6 +38,8 @@
     justify-content: center;
     margin-bottom: 100px;
     border: 2px solid #000;
+    position: relative;
+    left: -600px;
   }
 
   .cardEserciziGiornalieri:hover{
@@ -49,6 +51,7 @@
 
   .cardDialogoEsperto
   {
+    position: relative;
     width: 330px;
     height: 75px;
     background-color: #ffaa00;
@@ -57,6 +60,7 @@
     align-items: center;
     justify-content: center;
     border: 2px solid #000;
+    left: -500px;
   }
 
   .cardDialogoEsperto:hover{
@@ -68,6 +72,7 @@
 
   
   .cardTestIniziale{
+    position: relative;
     width: 330px;
     height: 75px;
     background-color: #ffaa00;
@@ -77,8 +82,15 @@
     justify-content: center;
     margin-bottom: 100px;
     border: 2px solid #000;
+    left: -500px;
   }
 
+  .cardTestIniziale:hover{
+    background-color: #01ff01; /* Cambia il colore al passaggio del mouse */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizioni */
+    transform: scale(1.05); /* Aggiungi un effetto di ingrandimento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi un'ombra */
+  }
   
 
   .cardLogoutBambino
@@ -93,8 +105,8 @@
     justify-content: center;
     border: 2px solid #000;
     
-    margin-top: -630px;
-    margin-left: 750px;
+    top: 13px;
+    left: 1370px;
   }
 
 
@@ -139,30 +151,77 @@
     margin-top: 20px;
   }
   
-  /* Testo divertente */
-  .fun-text {
-    font-size: 24px;
-    color: #ff9900;
-    font-weight: 500;
-    text-align: center;
-    margin-top: 30px;
-  }
   
+.robottino1HomeBambini {
+  position: absolute;
+  margin-top: 290px;
+  left: 700px
+ 
+}
 
-  .robottino1HomeBambini
-  {
-    position: absolute;
-    margin-top: 290px;
-  }
-  .robottino2HomeBambini
-  {
-    position: absolute;
-    margin-top: 110px;
-    margin-left: 11.5px;
-  }
-  .robottino3HomeBambini
-  {
-    position: absolute;
-    margin-top: -75px;
-    margin-left: 9px;
-  }
+.robottino1HomeBambini:hover
+{
+  transform: scale(1.1);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizioni */
+}
+
+
+.robottino2HomeBambini {
+  position: absolute;
+  margin-top: 110px;
+  left: 600px;
+}
+
+.robottino2HomeBambini:hover
+{
+  transform: scale(1.1);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizioni */
+}
+
+.robottino3HomeBambini {
+  position: absolute;
+  margin-top: -75px;
+  left: 708px
+}
+
+.robottino3HomeBambini:hover
+{
+  transform: scale(1.1);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizioni */
+}
+.robotHomeBambino
+{
+  position: absolute;
+  width: 250px;
+  left: 1432px;
+  top: 417px;
+}
+.robotHomeBambino:hover
+{
+  transform: scale(1.1);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizioni */
+}
+
+.nuvoletta-dialogo {
+  position: absolute;
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  font-size: 30px;
+  text-align: center;
+  top: 365px;
+  left: 1000px; /* Posiziona vicino al robot */
+  width: 500px;
+  border: 2px solid #000;
+  background: linear-gradient(to right, orange, green); /* Gradiente dal verde all'arancione */
+  background-clip: text; /* Clip del background al testo */
+  -webkit-background-clip: text; /* Clip del background al testo */
+  -webkit-text-fill-color: transparent; /* Rende il testo trasparente per mostrare il gradiente */
+}
+
+.nuvoletta-dialogo:hover
+{
+  transform: scale(1.1);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizioni */
+}

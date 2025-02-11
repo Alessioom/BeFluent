@@ -6,7 +6,7 @@ const BambinoSchema = new mongoose.Schema({
     dataDiNascita: { type: Date, required: true },
     sesso: { type: String, required: true },
     emailGenitore: { type: String, required: true, unique: true },
-    ID: { type: String, required: true },
+    ID: { type: String, required: true,  unique: true },
     specialistaId: { type: mongoose.Schema.Types.ObjectId, ref: 'Specialista', required: true }
 });
 

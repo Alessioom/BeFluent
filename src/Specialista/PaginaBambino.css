@@ -1,0 +1,32 @@
+.bambino-table-container {
+    padding: 20px;
+}
+
+.bambino-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.bambino-table th, .bambino-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.bambino-table th {
+    background-color: #f4f4f4;
+}
+
+button-bamb {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button-bamb:hover {
+    background-color: #0056b3;
+}

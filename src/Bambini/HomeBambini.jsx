@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './HomeBambini.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
@@ -32,6 +32,7 @@ const HomeBambini = () => {
 
     return (
         <div>
+            <img src="/robotHomeBambino.png" alt="robotHomeBambino" className="robotHomeBambino" />
             <img src="/robottino1HomeBambini.png" alt="robottino1HomeBambini" className="robottino1HomeBambini" />
             <img src="/robottino2HomeBambini.png" alt="robottino2HomeBambini" className="robottino2HomeBambini" />
             <img src="/robottino3HomeBambini.png" alt="robottino3HomeBambini" className="robottino3HomeBambini" />
@@ -52,9 +53,11 @@ const HomeBambini = () => {
                 <div className="card-title">PARLA CON IL TUO ESPERTO</div>
             </button>
 
+            <Link to="/login/bambino">
             <button className="cardLogoutBambino">
                 <div className="logout-title">LOGOUT</div>
             </button>
+            </Link>
 
             <LogoProfile 
                 logoSrc="/BeFluent_logo_testo.png"
@@ -65,7 +68,10 @@ const HomeBambini = () => {
             
             <BackButton />
 
-            <div className="fun-text">Scegli e divertiti! Qui ogni strada è speciale, proprio come te! 💛✨</div>
+            <div className="nuvoletta-dialogo">
+                Scegli e divertiti! Qui ogni strada è speciale, proprio come te! 💛✨
+            </div>
+
         </div>
     );
 };

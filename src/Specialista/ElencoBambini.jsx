@@ -9,6 +9,7 @@ import { useAuth } from '../Accesso/AuthContext';
 function ElencoBambini() {
   const { auth } = useAuth();  
   const token = auth?.token;  // Prende il token JWT
+  console.log("Token:", token);
   const [bambini, setBambini] = useState([]);
   const navigate = useNavigate(); 
   const location = useLocation(); 
@@ -59,7 +60,10 @@ function ElencoBambini() {
               {bambini.length > 0 ? (
                 bambini.map((bambino) => (
                   <li key={bambino._id} className="child-item-elenco-bambini">
-                    <div className="child-name-elenco-bambini">{bambino.nome}</div>
+                    {/* Aggiungi un Link per ogni bambino */}
+                  <Link to={`/Pagina/Bambino/${bambino._id}`} className="child-link">
+                    {bambino.nome} {bambino.cognome}
+                  </Link>
                   </li>
                 ))
               ) : (

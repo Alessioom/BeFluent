@@ -20,6 +20,7 @@ import CambioPsw from './Specialista/CambioPsw';
 //import Report from './Report';
 //import Logout from './Logout';
 import { AuthProvider } from './Accesso/AuthContext';
+import PaginaBambino from './Specialista/PaginaBambino'
 
 
 
@@ -44,6 +45,7 @@ function App() {
       <Route path="/Registrazione/Bambino" element={<RegistrazioneBambino />} />
       <Route path="/Home/Bambini" element={<HomeBambini />} />
       <Route path="/Cambio/Psw" element={<CambioPsw />} />
+      <Route path="/Pagina/Bambino/:id" element={<PaginaBambino />} />
     </Routes>
     </AuthProvider>
   )

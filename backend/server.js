@@ -187,6 +187,44 @@ app.get('/specialista/:id', authMiddleware, async (req, res) => {
     }
 });
 
+// 📌 API per cambiare la password dello specialista
+app.put('/specialista/update-password', authMiddleware, async (req, res) => {
+    try {
+        const specialistaId = req.user.id; // Ottiene l'ID dal token
+        const { oldPassword, newPassword } = req.body;
+
+        const specialista = await Specialista.findById(specialistaId);
+        if (!specialista) {
+            return res.status(404).json({ error: "Specialista non trovato!" });
+        }
+
+        const isMatch = await compare(oldPassword, specialista.password);
+        if (!isMatch) {
+            return res.status(400).json({ error: "La vecchia password è errata!" });
+        }
+
+        // Log per il debug
+        console.log("Cambio password per specialista:", specialistaId);
+        console.log("Vecchia password validata con successo.");
+
+        const salt = await genSalt(10);
+        const newHashedPassword = await hash(newPassword, salt);
+
+        // Log per tracciare l'aggiornamento
+        console.log("Nuova password crittografata.");
+
+        specialista.password = newHashedPassword;
+
+        await specialista.save();
+
+        res.status(200).json({ message: "✅ Password cambiata con successo!" });
+        
+    } catch (error) {
+        console.error("Errore durante il cambio della password:", error);
+        res.status(500).json({ error: "Errore durante il cambio della password" });
+    }
+});
+
 
 
 // 📌 API per registrare un bambino
@@ -261,12 +299,14 @@ app.get('/bambini', authMiddleware, async (req, res) => {
 // 📌 API per recuperare un bambino per ID
 app.get('/bambino/:id', async (req, res) => {
     try {
+        console.log("ID ricevuto:", req.params.id);
         const bambino = await Bambino.findById(req.params.id);
         if (!bambino) {
             return res.status(404).json({ error: 'Bambino non trovato' });
         }
         res.json(bambino);
     } catch (error) {
+        console.error("Errore nel recupero del bambino:", error);
         res.status(500).json({ error: 'Errore nel recupero del bambino' });
     }
 });
