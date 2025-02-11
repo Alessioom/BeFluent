@@ -13,6 +13,8 @@ dotenv.config(); // Carica variabili d'ambiente
 const authMiddleware = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];  // Estrae il token dal campo "Authorization"
 
+    console.log("Token ricevuto:", token);  // Log per verificare il token
+
     if (!token) {
         return res.status(403).json({ error: "Token mancante!" });  // Se non c'è token, ritorna errore
     }
@@ -21,6 +23,7 @@ const authMiddleware = (req, res, next) => {
         // Decodifica il token JWT usando la chiave segreta
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;  // Aggiungi i dati decodificati (id, email) all'oggetto req
+        console.log("Token decodificato:", decoded);  // Log per vedere i dati decodificati
         next();  // Passa al prossimo middleware o route handler
     } catch (error) {
         console.error("Errore di decodifica del token:", error);
@@ -116,6 +119,75 @@ app.post('/login/specialista', async (req, res) => {
         res.status(500).json({ error: "Errore durante il login" });
     }
 });
+
+
+app.put('/specialista/update/:id', authMiddleware, async (req, res) => {
+    try {
+        const specialistaId = req.user.id; // Ottiene l'ID dal token JWT
+        const { nome, cognome, email, telefono } = req.body;
+
+        console.log("Dati ricevuti per l'aggiornamento:", { nome, cognome, email, telefono });
+
+        // Verifica se l'email è valida
+        if (email && !validator.isEmail(email)) {
+            return res.status(400).json({ error: "Email non valida!" });
+        }
+
+        // Verifica se l'email o il telefono esistono già (evita duplicati)
+        if (email) {
+            const emailEsistente = await Specialista.findOne({ email, _id: { $ne: specialistaId } });
+            if (emailEsistente) {
+                return res.status(400).json({ error: "Email già in uso!" });
+            }
+        }
+
+        if (telefono) {
+            const telefonoEsistente = await Specialista.findOne({ telefono, _id: { $ne: specialistaId } });
+            if (telefonoEsistente) {
+                return res.status(400).json({ error: "Numero di telefono già in uso!" });
+            }
+        }
+
+        // Aggiorna solo i campi ricevuti
+        const specialistaAggiornato = await Specialista.findByIdAndUpdate(
+            specialistaId,
+            { $set: { nome, cognome, email, telefono } },
+            { new: true } // Restituisce il documento aggiornato
+        );
+        console.log("Specialista aggiornato nel database:", specialistaAggiornato);
+
+        if (!specialistaAggiornato) {
+            return res.status(404).json({ error: "Specialista non trovato!" });
+        }
+
+        console.log("Specialista aggiornato:", specialistaAggiornato); // Log per conferma
+
+        res.status(200).json({ message: "✅ Profilo aggiornato con successo!", specialista: specialistaAggiornato });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Errore durante l'aggiornamento del profilo" });
+    }
+});
+
+
+
+// 📌 API per ottenere i dati dello specialista
+app.get('/specialista/:id', authMiddleware, async (req, res) => {
+    try {
+        const specialistaId = req.params.id; // Ottiene l'ID dallo URL
+        const specialista = await Specialista.findById(specialistaId);
+        if (!specialista) {
+            return res.status(404).json({ error: "Specialista non trovato!" });
+        }
+        res.status(200).json(specialista); // Risponde con i dati dello specialista
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Errore nel recupero dei dati dello specialista" });
+    }
+});
+
+
 
 // 📌 API per registrare un bambino
 app.post('/registrazione/bambino', authMiddleware, async (req, res) => {

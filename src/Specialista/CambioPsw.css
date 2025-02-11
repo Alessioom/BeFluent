@@ -1,0 +1,61 @@
+/* Stili generali */
+* {
+    color: #333;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenitore principale per la sezione Cambio Password */
+.container-cambio {
+    position: relative; /* Contesto di posizionamento per gli elementi assoluti */
+}
+
+/* Sfondo della pagina */
+.background-cambio {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%; /* Copre l'intera larghezza della pagina */
+    height: 100%; /* Copre l'intera altezza della pagina */
+    background-color: #f8f9fa; /* Colore di sfondo neutro */
+    z-index: -1; /* Mantenere dietro gli altri elementi */
+}
+
+/* Titolo principale della sezione Cambio Password */
+.title-cambio {
+    position: absolute;
+    top: 20px; /* Distanza dalla parte superiore */
+    left: 50%; /* Centrato orizzontalmente */
+    transform: translateX(-50%); /* Centra esattamente l'elemento */
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #333; /* Colore grigio scuro */
+    text-align: center;
+}
+
+/* Etichette per i campi di input */
+.label-cambio {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px; /* Dimensione più piccola per le etichette */
+    font-weight: 400;
+    color: #555; /* Colore grigio chiaro */
+    margin-bottom: 5px;
+}
+
+/* Stili per gli input dei campi di password */
+.input-cambio {
+    position: absolute;
+    width: 80%; /* Adattabile per schermi più piccoli */
+    max-width: 629px; /* Larghezza massima per evitare sovradimensionamenti */
+    height: 50px;
+    border-radius: 25px; /* Bordo arrotondato per un aspetto morbido */
+    border: 2px solid #ddd; /* Bordo chiaro per un aspetto delicato */
+    background-color: #fff; /* Bianco per maggiore chiarezza */
+    padding-left: 15px;
+    font-size: 16px; /* Buona leggibilità */
+    transition: border-color 0.3s ease; /* Effetto di transizione per il bordo */
+}

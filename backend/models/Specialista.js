@@ -12,14 +12,16 @@ const SpecialistaSchema = new mongoose.Schema({
         {
             validator: function(v) {
                 return validator.isEmail(v);  // Verifica se l'email è valida
+                message: props => `${props.value} non è una email valida!` },
             }
         },
-        message: props => `${props.value} non è una email valida!` },
+
         
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    telefono: { type: String, required: false },  // Campo opzionale
     //specialistaId: { type: String, required: false, unique: true }
-});
+},  { timestamps: true }); // Aggiunge createdAt e updatedAt
 
 const Specialista = mongoose.model("Specialista", SpecialistaSchema);
 

@@ -180,19 +180,23 @@ body-imp {
 .edit-button-imp {
   background-color: orange;
   color: white;
+  display: none;
 }
 
 .save-button-imp {
   background-color: green;
   color: white;
+  display: none;
 }
 
-.edit-button-imp:hover {
+.edit-button-imp.active {
   background-color: rgb(206, 134, 0);
+  display: block;
 }
 
-.save-button-imp:hover {
+.save-button-imp.active {
   background-color: rgb(0, 107, 0);
+  display: block;
 }
 
 .buttons-container-imp {

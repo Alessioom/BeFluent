@@ -33,7 +33,7 @@ function LoginBambino() {
         setMessaggio(response.data.message);
 
         setTimeout(() => {
-            navigate('/PaginaBambini'); // Reindirizza alla home del bambino
+            navigate('/Home/Bambini'); // Reindirizza alla home del bambino
         }, 1000);
     } catch (error) {
         setErrore(error.response?.data?.error || 'Errore durante il login');

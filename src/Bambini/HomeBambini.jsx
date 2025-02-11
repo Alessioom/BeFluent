@@ -32,27 +32,29 @@ const HomeBambini = () => {
 
     return (
         <div>
-            <img src="/robottiniHomeBambini.png" alt="robottiniHomeBambini" className="robottiniHomeBambini" />
+            <img src="/robottino1HomeBambini.png" alt="robottino1HomeBambini" className="robottino1HomeBambini" />
+            <img src="/robottino2HomeBambini.png" alt="robottino2HomeBambini" className="robottino2HomeBambini" />
+            <img src="/robottino3HomeBambini.png" alt="robottino3HomeBambini" className="robottino3HomeBambini" />
             
             {/* ✅ Mostra il nome se presente */}
             <div className="title">Ciao {bambino && bambino.nome ? bambino.nome : "Caricamento..."} 👋</div>
 
 
-            <div className="cardTestIniziale">
+            <button className="cardTestIniziale">
                 <div className="card-title">TEST INIZIALE</div>
-            </div>
+            </button>
 
-            <div className="cardEserciziGiornalieri">
+            <button className="cardEserciziGiornalieri">
                 <div className="card-title">ESERCIZI GIORNALIERI</div>
-            </div>
+            </button>
 
-            <div className="cardDialogoEsperto">
+            <button className="cardDialogoEsperto">
                 <div className="card-title">PARLA CON IL TUO ESPERTO</div>
-            </div>
+            </button>
 
-            <div className="cardLogoutBambino">
+            <button className="cardLogoutBambino">
                 <div className="logout-title">LOGOUT</div>
-            </div>
+            </button>
 
             <LogoProfile 
                 logoSrc="/BeFluent_logo_testo.png"
