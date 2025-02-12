@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CambioPsw.css';
 import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
 import NavButton from "../Components/UI/NavButton";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../Accesso/AuthContext';
 
 const CambioPsw = () => {
   const navigate = useNavigate();
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [connectionError, setConnectionError] = useState('');
+  const [generalError, setGeneralError] = useState('');
+  const [tokenUpdated, setTokenUpdated] = useState(false); // Stato per tracciare l'aggiornamento del token
+  const { login } = useAuth(); // Ottieni la funzione login
+  
 
   const handleBack = () => {
     navigate(-1); // Navigate back one step in history
@@ -19,12 +25,18 @@ const CambioPsw = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Resetting previous errors
+    setPasswordError('');
+    setConnectionError('');
+    setGeneralError('');
+
     if (newPassword !== confirmPassword) {
-      setError('Le password non coincidono!');
+      setPasswordError('Le password non coincidono!');
       return;
     }
 
     try {
+      console.log('Token prima del cambio password:', localStorage.getItem('token'));
       const response = await fetch('http://localhost:5000/specialista/update-password', {
         method: 'PUT',
         headers: {
@@ -36,26 +48,36 @@ const CambioPsw = () => {
           newPassword: newPassword,
         }),
       });
-    
+  
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Errore durante la richiesta:', errorData);
-        setError(errorData.error || 'Errore durante il cambio della password');
+
+        // Gestione errori specifici
+        if (response.status === 400) {
+          setPasswordError(errorData.error || 'Errore nella validazione della password');
+        } else {
+          setGeneralError(errorData.error || 'Errore durante il cambio della password');
+        }
         return; // Esci dalla funzione se c'è un errore
       }
-    
+  
       const data = await response.json();
       console.log('Risposta dal server:', data);
-    
-     // Se la password è cambiata con successo, naviga alla pagina del profilo
-     if (response.status === 200) {
-      navigate('/Home/Specialista');
-    }
-  } catch (error) {
-      console.error('Errore di rete o altro:', error);
-    }
-};
 
+     // Se il server restituisce un nuovo token, aggiorna il localStorage
+     if (data.newToken) {
+      login(data.newToken);
+    }
+    navigate('/Home/Specialista'); //SPOSTARE IL REDIRECT FUORI DALL'IF
+    return;
+
+  } catch (error) {
+    // ... (gestione degli errori di rete)
+      console.error('Errore di rete o altro:', error);
+      setConnectionError('Errore di connessione. Riprova più tardi.');
+  }
+};
   return (
     <div>
       <LogoProfile
@@ -81,7 +103,10 @@ const CambioPsw = () => {
       <div className="container-cambio">
         <div className="title-cambio">CAMBIO PASSWORD</div>
 
-        {error && <p className="error">{error}</p>}
+        {/* Visualizzazione degli errori */}
+        {passwordError && <p className="error">{passwordError}</p>}
+        {connectionError && <p className="error">{connectionError}</p>}
+        {generalError && <p className="error">{generalError}</p>}
 
         <form onSubmit={handleSubmit}>
           <div className="field-cambio">

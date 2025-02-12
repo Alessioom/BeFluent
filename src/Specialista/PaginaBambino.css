@@ -63,7 +63,7 @@
 }
 
 button-bamb {
-    background-color: #007bff;
+    background-color: orange;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -72,5 +72,5 @@ button-bamb {
 }
 
 button-bamb:hover {
-    background-color: #0056b3;
+    background-color: green;
 }

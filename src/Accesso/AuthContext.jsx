@@ -1,11 +1,9 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
-import mongoose from 'mongoose';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import jwtDecode from 'jwt-decode';
 
-// Crea il contesto di autenticazione
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
-// Hook per usare il contesto
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -14,59 +12,69 @@ export const useAuth = () => {
   return context;
 };
 
-// Provider che gestisce il contesto
 export const AuthProvider = ({ children }) => {
-  // Inizializzazione dell'oggetto auth
-  const [auth, setAuth] = useState({ specialistaId: null, token: null });
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const getSpecialistaId = async () => {
-        try {
-          // Estrai l'ID dello specialista dal token o dal localStorage
-          const decodedToken = jwt.decode(token); // Assicurati di aver installato la libreria 'jwt-decode'
-          const specialistaId = decodedToken.id;
- 
-          const response = await axios.get(`http://localhost:5000/specialista/${specialistaId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-  
-          if (response && response.data) {
-            // Verifica se l'ID è valido (puoi fare altre validazioni se necessario)
-            setAuth({ token, specialistaId });
-          } else {
-            console.log("Errore: Dati dello specialista non trovati!");
-            setAuth({ token: null, specialistaId: null });
-            localStorage.removeItem('token');
-          }
-        } catch (error) {
-          console.log('Errore durante il recupero dei dati dello specialista', error);
-          setAuth({ token: null, specialistaId: null });
-          localStorage.removeItem('token');
-        }
-      };
-  
-      getSpecialistaId();
-    } else {
-      console.log("Nessun token trovato, non puoi accedere.");
+  const navigate = useNavigate();
+  const [auth, setAuth] = useState(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      try {
+        const decoded = jwtDecode(storedToken);
+        // Usa direttamente decoded.id (assicurati che il tuo backend includa l'ID nel payload del JWT)
+        return { token: storedToken, specialistaId: decoded.id };
+      } catch (error) {
+        console.error("Errore nella decodifica del token:", error);
+        localStorage.removeItem('token'); // Rimuovi il token non valido
+        return { token: null, specialistaId: null }; //Imposta a null in caso di errore
+      }
     }
-  }, []);
-
-  // Funzione di login
-  
-  const login = (token, specialistaId) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('specialistaId', specialistaId); // Salva anche l'ID dello specialista
-    setAuth({ token, specialistaId });
-};
+    return { token: null, specialistaId: null };
+  });
 
 
-  // Funzione di logout
+    const login = (newToken) => {
+    localStorage.setItem('token', newToken);
+        try{
+            const decoded = jwtDecode(newToken);
+            setAuth({ token: newToken, specialistaId: decoded.id }); // Aggiorna lo stato
+        }
+        catch(error){
+            console.error("Errore: ", error);
+            localStorage.removeItem('token');
+            setAuth({token: null, specialistaId: null});
+             navigate('/login'); //Reindirizza al login in caso di errore
+        }
+    };
+
   const logout = () => {
-    setAuth({ token: null, specialistaId: null });
-    localStorage.removeItem('token');
+    localStorage.removeItem('token'); // Rimuovi da localStorage
+    setAuth({ token: null, specialistaId: null });  // Resetta lo stato
+    navigate('/login'); // Reindirizza al login
   };
+
+  // useEffect per gestire il cambio di token (ad esempio, dopo il cambio password)
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+
+        // Se c'è un token in localStorage e non è uguale a quello nello stato, oppure non c'è uno specialistaId nello stato
+        if ((storedToken && storedToken !== auth.token) || !auth.specialistaId ) {
+            if(storedToken){
+                 try {
+                    const decoded = jwtDecode(storedToken);
+                    setAuth({ token: storedToken, specialistaId: decoded.id });
+                } catch (error) {
+                    console.error("Errore nella decodifica del token:", error);
+                    localStorage.removeItem('token');
+                    setAuth({ token: null, specialistaId: null });
+                    navigate('/login'); //Reindirizza al login.
+                }
+            }
+            else{
+                setAuth({ token: null, specialistaId: null }); //se non c'è un token nello storage, setta lo stato a null
+            }
+        }
+    }, [auth.token, navigate, auth.specialistaId]); // Aggiungi navigate alle dipendenze
+
+
 
   return (
     <AuthContext.Provider value={{ auth, login, logout }}>

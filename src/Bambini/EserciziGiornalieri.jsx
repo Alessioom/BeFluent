@@ -18,12 +18,13 @@ const EserciziGiornalieri = () => {
         </div>
       </Link>
 
-      <div className="game-option right">
-        <div className="game-box">
-          <span>ABBINAMENTO PAROLE AMBIGUE</span>
+      <Link to="/Abbinamento/Parole/1">
+        <div className="game-option right">
+          <div className="game-box">
+            <span>ABBINAMENTO PAROLE AMBIGUE</span>
+          </div>
         </div>
-      </div>
-
+      </Link>
 
       <img
         src="/robotGiochiBambini.png"

@@ -196,6 +196,8 @@ app.put('/specialista/update-password', authMiddleware, async (req, res) => {
         const specialistaId = req.user.id; // Ottiene l'ID dal token
         const { oldPassword, newPassword } = req.body;
 
+        console.log('ID dello specialista:', specialistaId);
+
         const specialista = await Specialista.findById(specialistaId);
         if (!specialista) {
             return res.status(404).json({ error: "Specialista non trovato!" });
@@ -271,7 +273,7 @@ app.post('/login/bambino', async (req, res) => {
     const { ID } = req.body;
 
     try {
-        const bambino = await Bambino.findOne({ ID });
+        const bambino = await Bambino.findOne({ ID, isDeleted: false });
 
         if (!bambino) {
             return res.status(400).json({ error: 'ID non trovato' });
@@ -287,10 +289,10 @@ app.post('/login/bambino', async (req, res) => {
     }
 });
 
-app.get('/bambini', authMiddleware, async (req, res) => {
+app.get('/bambini/', authMiddleware, async (req, res) => {
     try {
         const specialistaId = req.user.id;
-        const bambini = await Bambino.find({ specialistaId });
+        const bambini = await Bambino.find({ specialistaId, isDeleted: false });
         res.json(bambini);
     } catch (error) {
         console.error(error);
@@ -303,7 +305,7 @@ app.get('/bambini', authMiddleware, async (req, res) => {
 app.get('/bambino/:id', async (req, res) => {
     try {
         console.log("ID ricevuto:", req.params.id);
-        const bambino = await Bambino.findById(req.params.id);
+        const bambino = await Bambino.findById({_id: req.params.id, isDeleted: false});
         if (!bambino) {
             return res.status(404).json({ error: 'Bambino non trovato' });
         }
@@ -313,6 +315,29 @@ app.get('/bambino/:id', async (req, res) => {
         res.status(500).json({ error: 'Errore nel recupero del bambino' });
     }
 });
+
+// 📌 API per eliminare il bambino (SOFT DELETE)
+app.delete('/bambino/:id', async (req, res) => {
+    try {
+      const bambinoId = req.params.id;
+      
+      // Esegui il soft delete (aggiorna il flag isDeleted)
+      const bambino = await Bambino.findByIdAndUpdate(
+        bambinoId, 
+        { isDeleted: true }, 
+        { new: true }  // Restituisci il bambino aggiornato
+      );
+      
+      if (!bambino) {
+        return res.status(404).json({ message: "Bambino non trovato" });
+      }
+  
+      res.status(200).json({ message: "Bambino eliminato (soft delete)" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Errore nell'eliminazione del bambino" });
+    }
+  });
 
 // Avviare il server
 const PORT = process.env.PORT || 5000;

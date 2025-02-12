@@ -23,6 +23,8 @@ import { AuthProvider } from './Accesso/AuthContext';
 import PaginaBambino from './Specialista/PaginaBambino'
 import EserciziGiornalieri from './Bambini/EserciziGiornalieri';
 import GiudizioOrtografico1 from './Bambini/GiudizioOrtografico1';
+import AbbinamentoParole1 from './Bambini/AbbinamentoParole1';
+import AbbinamentoParoleIntro from './Bambini/AbbinamentoParoleIntro';
 
 
 
@@ -50,6 +52,8 @@ function App() {
       <Route path="/Pagina/Bambino/:id" element={<PaginaBambino />} />
       <Route path="/Esercizi/Giornalieri" element={<EserciziGiornalieri />} />
       <Route path="/Giudizio/Ortografico/1" element={<GiudizioOrtografico1 />} />
+      <Route path="/Abbinamento/Parole/1" element={<AbbinamentoParole1 />} />
+      <Route path="/Abbinamento/Parole/Intro" element={<AbbinamentoParoleIntro />} />
     </Routes>
     </AuthProvider>
   )

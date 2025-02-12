@@ -1,3 +1,12 @@
+/* Imposta il contenitore per centrare */
+body {
+    display: flex;
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Assicura che il body prenda tutta l'altezza della finestra */
+    margin: 0; /* Rimuovi margini di default */
+  }
+
 /* Contenitore principale della registrazione del bambino */
 .container-registrazioneBambino {
     width: 500px;
@@ -7,10 +16,8 @@
     border-radius: 10px;
     background-color: #f9f9f9;
     box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-    top: 12%;
-    left: 25%;
-    position: absolute;
     font-size: 20px;
+    margin-top: 550px;
 }
 
 /* Titolo della registrazione del bambino */

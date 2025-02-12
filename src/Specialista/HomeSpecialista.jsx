@@ -1,33 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HomeSpecialista.css'; 
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import BackButton from "../Components/UI/BackButton-ui";
 import NavButton from "../Components/UI/NavButton";
 import LogoProfile from "../Components/UI/LogoProfile";
-import { useParams } from 'react-router-dom';
 //import Specialista from '../../backend/models/Specialista';
 import { useAuth } from '../Accesso/AuthContext';
 
 function HomeSpecialista() {
-  const { specialistaId } = useParams(); // Recupera lo specialistaId dai parametri della route
-  console.log(specialistaId);
+  //const { specialistaId } = useParams(); // Recupera lo specialistaId dai parametri della route
   const [nomeSpecialista, setNomeSpecialista] = useState(""); 
   const [sessoSpecialista, setSessoSpecialista] = useState(""); // Stato per memorizzare il sesso dello specialista
   const navigate = useNavigate();
   const [bambini, setBambini] = useState([]); // Stato per memorizzare i bambini
   const { auth } = useAuth(); // Usa useAuth per accedere al contesto
   const [loading, setLoading] = useState(true); // Stato di caricamento
-  const token = auth?.token;
+  //const [specialistaId, setSpecialistaId] = useState(null); // Inizializza con null
+  //const token = auth?.token;
+
 
   const handleBack = () => {
     navigate(-1); // Navigate back one step in history
   };
 
   useEffect(() => {
-    if (!specialistaId) {
-      console.error('ID dello specialista non valido');
-      setLoading(false);
+     //Accedi direttamente:
+     const specialistaId = auth?.specialistaId;
+     const token = auth?.token;
+
+     console.log('ID dello specialista:', specialistaId); // Debug: OK qui
+     console.log('Token:', token);                 // Debug: OK qui
+
+
+    if (!specialistaId || !token) {
+      console.error('ID dello specialista o token non validi');
+      navigate("/Login/Specialista/Form");
       return;
     }
  
@@ -36,11 +44,12 @@ function HomeSpecialista() {
     headers: {
       'Authorization': `Bearer ${token}`, // Aggiungi il token nell'header della richiesta
     }
+    
   })
     .then((response) => {
       setNomeSpecialista(response.data.nome); // Imposta il nome dello specialista
       setSessoSpecialista(response.data.sesso); // Imposta il sesso dello specialista
-      return axios.get(`http://localhost:5000/bambini/${specialistaId}`, {
+      return axios.get(`http://localhost:5000/bambini/`, {
         headers: {
           'Authorization': `Bearer ${token}`, // Aggiungi il token anche per questa richiesta
         }
@@ -53,8 +62,9 @@ function HomeSpecialista() {
     .catch((err) => {
       console.error("Si è verificato un errore:", err);
       setLoading(false); // Termina il caricamento in caso di errore
+      navigate('/Login/Specialista/Form'); //In caso di errore riporta al login
     });
-}, [specialistaId, token]);
+}, [auth, navigate]); // auth come dipendenza
 
 if (loading) {
   return <div>Caricamento in corso...</div>; // Visualizza un messaggio di caricamento mentre i dati vengono recuperati

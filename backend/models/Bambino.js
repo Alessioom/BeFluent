@@ -7,7 +7,8 @@ const BambinoSchema = new mongoose.Schema({
     sesso: { type: String, required: true },
     emailGenitore: { type: String, required: true, unique: true },
     ID: { type: String, required: true,  unique: true },
-    specialistaId: { type: mongoose.Schema.Types.ObjectId, ref: 'Specialista', required: true }
+    specialistaId: { type: mongoose.Schema.Types.ObjectId, ref: 'Specialista', required: true },
+    isDeleted: { type: Boolean, default: false } // Inizialmente non eliminato
 });
 
 const Bambino = mongoose.model("Bambino", BambinoSchema);

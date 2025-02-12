@@ -122,8 +122,8 @@ const PaginaBambino = () => {
                             */}
                             <td>
                                 {/* Aggiungi pulsanti per modificare e eliminare */}
-                                <button onClick={() => handleEdit(bambino._id)}>Modifica</button>
-                                <button onClick={() => handleDelete(bambino._id)}>Elimina</button>
+                                <button-bamb onClick={() => handleEdit(bambino._id)}>Modifica</button-bamb>
+                                <button-bamb onClick={() => handleDelete(bambino._id)}>Elimina</button-bamb>
                             </td>
                         </tr>
                     </tbody>

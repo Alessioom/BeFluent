@@ -1,0 +1,101 @@
+
+.titleAbbinamentoParoleIntro {
+    position: absolute;
+    top: 50px;
+    left: 430px;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.descriptionAbbinamentoParoleIntro {
+    position: absolute;
+    font-size: 30px;
+    color: #000000;
+    top: 200px;
+    left: 420px;
+}
+
+.wordExampleAbbinamentoParoleIntro {
+    font-size: 32px;
+    font-weight: bold;
+    background: orange;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.optionsAbbinamentoParoleIntro {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.optionAbbinamentoParoleIntro {
+    font-size: 20px;
+    padding: 10px 20px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.optionAbbinamentoParoleIntro:hover {
+    background: rgb(0, 171, 0);
+}
+
+.optionAbbinamentoParoleIntro.selected {
+    background: #4caf50;
+    color: white;
+}
+
+.feedbackAbbinamentoParoleIntro {
+    font-size: 18px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+
+.nextStepAbbinamentoParoleIntro
+{
+    position: absolute;
+    top: 600px;
+    left: 350px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.nextButtonAbbinamentoParoleIntro
+{
+    position: absolute;
+    width: 260px;
+    height: 70px;
+    top: 150px;
+    left: 475px;
+    font-size: 26px;
+    background-color: #4CAF50;
+    border: 2px solid #000000;
+
+}
+
+.nextButtonAbbinamentoParoleIntro:hover
+{
+    background-color: orange;
+    transform: scale(1.1);
+}
+
+
+.immagineCINQUE
+{
+    position: absolute;
+    top: 320px;
+    left: 1200px;
+    width: 250px;
+
+}

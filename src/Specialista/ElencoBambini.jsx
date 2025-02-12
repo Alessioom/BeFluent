@@ -48,29 +48,28 @@ function ElencoBambini() {
         profileClass="logoDottore-registrazioneSpecialista"
       />
 
-      <div className="elenco-bambini">
-        <div className="header">
-          <div className="title-elenco-bambini">ELENCO BAMBINI</div>
-        </div>
+  <div className="elenco-bambini">
+  <div className="header">
+    <div className="title-elenco-bambini">ELENCO BAMBINI</div>
+  </div>
 
-        <div className="main-content">
-          <div className="children-list-elenco-bambini">
-            <h2>Qui ci sono tutti i bambini seguiti:</h2>
-            <ul>
-              {bambini.length > 0 ? (
-                bambini.map((bambino) => (
-                  <li key={bambino._id} className="child-item-elenco-bambini">
-                    {/* Aggiungi un Link per ogni bambino */}
-                  <Link to={`/Pagina/Bambino/${bambino._id}`} className="child-link">
-                    {bambino.nome} {bambino.cognome}
-                  </Link>
-                  </li>
-                ))
-              ) : (
-                <p>Nessun bambino trovato.</p>
-              )}
-            </ul>
-          </div>
+  <div className="main-content">
+    <div className="children-list-elenco-bambini">
+      <ul>
+        {bambini.length > 0 ? (
+          bambini.map((bambino) => (
+            <li key={bambino._id} className="child-item-elenco-bambini">
+              <Link to={`/Pagina/Bambino/${bambino._id}`} className="child-link">
+                {bambino.nome} {bambino.cognome}
+              </Link>
+            </li>
+          ))
+        ) : (
+          <p>Nessun bambino trovato.</p>
+        )}
+      </ul>
+    </div>
+
 
           <Link to="/Registrazione/Bambino">    
             <div className="add-child-button-elenco-bambini">

@@ -8,9 +8,12 @@
   }
   
   .elenco-bambini {
-    max-width: 800px;
+    width: 1500px;
+    height: 650px;
+    max-width: 1000px;
     margin: 20px auto;
-    padding: 20px;
+    margin-bottom: 10px;
+    padding: 30px 10px;
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -29,14 +32,27 @@
   
   /* Lista bambini */
   .children-list-elenco-bambini {
-    margin-top: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin; /* Per Firefox */
+    scrollbar-color: #888 #f1f1f1; /* Per Firefox */
+    margin-top: -60px;
   }
   
-  .children-list-elenco-bambini h2 {
-    color: #222;
-    font-size: 50px;
-    margin-bottom: 10px;
+  /* Per i browser basati su Webkit (Chrome, Edge, Safari) */
+  .children-list-elenco-bambini::-webkit-scrollbar {
+    width: 8px;
   }
+  
+  .children-list-elenco-bambini::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .children-list-elenco-bambini::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
   
   .child-item-elenco-bambini {
     display: flex;
@@ -73,8 +89,13 @@
   .add-child-button-elenco-bambini button {
     background-color: green;
     color: white;
-    margin-top: 15px;
+    margin-top: 100px;
     width: 100%;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 5px solid black;
   }
   
   .add-child-button-elenco-bambini button:hover {
