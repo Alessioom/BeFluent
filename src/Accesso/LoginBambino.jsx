@@ -4,6 +4,7 @@ import axios from 'axios';
 import './LoginBambino.css';
 import BackButton from '../Components/UI/BackButton-ui';
 import { Link } from 'react-router-dom';
+import LogoProfile from "../Components/UI/LogoProfile";
 
 function LoginBambino() {
   const [ID, setID] = useState('');
@@ -43,8 +44,19 @@ function LoginBambino() {
 
   return (
     <>
+        <LogoProfile
+        logoSrc="/BeFluent_logo_testo.png"
+        profileSrc="/iconaBambino.png"
+        logoClass="logoTesto-registrazioneSpecialista"
+        profileClass="logoDottore-registrazioneSpecialista"
+      />
+
       <div className="backgroundLoginBambino" />
 
+
+      <Link to ="/Login">
+        <button className="FrecciaIndietroLoginBambino"> ← </button>
+      </Link>
       {/* Banner di Benvenuto */}
       <div className="welcomeBannerLoginBambino">
         Bentornato, piccolo esploratore! Oggi imparare sarà ancora più divertente! 🎈

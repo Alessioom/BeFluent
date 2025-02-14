@@ -58,6 +58,15 @@ const PaginaBambino = () => {
         }
     };
 
+    // Funzioni per gestire i pulsanti "ASSEGNA GIOCO", "PIANIFICA APPUNTAMENTO", "AGGIUNGI REPORT"
+    const handleAssegnaGioco = () => {
+        navigate(`/assegna-gioco/${id}`); // Assicurati che la rotta sia corretta
+    };
+
+    const handleAggiungiReport = () => {
+        navigate(`/aggiungi-report/${id}`); // Assicurati che la rotta sia corretta
+    };
+
       return (
         <div>
           <LogoProfile
@@ -122,13 +131,25 @@ const PaginaBambino = () => {
                             */}
                             <td>
                                 {/* Aggiungi pulsanti per modificare e eliminare */}
-                                <button-bamb onClick={() => handleEdit(bambino._id)}>Modifica</button-bamb>
-                                <button-bamb onClick={() => handleDelete(bambino._id)}>Elimina</button-bamb>
+                                <button className="button-bamb modifica" onClick={() => handleEdit(bambino._id)}>Modifica</button>
+                                <button className="button-bamb elimina" onClick={() => handleDelete(bambino._id)}>Elimina</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+
+             {/* Contenitore dei pulsanti modificato */}
+             <div className="azioni-bambino-container">
+                <div className="pulsanti-raggruppati">
+                    <button className="button-bamb assegna-gioco" onClick={handleAssegnaGioco}>ASSEGNA GIOCO</button>
+                    <button className="button-bamb aggiungi-report" onClick={handleAggiungiReport}>AGGIUNGI REPORT</button>
+                </div>
+     <Link to={`/appuntamenti/${id}?nome=${bambino.nome}&cognome=${bambino.cognome}`} className="button-bamb pianifica-button">
+         PIANIFICA APPUNTAMENTO
+     </Link>
+   </div>
         </div>
     );
 };

@@ -1,0 +1,57 @@
+import './EliminaAccount.css';
+import BackButton from "../Components/UI/BackButton-ui";
+import LogoProfile from "../Components/UI/LogoProfile";
+import NavButton from "../Components/UI/NavButton";
+import { useNavigate } from 'react-router-dom';
+
+const EliminaAccount = () => {
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(-1); // Navigate back one step in history
+    }
+
+    const handleDelete = () => {
+        // Esegui l'operazione di eliminazione, o mostra un avviso di conferma
+        alert('Il tuo account verrà eliminato!');
+        // Puoi anche aggiungere una navigazione o chiamata API qui
+    };
+    
+
+    return (
+        <>
+            <div style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Sei sicuro di voler eliminare il tuo account?
+                <br/>È un’operazione irreversibile</div>
+
+                <div className="delete-account-container">
+                <button className="delete-account-button" onClick={handleDelete}>ELIMINA</button>
+
+            </div>
+
+
+            <div>
+                <LogoProfile
+                    logoSrc="/BeFluent_logo_testo.png"
+                    profileSrc="/iconaDottore.png"
+                    logoClass="logoTesto-registrazioneSpecialista"
+                    profileClass="logoDottore-registrazioneSpecialista"
+                />
+
+                <div className="navigation-buttons">
+                    <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
+                    <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" />
+                    <NavButton to="/report" className="report-button" text="REPORT" />
+                    <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
+                    <NavButton to="/Strumenti" className="strumenti-button" text="STRUMENTI" />
+                    <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
+                </div>
+
+                <div className="back-button-container">
+                    <BackButton onClick={handleBack} />
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default EliminaAccount;

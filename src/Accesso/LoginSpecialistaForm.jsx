@@ -11,6 +11,11 @@ const LoginSpecialistaForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [messaggio, setMessaggio] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {  
+    setShowPassword(!showPassword);
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -76,18 +81,34 @@ const LoginSpecialistaForm = () => {
             </div>
 
             <div className="input-groupLoginSpecialista">
-              <label htmlFor="password" className="input-labelLoginSpecialista">Password</label>
-              <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                className="input-fieldLoginSpecialista" 
-                aria-label="Password" 
-                value={formData.password}
-                onChange={handleChange}
-                required 
-              />
-            </div>
+  <label htmlFor="password" className="input-labelLoginSpecialista">Password</label>
+  <div className="password-input-container"> {/* Aggiungi questo div contenitore */}
+    <input
+      type={showPassword ? 'text' : 'password'} // Modifica il tipo
+      id="password"
+      name="password"
+      className="input-fieldLoginSpecialista"
+      aria-label="Password"
+      value={formData.password}
+      onChange={handleChange}
+      required
+    />
+    <button
+        type="button" // Importante!
+        className="password-toggle-button"
+        onClick={toggleShowPassword}
+        aria-label={showPassword ? "Nascondi password" : "Mostra password"}
+    >
+        {showPassword ? (
+            // Icona per nascondere (occhio sbarrato)
+            <i className="fas fa-eye-slash"></i>
+        ) : (
+            // Icona per mostrare (occhio)
+            <i className="fas fa-eye"></i>
+        )}
+    </button>
+    </div>
+    </div>
 
             <button type="submit" className="submit-buttonLoginSpecialista" aria-label="Login">
               ENTRA

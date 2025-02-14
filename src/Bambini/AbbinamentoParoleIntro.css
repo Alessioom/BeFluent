@@ -81,6 +81,7 @@
     font-size: 26px;
     background-color: #4CAF50;
     border: 2px solid #000000;
+    border-radius: 50px;
 
 }
 
@@ -91,11 +92,29 @@
 }
 
 
-.immagineCINQUE
+.RobotAbbinamentoParole
 {
     position: absolute;
-    top: 320px;
-    left: 1200px;
-    width: 250px;
+    top: 280px;
+    left: 480px;
+    width: 350px;
 
+}
+
+.RobotAbbinamentoParole:hover
+{
+    transform: scale(1.1);
+}
+
+.AbbinamentoParole5
+{
+    position: absolute;
+    top: 430px;
+    left: 590px;
+    width: 130px;
+}
+
+.AbbinamentoParole5:hover
+{
+    transform: scale(1.1);
 }

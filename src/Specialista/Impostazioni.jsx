@@ -159,7 +159,11 @@ const ProfilePage = () => {
             <div className="button-text">CAMBIA PASSWORD</div>
             </div>
             </Link>
-            <div className="delete-account-container-imp">CANCELLA ACCOUNT</div>
+            <Link to="/Elimina/Account">
+            <div className="delete-account-container-imp">
+            CANCELLA ACCOUNT
+            </div>
+            </Link>
             </div>
 
             <div className="notification-label">Notifiche</div>

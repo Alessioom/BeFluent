@@ -24,7 +24,7 @@ const AbbinamentoParoleIntro = () => {
 
 
     const handleNext = () => {
-        navigate("/Abbinamento/Parole/1"); // Cambia con il percorso del gioco vero e proprio
+        navigate("/Abbinamento/Parole/2");
     };
 
     return (
@@ -35,9 +35,15 @@ const AbbinamentoParoleIntro = () => {
             </p>
 
             <img
-                src="/RobotCon5.png"
-                alt="immagineCINQUE"
-                className="immagineCINQUE"
+                src="/RobotAbbinamentoParole.png"
+                alt="RobotAbbinamentoParole"
+                className="RobotAbbinamentoParole"
+            />
+
+<img
+                src="/5AbbinamentoParole.png"
+                alt="5AbbinamentoParole"
+                className="AbbinamentoParole5"
             />
  
             <div className="wordExampleAbbinamentoParoleIntro">C I N _ _ _</div>

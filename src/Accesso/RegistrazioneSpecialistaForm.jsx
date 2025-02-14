@@ -20,6 +20,16 @@ const RegistrazioneSpecialistaForm = () => {
   });
 
   const [messaggio, setMessaggio] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // Stato per la visibilità password
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Stato visibilità conferma password
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -92,25 +102,54 @@ const RegistrazioneSpecialistaForm = () => {
             </div>
 
             <div className="form-rowRegistrazioneSpecialista">
-              <div className="form-groupRegistrazioneSpecialista">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-              </div>
+        {/* Input Password */}
+        <div className="form-groupRegistrazioneSpecialista">
+          <label htmlFor="password">Password</label>
+          <div className="password-input-container">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className="password-toggle-button"
+              onClick={toggleShowPassword}
+              aria-label={showPassword ? "Nascondi password" : "Mostra password"}
+            >
+              {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
+            </button>
+          </div>
+        </div>
 
-              <div className="form-groupRegistrazioneSpecialista">
-                <label htmlFor="confermaPassword">Conferma Password</label>
-                <input type="password" name="confermaPassword" value={formData.confermaPassword} onChange={handleChange} required />
-              </div>
-            </div>
-
-
-
-            {/*<div className="form-groupRegistrazioneSpecialista">
-              <label htmlFor="ID">ID</label>
-              <input type="text" name="ID" value={formData.ID} onChange={handleChange} required />
-            </div>
-*/}
-              <button className="pulsanteRegistratiSpecialista" type="submit">
+        {/* Input Conferma Password */}
+        <div className="form-groupRegistrazioneSpecialista">
+          <label htmlFor="confermaPassword">Conferma Password</label>
+          <div className="password-input-container">
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              id="confermaPassword"
+              name="confermaPassword"
+              value={formData.confermaPassword}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className="password-toggle-button"
+              onClick={toggleShowConfirmPassword}
+              aria-label={showConfirmPassword ? "Nascondi password" : "Mostra password"}
+            >
+              {showConfirmPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
+            </button>
+          </div>
+        </div>
+      </div>
+                      
+            <button className="pulsanteRegistratiSpecialista" type="submit">
               Registrati
               </button>
 

@@ -7,55 +7,72 @@ body, html {
   background-color: #ffffff;
 }
 
-
-/* Contenitore principale per il resto degli elementi (titolo, form e pulsante) */
-/* Spostato verso l'alto per dare maggiore importanza agli elementi principali */
+/* Contenitore principale */
 .registrazione-containerSpecialista {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 100px;  /* Regola questo valore per spostare il contenuto verso l'alto */
-  padding-top: 0px;
-  margin-bottom: 100px;
-  
+  align-items: center;  /* Centra orizzontalmente */
+  justify-content: flex-start; /* Allinea il contenuto in alto */
+  padding-top: 50px;   /* Aggiunto padding superiore per spazio */
+  padding-bottom: 50px;/* Aggiunto padding inferiore*/
+  box-sizing: border-box; /*Include padding nel calcolo*/
+  width: 100%; /*Occupa tutto lo spazio*/
 }
 
-/* Titolo della pagina */
+/* Titolo della pagina (NON più assoluto) */
 .titleRegistrazioneSpecialista {
-  position: absolute;
   font-size: 40px;
   font-weight: bold;
   color: #333;
-  text-align: left;
-  margin-bottom: 20px;
-  width: 100%;
-  left: 35px;
+  text-align: center; /* Centra il titolo */
+  margin-bottom: 30px; /* Spazio tra titolo e form */
+  width: 100%;         /* Occupa l'intera larghezza */
 }
 
 /* Form di registrazione */
 .registrazioneSpecialista-form {
-  width: 650px;
-  padding: 1%;
+  width: 750px; /* Aumentata la larghezza */
+  max-width: 90%; /*Max-width per responsività*/
+  padding: 30px;  /* Padding interno al form */
   background: #fff;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border: 5px solid #000000;
-  margin: 10px;
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  overflow: hidden; /* Prevent content from overflowing */
+  margin: 0 auto; /*Centratura del form*/
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
 }
 
 /* Disposizione a due colonne per le righe del form */
 .form-rowRegistrazioneSpecialista {
   display: flex;
-  justify-content: space-between; /* Space between items */
-  align-items: center; /* Center vertically */
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-/* Stili per i gruppi di input all'interno del form */
+/*Disposizione per una colonna per i campi nome e cognome*/
+/*Modifica per la disposizione dei campi nome e cognome*/
+.form-rowRegistrazioneSpecialista > .form-groupRegistrazioneSpecialista:first-child,
+.form-rowRegistrazioneSpecialista > .form-groupRegistrazioneSpecialista:nth-child(2)
+{
+  width: calc(50% - 10px); /* 50% meno un piccolo margine */
+
+}
+.form-rowRegistrazioneSpecialista > .form-groupRegistrazioneSpecialista:first-child {
+  margin-right: 50px; /* Aggiunto margine destro al primo elemento (Nome) */
+}
+
+/*Disposizione per una colonna per i campi password e conferma password*/
+/*Modifica per la disposizione dei campi password e conferma password*/
+.form-rowRegistrazioneSpecialista > .form-groupRegistrazioneSpecialista:nth-child(5)
+{
+    margin-right: 50px; /* Aggiunto margine destro al primo elemento (Password) */
+}
+
+/* Stili per i gruppi di input */
 .form-groupRegistrazioneSpecialista {
   flex: 1;
   display: flex;
@@ -63,44 +80,53 @@ body, html {
   background-color: #ffffff;
   color: #333;
   text-align: left;
-  padding: 30px;
-  font-size: 20px;
-  margin-left: 0%;
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  width: 100%; /* Increase the width of the form group */
-  margin: 0 auto; /* Center the form group */
+  font-size: 16px;
+  margin-bottom: 20px; /* Aggiunto margine inferiore */
+  box-sizing: border-box;
+  width: 100%;
 }
 
+/* ... (il resto del CSS per label, select, input, password-input-container, password-toggle-button rimane invariato) ... */
+
+/* Stili per le etichette (label) */
 .form-groupRegistrazioneSpecialista label {
-  color: #333; /* Colore del testo dell'etichetta */
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;  /* Label come blocco */
 }
 
+/* Stili per il select (Sesso) */
 .form-groupRegistrazioneSpecialista select {
-  color: #000000; /* Colore del testo all'interno del select */
-  background-color: #c2c2c2; /* Colore di sfondo del select */
-  border: 1px solid #bcbcbc; /* Colore del bordo */
-  padding: 5px;
-  border-radius: 4px;
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .form-groupRegistrazioneSpecialista select:focus {
-  border-color: #0056b3; /* Colore del bordo quando il select è attivo */
-  outline: none; /* Rimuove il contorno blu predefinito */
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-
-/* Stili per gli input all'interno del form */
+/* Stili per gli input (incluso quello della password) */
 .registrazioneSpecialista-form input {
-  padding: 10px; /* Increase padding for larger input fields */
-  border-radius: 50px;
-  border: 2px solid #f2f2f2;
-  font-size: 18px; /* Increase font size */
-  margin-top: 5px; /* Increase margin-top */
-  margin-bottom: 5px;
-  background-color: rgb(197, 197, 197);
-  color: #000000;
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  width: 100%; /* Make input fields take full width */
+  width: 100%;
+  padding: 14px 45px 14px 14px; /* Padding destro per l'icona */
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 .registrazioneSpecialista-form input:focus {
@@ -110,32 +136,80 @@ body, html {
 }
 
 .registrazioneSpecialista-form input::placeholder {
-  color: #000000; /* Colore del testo placeholder */
-}
-
-/* Pulsante di submit */
-.registrazioneSpecialista-form button {
-  width: 100%;
-  padding: 20px; /* Increase padding for larger button */
-  border-radius: 50px;
-  border: 2px solid #f2f2f2;
-  font-size: 18px; /* Increase font size */
-  margin-top: 10px; /* Increase margin-top */
-  background-color: rgb(197, 197, 197);
   color: #000000;
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
+/* Stile per il contenitore dell'input password e dell'icona */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
-/* Pulsante per registrarsi (stile personalizzato) */
+/* Stile per il bottone dell'icona */
+.password-toggle-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+  font-size: 18px;
+  color: #000;
+  pointer-events: all;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle-button:hover,
+.password-toggle-button:focus {
+  color: #333;
+  outline: none;
+}
+
+/* Pulsante per registrarsi */
 .pulsanteRegistratiSpecialista {
   margin-top: 20px;
   background: linear-gradient(to right, orange, green);
   border: 2px solid black;
-  padding: 20px 40px; /* Increase padding for larger button */
+  padding: 20px 40px;
   border-radius: 25px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 18px; /* Increase font size */
+  font-size: 18px;
   color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Nascondi il bottone di submit generico */
+.registrazioneSpecialista-form button:not(.password-toggle-button):not(.pulsanteRegistratiSpecialista) {
+  display: none;
+}
+
+/* Stile per il pulsante "Torna Indietro" */
+.torna-indietro {
+  background: none;
+  border: 2px solid #000; /* Bordo nero */
+  color: #000;          /* Testo nero */
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;     /* Spazio sopra il pulsante */
+  text-decoration: none; /*Rimuovi sottolineatura*/
+  display: inline-block; /*Permette di avere larghezza e altezza*/
+}
+
+.torna-indietro:hover,
+.torna-indietro:focus {
+  background-color: #000; /* Sfondo nero al passaggio del mouse */
+  color: #fff;          /* Testo bianco al passaggio del mouse */
 }

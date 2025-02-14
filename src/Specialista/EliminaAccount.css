@@ -1,0 +1,27 @@
+/* Contenitore del pulsante */
+.delete-account-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Stile del pulsante "ELIMINA" */
+.delete-account-button {
+    background-color: #e74c3c; /* Colore rosso */
+    color: white; /* Testo bianco */
+    font-size: 18px; /* Dimensione del testo */
+    padding: 12px 30px; /* Spaziatura interna */
+    border: none; /* Rimuove il bordo */
+    border-radius: 5px; /* Bordo arrotondato */
+    cursor: pointer; /* Indica che è cliccabile */
+    transition: background-color 0.3s ease; /* Transizione per il cambiamento di colore */
+}
+
+/* Cambia il colore del pulsante quando si passa sopra */
+.delete-account-button:hover {
+    background-color: #c0392b; /* Colore più scuro al passaggio del mouse */
+}
+
+/* Cambia colore al clic */
+.delete-account-button:active {
+    background-color: #922b21; /* Colore ancora più scuro quando cliccato */
+}

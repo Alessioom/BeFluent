@@ -1,0 +1,85 @@
+.titleAbbinamentoParole4 {
+    position: absolute;
+    font-size: 40px;
+    text-align: center;
+    top: 60px;
+    color: #333;
+    left: 310px;
+    font-weight: bold;
+}
+
+.wordExampleAbbinamentoParole4 {
+
+    font-size: 70px;
+    text-align: center;
+    margin: 20px 0;
+    color: #000000;
+}
+
+.optionsAbbinamentoParole4 {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.optionAbbinamentoParole4 {
+    padding: 10px 20px;
+    font-size: 22px;
+    cursor: pointer;
+    border: 2px solid #000000;
+    background-color: orange;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.optionAbbinamentoParole4:hover {
+    background: rgb(0, 171, 0);
+}
+
+.optionAbbinamentoParole4.selected {
+    background-color: #333;
+    color: #fff;
+}
+
+.feedbackAbbinamentoParole4 {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 20px 0;
+    color: #333;
+}
+
+.nextStepAbbinamentoParole4 {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(0, 171, 0);
+    color: #fff;
+    transition: background-color 0.3s;
+    border-radius: 50px;
+}
+
+.nextStepAbbinamentoParole4:hover {
+    background-color: orange;
+}
+
+
+.PasquaAbbinamentoParole
+{
+    position: absolute;
+    top: 280px;
+    left: 380px;
+    width: 350px;
+
+}
+
+.timerAbbinamentoParole
+{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    color: #333;
+}

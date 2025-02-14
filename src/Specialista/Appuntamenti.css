@@ -1,0 +1,130 @@
+.appuntamenti-container {
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(237, 232, 232, 0.1);
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    margin: 40px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.appuntamenti-titolo {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+}
+
+.input-group input[type="text"],
+.data-picker,
+.time-picker {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    background-color: white; /* Imposta lo sfondo a bianco */
+    color: #333;          /* Imposta il colore del testo a grigio scuro */
+}
+.data-picker{
+    width: 95%
+}
+
+.time-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-picker {
+    width: 70px; /* Adjust as needed */
+}
+.input-group input[type="text"]:focus,
+.data-picker:focus,
+.time-picker:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Stili per il placeholder */
+.input-group input[type="text"]::placeholder,
+.data-picker::placeholder,
+.time-picker::placeholder {
+    color: #999; /* Grigio per il placeholder */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn-cancella,
+.btn-conferma,
+.btn-annulla {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+     flex: 1 0 auto; /*Bottoni stessa dimensione*/
+    min-width: 120px;
+}
+
+.btn-cancella {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-conferma {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-annulla {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-cancella:hover,
+.btn-conferma:hover,
+.btn-annulla:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancella:hover {
+     background-color: #c82333;
+}
+.btn-conferma:hover{
+     background-color: #218838;
+}
+.btn-annulla:hover{
+     background-color: #5a6268;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .appuntamenti-container {
+        padding: 20px;
+    }
+}
