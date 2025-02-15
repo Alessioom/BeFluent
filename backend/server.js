@@ -6,6 +6,7 @@ import { genSalt, hash, compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Bambino from './models/Bambino.js'; 
+import mongoose from 'mongoose';
 
 
 dotenv.config(); // Carica variabili d'ambiente
@@ -31,16 +32,23 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
+
 const app = express();
 app.use(json());
 app.use(cors());
 
+
+// Connessione a MongoDB (NUOVO senza errori)
+connect(process.env.MONGO_URI) // Rimuovi le opzioni
+  .then(() => console.log("✅ Connesso a MongoDB"))
+  .catch(err => console.error(err));
+
 // Connessione a MongoDB
-connect(process.env.MONGO_URI, {
+/*connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => console.log("✅ Connesso a MongoDB"))
-  .catch(err => console.error(err));
+  .catch(err => console.error(err));*/
 
   import validator from 'validator';
 
@@ -304,15 +312,24 @@ app.get('/bambini/', authMiddleware, async (req, res) => {
 // 📌 API per recuperare un bambino per ID
 app.get('/bambino/:id', async (req, res) => {
     try {
-        console.log("ID ricevuto:", req.params.id);
-        const bambino = await Bambino.findById({_id: req.params.id, isDeleted: false});
+        const id = req.params.id;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: 'ID bambino non valido' });
+        }
+
+        const bambino = await Bambino.findById(id).where('isDeleted').equals(false); // findById, non findBy
+
+        console.log("Bambino trovato (o null):", bambino);
+
         if (!bambino) {
             return res.status(404).json({ error: 'Bambino non trovato' });
         }
+        console.log("Sto per inviare la risposta JSON");
         res.json(bambino);
+        console.log("Risposta JSON inviata");
     } catch (error) {
         console.error("Errore nel recupero del bambino:", error);
-        res.status(500).json({ error: 'Errore nel recupero del bambino' });
+        res.status(500).json({ error: 'Errore nel recupero del bambino', details: error.message, stack: error.stack });
     }
 });
 

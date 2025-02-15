@@ -11,81 +11,89 @@ import jwt_decode from 'jwt-decode';
 
 
 
-const ProfilePage = () => {
+const Impostazioni = () => {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState({
-    nome: "",
-    cognome: "",
-    email: "",
-    telefono: "",
+      nome: "",
+      cognome: "",
+      email: "",
+      telefono: "",
   });
 
-  const [specialistaId, setSpecialistaId] = useState(null); // Stato per specialistaId
+  const [specialistaId, setSpecialistaId] = useState(null);
+  const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
 
-  // Recupera il token e decodifica in un useEffect
+  // --- Gestione del Token e dello specialistaId (Migliorata) ---
   useEffect(() => {
-    const token = localStorage.getItem('token');  // Recupera il token dal localStorage
-    if (token) {
-      const decodedToken = jwt_decode(token);  // Decodifica il token
-      console.log(decodedToken);  // Log del contenuto del token per vedere la struttura
-      setSpecialistaId(decodedToken.id);  // Imposta specialistaId dallo stato
-    }
-  }, []);  // Questo useEffect viene eseguito solo una volta all'inizio
+      const token = localStorage.getItem('token');
+      if (token) {
+          try {
+              const decodedToken = jwt_decode(token);
+              console.log("Token Decodificato:", decodedToken);
 
-  useEffect(() => {
-    if (specialistaId) {
-      axios
-        .get(`http://localhost:5000/specialista/${specialistaId}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,  // Passa il token nell'header
+              if (decodedToken && decodedToken.id) {
+                  setSpecialistaId(decodedToken.id);
+              } else {
+                  console.error("ID dello specialista mancante o non valido nel token.");
+                  navigate("/login"); // Reindirizza al login se l'ID manca
+              }
+          } catch (error) {
+              console.error("Errore nella decodifica del token:", error);
+              navigate("/login"); // Reindirizza al login in caso di errore
           }
-        })
-        .then((response) => {
-          // Assicurati che i dati siano sempre valorizzati, anche se vuoti
-          setUserData({
-            nome: response.data.nome || "",
-            cognome: response.data.cognome || "",
-            email: response.data.email || "",
-            telefono: response.data.telefono || "",
+      } else {
+          console.warn("Token non trovato nel localStorage.");
+          navigate("/login"); // Reindirizza al login se non c'è il token
+      }
+  }, [navigate]); // Aggiunta navigate alle dipendenze
+
+
+  // --- Caricamento dei Dati dello Specialista (Migliorato) ---
+  useEffect(() => {
+      if (specialistaId) {
+          axios.get(`http://localhost:5000/specialista/${specialistaId}`, {
+              headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`
+              }
+          })
+          .then((response) => {
+              setUserData({
+                  nome: response.data.nome || "",
+                  cognome: response.data.cognome || "",
+                  email: response.data.email || "",
+                  telefono: response.data.telefono || "",
+              });
+          })
+          .catch((error) => {
+              console.error("Errore nel caricamento dei dati:", error);
+              // Gestisci l'errore, ad esempio mostrando un messaggio all'utente
           });
-        })
-        .catch((error) => console.error("Errore nel caricamento dei dati:", error));
-    }
-  }, [specialistaId]);  // Esegui questa richiesta solo se specialistaId è valido
+      }
+  }, [specialistaId]); // Dipendenza corretta: solo specialistaId
+
 
   const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value || "" });
+      setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const handleSave = () => {
-    console.log("Dati inviati per l'aggiornamento:", userData);
-    axios
-  .put(`http://localhost:5000/specialista/update/${specialistaId}`, userData, {
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`,  // Passa il token nell'header anche per l'update
-    }
-  })
-  .then((response) => {
-    console.log('Risposta dell\'aggiornamento:', response.data);
-    setUserData(response.data.specialista);  // Risultato del profilo aggiornato
-    setIsEditing(false);
-    alert("Profilo aggiornato con successo!");
-  })
-  .catch((error) => console.error("Errore nell'aggiornamento:", error));
+      axios.put(`http://localhost:5000/specialista/update/${specialistaId}`, userData, {
+          headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+      })
+      .then(response => {
+          setUserData(response.data.specialista);
+          setIsEditing(false);
+          alert("Profilo aggiornato con successo!");
+      })
+      .catch(error => console.error("Errore nell'aggiornamento:", error));
   };
 
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  // Stato per gestire l'attivazione/disattivazione delle notifiche
-  const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
-
-  // Funzione per gestire il cambiamento della checkbox
   const handleNotificationChange = (event) => {
-    setIsNotificationEnabled(event.target.checked);
+      setIsNotificationEnabled(event.target.checked);
   };
 
 
@@ -181,7 +189,7 @@ const ProfilePage = () => {
             <div className="language-label">Lingua</div>
             <div className="language-box-imp">ITALIANO</div>   
           </div>
-        <BackButton onClick={handleBack} />
+          <BackButton onClick={() => navigate(`/Home/Specialista/${specialistaId}`)} />
         
         <div className="navigation-buttons">
           <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
@@ -196,4 +204,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default Impostazioni;

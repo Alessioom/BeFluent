@@ -22,10 +22,6 @@ const Appuntamenti = ({ bambinoId, onAppuntamentoConfermato, onCancel }) => {
     const cognomeBambino = searchParams.get('cognome') || ''; // Ottieni il cognome
     const navigate = useNavigate();
 
-    const handleBack = () => {
-        navigate(-1); // Navigate back one step in history
-    }
-
     const handleDataChange = (newData) => {
         setData(newData);
       };
@@ -160,9 +156,7 @@ const Appuntamenti = ({ bambinoId, onAppuntamentoConfermato, onCancel }) => {
                     <NavButton to="/Logout" className="logout-button" text="LOGOUT" />
                 </div>
 
-                <div className="back-button-container">
-                    <BackButton onClick={handleBack} />
-                </div>
+                <BackButton onClick={() => navigate("/Pagina/Bambino")} /> 
         </div>
         </div>
     );

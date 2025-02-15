@@ -1,0 +1,161 @@
+/* Stile generale della pagina */
+body-assegna-gioco {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contenitore principale */
+.assegna-gioco-container {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px; /* Ridotto per lasciare più spazio ai contenuti */
+    width: 95%;
+    max-width: 1000px; /* Aumentata la larghezza massima */
+    max-height: 80vh; /* Altezza massima relativa allo schermo */
+    overflow-y: auto; /* Abilita lo scroll se necessario */
+    margin: 5vh auto; /* Centra verticalmente */
+    text-align: left;
+}
+
+/* Gruppi di input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Label */
+.form-group label {
+    font-weight: bold;
+    color: #495057;
+    font-size: 1rem;
+}
+
+/* Campi di input */
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: white;
+    color: #333;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Area note con altezza variabile */
+.note-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Bottoni Tipo Gioco e Difficoltà */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.tipo-gioco-button {
+    padding: 10px 50px; /* Aumentato per una migliore usabilità */
+    border: 2px solid orange; /* Bordo più evidente */
+    border-radius: 5px;
+    background-color: green; /* Sfondo leggermente colorato */
+    color: white;
+    font-size: 1rem; /* Testo più leggibile */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    flex: 1;
+    min-width: 100px; /* Aumentata la larghezza minima */
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Aggiunto un'ombra per risaltare */
+}
+
+/* Stili per i bottoni attivi */
+.tipo-gioco-button.active {
+    background-color: orange;
+    color: white;
+    border-color: green;
+}
+
+.difficolta-button {
+    padding: 10px 50px; /* Aumentato per una migliore usabilità */
+    border: 2px solid rgb(0, 0, 0); /* Bordo più evidente */
+    border-radius: 5px;
+    background-color: white; /* Sfondo leggermente colorato */
+    color:black;
+    font-size: 1rem; /* Testo più leggibile */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    flex: 1;
+    min-width: 100px; /* Aumentata la larghezza minima */
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Aggiunto un'ombra per risaltare */
+}
+
+.difficolta-button.active {
+    color: white;
+    border-color: transparent;
+}
+
+/* Colori delle difficoltà */
+.difficolta-button.facile.active {
+    background-color: green;
+}
+
+.difficolta-button.medio.active {
+    background-color: orange;
+
+}
+
+.difficolta-button.difficile.active {
+    background-color: red;
+}
+
+/* Effetto hover */
+.tipo-gioco-button:hover,
+.difficolta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Pulsante Salva */
+.salva-gioco-button {
+    background-color:orange;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    display: block;
+}
+
+.salva-gioco-button:hover {
+    background-color: green;
+    transform: scale(1.05);
+}
+
+

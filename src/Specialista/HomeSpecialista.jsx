@@ -20,10 +20,6 @@ function HomeSpecialista() {
   //const token = auth?.token;
 
 
-  const handleBack = () => {
-    navigate(-1); // Navigate back one step in history
-  };
-
   useEffect(() => {
      //Accedi direttamente:
      const specialistaId = auth?.specialistaId;
@@ -103,7 +99,8 @@ const saluto = sessoSpecialista === 'maschio'
       <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
       <NavButton to="/Strumenti" className="strumenti-button" text="STRUMENTI" />
       <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
-      <BackButton onClick={handleBack} /> {/* Add the BackButton component */}
+
+      <BackButton onClick={() => navigate("/Login/Specialista/Form")} /> 
 
 
       {/* testo befluent */}

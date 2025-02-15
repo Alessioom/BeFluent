@@ -19,8 +19,9 @@ import HomeBambini from './Bambini/HomeBambini';
 import CambioPsw from './Specialista/CambioPsw';
 import EliminaAccount from './Specialista/EliminaAccount';
 import Appuntamenti from './Specialista/Appuntamenti';
+import AssegnaGioco from './Specialista/AssegnaGioco';
 //import Home from './Home';  // Componenti per le varie pagine
-//import Report from './Report';
+import Report from './Specialista/Report';
 //import Logout from './Logout';
 import { AuthProvider } from './Accesso/AuthContext';
 import PaginaBambino from './Specialista/PaginaBambino'
@@ -32,8 +33,6 @@ import AbbinamentoParole2 from './Bambini/AbbinamentoParole2';
 import AbbinamentoParole3 from './Bambini/AbbinamentoParole3';
 import AbbinamentoParole4 from './Bambini/AbbinamentoParole4';
 import AbbinamentoParole5 from './Bambini/AbbinamentoParole5';
-
-
 
 
 function App() {
@@ -60,6 +59,8 @@ function App() {
           <Route path="/Elimina/Account" element={<EliminaAccount />} />
           <Route path="/Pagina/Bambino/:id" element={<PaginaBambino />} />
           <Route path="/Appuntamenti/:id" element={<Appuntamenti />} />
+          <Route path="/Assegna/Gioco/:id" element={<AssegnaGioco />} />
+          <Route path="/Report/:id" element={<Report />} />
           <Route path="/Esercizi/Giornalieri" element={<EserciziGiornalieri />} />
           <Route path="/Giudizio/Ortografico/1" element={<GiudizioOrtografico1 />} />
           <Route path="/Abbinamento/Parole/1" element={<AbbinamentoParole1 />} />

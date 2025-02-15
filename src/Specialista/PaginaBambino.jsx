@@ -64,7 +64,7 @@ const PaginaBambino = () => {
     };
 
     const handleAggiungiReport = () => {
-        navigate(`/aggiungi-report/${id}`); // Assicurati che la rotta sia corretta
+        navigate(`/Report/${id}`); // Assicurati che la rotta sia corretta
     };
 
       return (
@@ -87,9 +87,8 @@ const PaginaBambino = () => {
       </div>
 
 
-      <div className="back-button-container">
-        <BackButton onClick={handleBack} />
-      </div>
+      <BackButton onClick={() => navigate("/Elenco/Bambini")} /> 
+  
 
         <div className="bambino-container">
       <div className="titolo-bambino"> Benvenuto nella pagina di:</div>
@@ -143,10 +142,16 @@ const PaginaBambino = () => {
              {/* Contenitore dei pulsanti modificato */}
              <div className="azioni-bambino-container">
                 <div className="pulsanti-raggruppati">
-                    <button className="button-bamb assegna-gioco" onClick={handleAssegnaGioco}>ASSEGNA GIOCO</button>
-                    <button className="button-bamb aggiungi-report" onClick={handleAggiungiReport}>AGGIUNGI REPORT</button>
+                <Link to={`/Assegna/Gioco/${id}?nome=${bambino.nome}&cognome=${bambino.cognome}`} className="button-bamb assegna-gioco">
+                ASSEGNA GIOCO
+                </Link>
+
+                <Link to={`/Report/${id}`} className="button-bamb aggiungi-report">
+                        AGGIUNGI REPORT
+                    </Link>
                 </div>
-     <Link to={`/appuntamenti/${id}?nome=${bambino.nome}&cognome=${bambino.cognome}`} className="button-bamb pianifica-button">
+
+     <Link to={`/Appuntamenti/${id}?nome=${bambino.nome}&cognome=${bambino.cognome}`} className="button-bamb pianifica-button">
          PIANIFICA APPUNTAMENTO
      </Link>
    </div>

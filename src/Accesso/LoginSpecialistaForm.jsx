@@ -68,7 +68,7 @@ const LoginSpecialistaForm = () => {
           <form onSubmit={handleSubmit}>
             <div className="input-groupLoginSpecialista">
               <label htmlFor="email" className="input-labelLoginSpecialista">Email</label>
-              <input 
+              < input 
                 type="email" 
                 id="email" 
                 name="email" 
@@ -77,13 +77,14 @@ const LoginSpecialistaForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required 
+                autoComplete="email"
               />
             </div>
 
             <div className="input-groupLoginSpecialista">
-  <label htmlFor="password" className="input-labelLoginSpecialista">Password</label>
-  <div className="password-input-container"> {/* Aggiungi questo div contenitore */}
-    <input
+            <label htmlFor="password" className="input-labelLoginSpecialista">Password</label>
+            <div className="password-input-container"> {/* Aggiungi questo div contenitore */}
+            < input
       type={showPassword ? 'text' : 'password'} // Modifica il tipo
       id="password"
       name="password"
@@ -92,6 +93,7 @@ const LoginSpecialistaForm = () => {
       value={formData.password}
       onChange={handleChange}
       required
+      autoComplete="current-password"
     />
     <button
         type="button" // Importante!
@@ -131,7 +133,7 @@ const LoginSpecialistaForm = () => {
             </Link>
           </div>
 
-          <BackButton onClick={() => navigate(-1)} /> {/* Add the BackButton component */}
+          <BackButton onClick={() => navigate("/Login")} /> {/* Add the BackButton component */}
         </div>
       </div>
     </>

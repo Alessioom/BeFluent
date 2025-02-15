@@ -86,7 +86,7 @@ function ElencoBambini() {
             <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
           </div>
 
-          <BackButton onClick={() => navigate(-1)} />
+          <BackButton onClick={() => navigate("/Home/Specialista")} />
         </div>
       </div>
     </div>

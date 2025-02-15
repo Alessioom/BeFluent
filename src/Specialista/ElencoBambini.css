@@ -67,13 +67,20 @@
   }
   
   .child-item-elenco-bambini:hover {
-    background-color: #e3f2fd;
+    background-color: rgb(255, 240, 213);
   }
   
   .child-name-elenco-bambini {
     font-weight: bold;
     font-size: 16px;
+     
   }
+
+  .child-link {
+    color: black; /* O il colore che preferisci */
+    text-decoration: none; /* Rimuove la sottolineatura, se non la vuoi */
+    display: block; /* Importante! Vedi spiegazione sotto */
+}
   
   /* Pulsanti */
   button {
@@ -106,49 +113,6 @@
   .button-text-elenco {
     font-size: 16px;
   }
-
-  /* Pulsanti di navigazione (pulsanti sopra a sinistra) */
-  /*
-  .navigation-buttons-elenco {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    gap: 10px;
-  }
-  
-  .nav-button-elenco, .settings-button-elenco, .home-button-elenco {
-    background-color: green;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px 0;
-    border-radius: 20px;
-    cursor: pointer;
-    text-align: center;
-    width: 200px;
-    margin: 0;
-    border: 5px solid black;
-  }*/
-
-/* Aggiungi ombra più visibile */
-/*
-.nav-button-elenco:hover, .settings-button-elenco:hover, .home-button-elenco {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
-    background-color: orange;
-    transform: scale(1.05);
-  }
-  
-  
-  
-  .home-button-elenco { background-color: green; }
-  .report-button-elenco { background-color: green; }
-  .logout-button-elenco { background-color: green; }
-  .settings-button-elenco { background-color: green; }
-*/
-
-  
 
   .footer {
     text-align: center;
