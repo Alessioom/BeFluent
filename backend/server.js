@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Bambino from './models/Bambino.js'; 
 import mongoose from 'mongoose';
-
+import validator from 'validator';
 
 dotenv.config(); // Carica variabili d'ambiente
 
@@ -50,35 +50,56 @@ connect(process.env.MONGO_URI) // Rimuovi le opzioni
 }).then(() => console.log("✅ Connesso a MongoDB"))
   .catch(err => console.error(err));*/
 
-  import validator from 'validator';
+
 
   app.post('/registrazione/specialista', async (req, res) => {
       try {
           const { nome, cognome, email, username, password, confermaPassword, sesso /*, specialistaId */ } = req.body;
   
-          if (password !== confermaPassword) {
-              return res.status(400).json({ error: "Le password non coincidono!" });
-          }
+        // 1. CONTROLLO PASSWORD UGUALI
+        if (password !== confermaPassword) {
+            return res.status(400).json({ error: "Le password non coincidono!" });
+        }
+
+        // 2. VALIDAZIONE EMAIL
+        if (!validator.isEmail(email)) {
+            return res.status(400).json({ error: "Email non valida!" });
+        }
+
+        // 3. VALIDAZIONE PASSWORD COMPLESSA - *LE STESSE REGOLE DEL FRONTEND*
+        if (password.length < 8) {
+            return res.status(400).json({ error: "La password deve contenere almeno 8 caratteri." });
+        }
+        if (!/[a-z]/.test(password)) {
+            return res.status(400).json({ error: "La password deve contenere almeno un carattere minuscolo." });
+        }
+        if (!/[A-Z]/.test(password)) {
+            return res.status(400).json({ error: "La password deve contenere almeno un carattere maiuscolo." });
+        }
+        if (!/[0-9]/.test(password)) {
+            return res.status(400).json({ error: "La password deve contenere almeno un numero." });
+        }
+        if (!/[^a-zA-Z0-9]/.test(password)) {
+            return res.status(400).json({ error: "La password deve contenere almeno un carattere speciale." });
+        }
+        // --- FINE VALIDAZIONE PASSWORD ---
   
-          // Verifica se l'email è valida
-          if (!validator.isEmail(email)) {
-              return res.status(400).json({ error: "Email non valida!" });
-          }
+        // 4. CONTROLLO EMAIL/USERNAME GIA' ESISTENTI
+        const emailEsistente = await Specialista.findOne({ email });
+        const usernameEsistente = await Specialista.findOne({ username });
+        //const specialistaIdEsistente = await Specialista.findOne({ specialistaId });
+        if (emailEsistente) return res.status(400).json({ error: "Email già registrata!" });
+        if (usernameEsistente) return res.status(400).json({ error: "Username già esistente!" });
+        // if (specialistaIdEsistente) return res.status(400).json({ error: "ID già utilizzato!" });
   
-          const emailEsistente = await Specialista.findOne({ email });
-          const usernameEsistente = await Specialista.findOne({ username });
-          //const specialistaIdEsistente = await Specialista.findOne({ specialistaId });
-          if (emailEsistente) return res.status(400).json({ error: "Email già registrata!" });
-          if (usernameEsistente) return res.status(400).json({ error: "Username già esistente!" });
-          // if (specialistaIdEsistente) return res.status(400).json({ error: "ID già utilizzato!" });
-  
-          // 🔒 CRITTOGRAFA la password prima di salvarla
+          // 5. 🔒 CRITTOGRAFA (HASHING) la password prima di salvarla
           console.log('Dati ricevuti:', req.body);
           const salt = await genSalt(10);
           console.log('Salt generato:', salt);
           const passwordHash = await hash(password, salt);
           console.log('Password hashata:', passwordHash);
   
+          // 6. CREAZIONE DEL NUOVO SPECIALISTA
           const nuovoSpecialista = new Specialista({
               nome,
               cognome,
@@ -88,15 +109,19 @@ connect(process.env.MONGO_URI) // Rimuovi le opzioni
               sesso,
               //specialistaId, // Salva l'ID fornito dall'utente
           });
+
           await nuovoSpecialista.save();
           res.status(201).json({ message: "✅ Specialista registrato con successo!" });
+
       } catch (error) {
+        // Gestione degli errori 
           if (error.name === 'ValidationError') {
               // Se c'è un errore di validazione (come email non valida), invia un messaggio specifico
               res.status(400).json({ error: error.message });
           } else {
               res.status(500).json({ error: "Errore durante la registrazione" });
           }
+          console.error(error);
       }
   });
   
@@ -215,6 +240,24 @@ app.put('/specialista/update-password', authMiddleware, async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ error: "La vecchia password è errata!" });
         }
+
+        //  VALIDAZIONE DELLA NUOVA PASSWORD
+        if (newPassword.length < 8) {
+            return res.status(400).json({ error: "La nuova password deve contenere almeno 8 caratteri." });
+        }
+        if (!/[a-z]/.test(newPassword)) {
+            return res.status(400).json({ error: "La nuova password deve contenere almeno un carattere minuscolo." });
+        }
+        if (!/[A-Z]/.test(newPassword)) {
+            return res.status(400).json({ error: "La nuova password deve contenere almeno un carattere maiuscolo." });
+        }
+        if (!/[0-9]/.test(newPassword)) {
+            return res.status(400).json({ error: "La nuova password deve contenere almeno un numero." });
+        }
+        if (!/[^a-zA-Z0-9]/.test(newPassword)) {
+            return res.status(400).json({ error: "La nuova password deve contenere almeno un carattere speciale." });
+        }
+        //  FINE VALIDAZIONE 
 
         // Log per il debug
         console.log("Cambio password per specialista:", specialistaId);
@@ -355,6 +398,9 @@ app.delete('/bambino/:id', async (req, res) => {
       res.status(500).json({ message: "Errore nell'eliminazione del bambino" });
     }
   });
+
+
+ 
 
 // Avviare il server
 const PORT = process.env.PORT || 5000;

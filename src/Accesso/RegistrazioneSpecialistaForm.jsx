@@ -22,6 +22,7 @@ const RegistrazioneSpecialistaForm = () => {
   const [messaggio, setMessaggio] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Stato per la visibilità password
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Stato visibilità conferma password
+  const [error, setError] = useState(null);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -35,8 +36,41 @@ const RegistrazioneSpecialistaForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const validatePassword = (password) => {
+        if (password.length < 8) {
+            return "La password deve contenere almeno 8 caratteri.";
+        }
+        if (!/[a-z]/.test(password)) {
+            return "La password deve contenere almeno un carattere minuscolo.";
+        }
+        if (!/[A-Z]/.test(password)) {
+            return "La password deve contenere almeno un carattere maiuscolo.";
+        }
+        if (!/[0-9]/.test(password)) {
+            return "La password deve contenere almeno un numero.";
+        }
+        if (!/[^a-zA-Z0-9]/.test(password)) {
+            return "La password deve contenere almeno un carattere speciale.";
+        }
+        return null; // Nessun errore
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(null); // Resetta gli errori ad ogni submit
+
+        // Validazione password *prima* dell'invio
+        if (formData.password !== formData.confermaPassword) {
+            setError("Le password non coincidono!");
+            return;
+        }
+
+        const passwordError = validatePassword(formData.password);
+        if (passwordError) {
+            setError(passwordError);
+            return;
+        }
 
   // Normalizza l'email in minuscolo
   const emailNormalizzata = formData.email.toLowerCase();
@@ -149,13 +183,15 @@ const RegistrazioneSpecialistaForm = () => {
         </div>
       </div>
                       
-            <button className="pulsanteRegistratiSpecialista" type="submit">
-              Registrati
-              </button>
+      {error && <div className="error-message">{error}</div>}
 
-          </form>
+<button className="pulsanteRegistratiSpecialista" type="submit">
+    Registrati
+</button>
 
-          {messaggio && <p>{messaggio}</p>}
+</form>
+
+{messaggio && <p>{messaggio}</p>}
 
           <BackButton onClick={() => navigate(-1)} />
         </div>

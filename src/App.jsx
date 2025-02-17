@@ -22,6 +22,7 @@ import Appuntamenti from './Specialista/Appuntamenti';
 import AssegnaGioco from './Specialista/AssegnaGioco';
 //import Home from './Home';  // Componenti per le varie pagine
 import Report from './Specialista/Report';
+import RegistroReport from './Specialista/RegistroReport'; 
 //import Logout from './Logout';
 import { AuthProvider } from './Accesso/AuthContext';
 import PaginaBambino from './Specialista/PaginaBambino'
@@ -61,6 +62,7 @@ function App() {
           <Route path="/Appuntamenti/:id" element={<Appuntamenti />} />
           <Route path="/Assegna/Gioco/:id" element={<AssegnaGioco />} />
           <Route path="/Report/:id" element={<Report />} />
+          <Route path="/Registro/Report/:id" element={<RegistroReport />} />
           <Route path="/Esercizi/Giornalieri" element={<EserciziGiornalieri />} />
           <Route path="/Giudizio/Ortografico/1" element={<GiudizioOrtografico1 />} />
           <Route path="/Abbinamento/Parole/1" element={<AbbinamentoParole1 />} />

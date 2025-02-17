@@ -1,92 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Report.css';
 import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
 import NavButton from "../Components/UI/NavButton";
-import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 
 const Report = () => {
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { id } = useParams();  // ID per riferimento, se necessario
+
+    // Stati locali per l'input e i messaggi
     const [reportText, setReportText] = useState("");
-    const [initialChildInfo, setInitialChildInfo] = useState(null); // Inizializza a null
-    const [objectValue, setObjectValue] = useState(""); // Manteniamo, ma con una modifica
-    const [loading, setLoading] = useState(true);
+    const [objectValue, setObjectValue] = useState("Mario Rossi"); // Valore di default, modificabile
+    const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null);
+
 
     const handleReportChange = (event) => {
         setReportText(event.target.value);
     }
 
-    const handleSendReport = () => {
-        alert("Funzionalità di invio in fase di implementazione!\nReport: " + reportText);
-    }
-
     const handleObjectChange = (event) => {
-        setObjectValue(event.target.value); // Serve ancora se vuoi permettere modifiche *locali*
+        setObjectValue(event.target.value);
     };
 
-    useEffect(() => {
-        const fetchChildInfo = async () => {
-            setLoading(true);
-            setError(null);
-            try {
-                const response = await axios.get(`http://localhost:5000/bambino/${id}`); // Usa axios, URL relativo va bene
-                console.log("Dati ricevuti dall'API:", response.data);
-                const data = response.data;
-                setInitialChildInfo(data);  // Imposta *TUTTI* i dati del bambino
-                setObjectValue(`${data.nome || ''} ${data.cognome || ''}`);
+
+    // Simulazione dell'invio del report (senza chiamata API)
+    const handleSendReport = () => {
+        setSuccessMessage(null); //Azzera messaggi precedenti
+        setError(null);
+
+        if (!reportText.trim()) {
+            setError("Inserisci del testo nel report.");
+            return;
+        }
+
+        // Simulazione di un invio andato a buon fine
+        setSuccessMessage("Report inviato con successo! (Simulato)");
+        setReportText(""); // Svuota l'area di testo
+    };
 
 
-            } catch (error) {
-                setError(error.message);
-                console.error("Errore nel recupero:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchChildInfo();
-    }, [id]);
+    // Dati statici per il titolo (simulazione)
+     const titleContent = "Bambino: Mario Rossi";
 
-
-
-     // Usa una variabile (o costante) per il titolo, invece di una funzione
-     let titleContent;
-
-     if (loading) {
-         titleContent = "Caricamento...";
-     } else if (error) {
-         titleContent = "Errore nel caricamento dei dati.";
-     } else if (!initialChildInfo) {
-         titleContent = "Pagina di..."; // Fallback
-     } else {
-         let titolo = " ";
-         if (initialChildInfo.sesso === 'Maschio') {
-             titolo += "Bambino: ";
-         } else if (initialChildInfo.sesso === 'Femmina') {
-             titolo += "Bambina: ";
-         } else {
-             titolo += "di ";
-         }
-         titolo += `${initialChildInfo.nome || ''} ${initialChildInfo.cognome || ''}`;
-         titleContent = titolo;
-     }
-    
-
-
-    if (loading) {
-        return <div>Caricamento...</div>; // Gestione del caricamento
-    }
-
-    if (error) {
-        return <div>Errore: {error}</div>; // Gestione degli errori
-    }
-      if (!initialChildInfo) {
-        return <div>Dati non disponibili</div>; //  ulteriore controllo, si attiva se c'è un errore nella chiamata API
-    }
-
-    console.log("Valore dell'oggetto prima del rendering:", objectValue); // Debug
 
     return (
         <div>
@@ -102,14 +59,13 @@ const Report = () => {
                 <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" />
                 <NavButton to="/report" className="report-button" text="REPORT" />
                 <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
-                <NavButton to="/Strumenti" className="strumenti-button" text="STRUMENTI" />
+                <NavButton to="#" className="strumenti-button" text="STRUMENTI" onClick={() => alert("Pagina in fase di implementazione!")} />
                 <NavButton to="/Logout" className="logout-button" text="LOGOUT" />
             </div>
 
-            <BackButton onClick={() => navigate("/Pagina/Bambino")} /> 
+            <BackButton onClick={() => navigate("/Pagina/Bambino")} />
 
             <div className="report-container">
-                {/* Usa la variabile titleContent */}
                 <h1 className="report-title">{titleContent}</h1>
 
                 <div className="child-info">
@@ -118,7 +74,7 @@ const Report = () => {
                     type="text"
                     className="child-name-input"
                     value={objectValue}
-                    onChange={(e) => setObjectValue(e.target.value)} 
+                    onChange={handleObjectChange}
                 />
             </div>
                 <div className="report-section">
@@ -130,8 +86,13 @@ const Report = () => {
                         onChange={handleReportChange}
                     />
                 </div>
-
+                {/* Visualizza messaggio di successo/errore */}
+                {successMessage && <div className="success-message">{successMessage}</div>}
+                {error && <div className="error-message">{error}</div>}
                 <button className="send-report-button" onClick={handleSendReport}>INVIA REPORT</button>
+                <Link to={`/Registro/Report/${id}`} className="view-reports-button">
+                    VISUALIZZA REGISTRO REPORT
+                </Link>
             </div>
         </div>
     );

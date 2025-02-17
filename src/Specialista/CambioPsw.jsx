@@ -3,8 +3,9 @@ import './CambioPsw.css';
 import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
 import NavButton from "../Components/UI/NavButton";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Accesso/AuthContext';
+import axios from 'axios';
 
 const CambioPsw = () => {
   const navigate = useNavigate();
@@ -14,13 +15,33 @@ const CambioPsw = () => {
   const [passwordError, setPasswordError] = useState('');
   const [connectionError, setConnectionError] = useState('');
   const [generalError, setGeneralError] = useState('');
-  const [tokenUpdated, setTokenUpdated] = useState(false); // Stato per tracciare l'aggiornamento del token
   const { login } = useAuth(); // Ottieni la funzione login
   
 
   const handleBack = () => {
     navigate(-1); // Navigate back one step in history
   };
+
+
+  //  Funzione di validazione della password (la stessa per la registrazione)
+  const validatePassword = (password) => {
+    if (password.length < 8) {
+        return "La password deve contenere almeno 8 caratteri.";
+    }
+    if (!/[a-z]/.test(password)) {
+        return "La password deve contenere almeno un carattere minuscolo.";
+    }
+    if (!/[A-Z]/.test(password)) {
+        return "La password deve contenere almeno un carattere maiuscolo.";
+    }
+    if (!/[0-9]/.test(password)) {
+        return "La password deve contenere almeno un numero.";
+    }
+    if (!/[^a-zA-Z0-9]/.test(password)) {
+        return "La password deve contenere almeno un carattere speciale.";
+    }
+    return null; // Nessun errore
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +51,7 @@ const CambioPsw = () => {
     setConnectionError('');
     setGeneralError('');
 
+     // Validazione PRIMA della chiamata API
     if (newPassword !== confirmPassword) {
       setPasswordError('Le password non coincidono!');
       return;
@@ -65,12 +87,9 @@ const CambioPsw = () => {
       const data = await response.json();
       console.log('Risposta dal server:', data);
 
-     // Se il server restituisce un nuovo token, aggiorna il localStorage
-     if (data.newToken) {
-      login(data.newToken);
-    }
-    navigate('/Home/Specialista'); //SPOSTARE IL REDIRECT FUORI DALL'IF
-    return;
+     
+    navigate('/Home/Specialista'); 
+
 
   } catch (error) {
     // ... (gestione degli errori di rete)
@@ -92,7 +111,7 @@ const CambioPsw = () => {
         <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" />
         <NavButton to="/report" className="report-button" text="REPORT" />
         <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
-        <NavButton to="/Strumenti" className="strumenti-button" text="STRUMENTI" />
+        <NavButton to="#" className="strumenti-button" text="STRUMENTI" onClick={() => alert("Pagina in fase di implementazione!")} />
         <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
       </div>
 

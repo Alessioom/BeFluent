@@ -114,6 +114,7 @@
 
 .assegna-gioco:hover {
   background-color: orange;
+  color: white;
 }
 
 .aggiungi-report {
@@ -121,6 +122,7 @@
 }
 .aggiungi-report:hover{
   background-color: orange;
+  color: white;
 }
 
 .pianifica-button {

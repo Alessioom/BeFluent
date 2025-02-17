@@ -1,0 +1,89 @@
+.registro-report-container {
+    max-width: 900px; /* Più largo */
+    margin: 40px auto; /* Più margine sopra e sotto */
+    padding: 30px;     /* Più padding */
+    border: none;     /* Rimuoviamo il bordo, usiamo solo l'ombra */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra più morbida */
+    background-color: white;
+    font-family: sans-serif; /* Font più moderno */
+}
+
+.registro-report-container h1 {
+    text-align: center;
+    margin-bottom: 40px; /* Più spazio sotto il titolo */
+    font-size: 2rem;    /* Titolo più grande */
+    color: #333;       /* Colore del testo più scuro */
+}
+
+.report-list {
+    list-style: none;
+    padding: 0;
+}
+
+.report-item {
+    /* ... (stili dell'Opzione 1) ... */
+    border: 1px solid #e0e0e0; /* Aggiungi un bordo leggero */
+    background-color: white;   /* Sfondo bianco per le schede */
+     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ombra */
+}
+.report-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Ombra più intensa al hover */
+     transform: translateY(-2px); /* Leggero spostamento verso l'alto */
+     transition: all 0.2s ease-in-out; /* Transizione fluida */
+}
+
+
+.report-item p {
+    margin: 0 0 10px 0;
+    line-height: 1.5;  /* Interlinea */
+}
+
+.report-item strong {
+    font-weight: bold;
+    color: #444;    /* Colore leggermente più scuro per i titoli */
+}
+
+.report-text-container {
+    background-color: rgb(255, 239, 209); /* Grigio scuro, non nero */
+    color: white;
+    padding: 15px;         /* Più padding */
+    border-radius: 8px;
+    overflow-wrap: break-word; /* Gestione parole lunghe, alternativo a word-break */
+}
+
+.report-text {
+     margin: 0;
+    /* word-break: break-word;  <- Rimosso, usiamo overflow-wrap */
+    /* Potresti aggiungere font-family qui se vuoi un font diverso per il testo del report */
+}
+
+.report-list-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Stili scrollbar standard (Firefox, Chrome, Edge) */
+    scrollbar-width: thin;  /* o auto */
+    scrollbar-color: #4CAF50 #f0f0f0;
+}
+
+/* Stili scrollbar per WebKit/Blink (Chrome, Safari, Edge) -  Opzionali, ma utili per una maggiore personalizzazione */
+.report-list-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.report-list-wrapper::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.report-list-wrapper::-webkit-scrollbar-thumb {
+    background-color: #4CAF50;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+.report-list-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #3e8e41;
+}

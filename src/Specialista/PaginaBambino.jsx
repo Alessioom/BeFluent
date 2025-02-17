@@ -41,20 +41,28 @@ const PaginaBambino = () => {
 
 
       const handleEdit = (id) => {
+        alert("Funzionalità in fase di implementazione.");
         // Funzione per gestire la modifica del bambino
         console.log("Modifica bambino con ID:", id);
-        // Naviga alla pagina di modifica del bambino
-        navigate(`/modificaBambino/${id}`);
     };
 
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:5000/bambino/${id}`);
-            console.log("Bambino eliminato");
-            // Reindirizza alla pagina elenco bambini dopo l'eliminazione
-            navigate("/Elenco/Bambini");
-        } catch (error) {
-            console.error("Errore nell'eliminazione del bambino:", error);
+        //  Finestra di conferma *PRIMA* della chiamata API
+        if (window.confirm(`Sei sicuro di voler eliminare ${bambino.nome} ${bambino.cognome}?`)) {
+            try {
+                // Assicurati di includere l'header di autorizzazione anche qui!
+                await axios.delete(`http://localhost:5000/bambino/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                console.log("Bambino eliminato");
+                navigate("/Elenco/Bambini");
+            } catch (error) {
+                console.error("Errore nell'eliminazione del bambino:", error);
+                // Gestisci l'errore, magari mostrando un messaggio all'utente
+                setError("Errore durante l'eliminazione del bambino. Riprova."); // Aggiunto per mostrare l'errore
+            }
         }
     };
 
@@ -82,7 +90,7 @@ const PaginaBambino = () => {
         <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" />
         <NavButton to="/report" className="report-button" text="REPORT" />
         <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
-        <NavButton to="/Strumenti" className="strumenti-button" text="STRUMENTI" />
+        <NavButton to="#" className="strumenti-button" text="STRUMENTI" onClick={() => alert("Pagina in fase di implementazione!")} />
         <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
       </div>
 
@@ -130,7 +138,7 @@ const PaginaBambino = () => {
                             */}
                             <td>
                                 {/* Aggiungi pulsanti per modificare e eliminare */}
-                                <button className="button-bamb modifica" onClick={() => handleEdit(bambino._id)}>Modifica</button>
+                                <button className="button-bamb modifica" onClick={() => handleEdit("id_di_esempio")}>Modifica</button>
                                 <button className="button-bamb elimina" onClick={() => handleDelete(bambino._id)}>Elimina</button>
                             </td>
                         </tr>
@@ -147,7 +155,7 @@ const PaginaBambino = () => {
                 </Link>
 
                 <Link to={`/Report/${id}`} className="button-bamb aggiungi-report">
-                        AGGIUNGI REPORT
+                        REPORT
                     </Link>
                 </div>
 

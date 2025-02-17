@@ -213,3 +213,10 @@ body, html {
   background-color: #000; /* Sfondo nero al passaggio del mouse */
   color: #fff;          /* Testo bianco al passaggio del mouse */
 }
+
+.error-message {
+  color: red;
+  margin-top: 10px; /* Spazio sopra il messaggio di errore */
+  text-align: center; /* Centra il messaggio */
+  font-size: 0.9rem; /* Riduci leggermente la dimensione del font */
+}
