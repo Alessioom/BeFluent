@@ -34,6 +34,10 @@ import AbbinamentoParole2 from './Bambini/AbbinamentoParole2';
 import AbbinamentoParole3 from './Bambini/AbbinamentoParole3';
 import AbbinamentoParole4 from './Bambini/AbbinamentoParole4';
 import AbbinamentoParole5 from './Bambini/AbbinamentoParole5';
+import GiudizioOrtografico2 from './Bambini/GiudizioOrtografico2';
+import TestIniziale from './Bambini/TestIniziale';
+import TestIniziale1 from './Bambini/TestIniziale1';
+import ParlaConSpecialista from './Bambini/ParlaConSpecialista';
 
 
 function App() {
@@ -71,6 +75,10 @@ function App() {
           <Route path="/Abbinamento/Parole/3" element={<AbbinamentoParole3 />} />
           <Route path="/Abbinamento/Parole/4" element={<AbbinamentoParole4 />} />
           <Route path="/Abbinamento/Parole/5" element={<AbbinamentoParole5 />} />
+          <Route path="/Giudizio/Ortografico/2" element={<GiudizioOrtografico2 />} />
+          <Route path="/Test/Iniziale" element={<TestIniziale />} />
+          <Route path="/Test/Iniziale/1" element={<TestIniziale1 />} />
+          <Route path="/DialogoSpecialista" element={<ParlaConSpecialista />} />
         </Routes>
       </AuthProvider>
     </GameTimerProvider>

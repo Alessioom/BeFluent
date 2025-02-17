@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
 import './HomeBambini.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -40,18 +40,23 @@ const HomeBambini = () => {
             {/* ✅ Mostra il nome se presente */}
             <div className="title">Ciao {bambino && bambino.nome ? bambino.nome : "Caricamento..."} 👋</div>
 
+            <Link to="/Test/Iniziale">
+                <button className="cardTestIniziale">
+                    <div className="card-title">TEST INIZIALE</div>
+                </button>
+            </Link>
 
-            <button className="cardTestIniziale">
-                <div className="card-title">TEST INIZIALE</div>
-            </button>
             <Link to="/Esercizi/Giornalieri">
                 <button className="cardEserciziGiornalieri">
                     <div className="card-title">ESERCIZI GIORNALIERI</div>
                 </button>
             </Link>
-            <button className="cardDialogoEsperto">
-                <div className="card-title">PARLA CON IL TUO ESPERTO</div>
-            </button>
+
+            <Link to="/DialogoSpecialista">
+                <button className="cardDialogoEsperto">
+                    <div className="card-title">PARLA CON IL TUO ESPERTO</div>
+                </button>
+            </Link>
 
             <Link to="/login/bambino">
             <button className="cardLogoutBambino">

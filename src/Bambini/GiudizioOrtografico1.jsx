@@ -30,7 +30,7 @@ const GiudizioOrtografico1 = () => {
             </div>
 
             
-            <Link to="/giudizioOrtografico2">
+            <Link to="/Giudizio/Ortografico/2">
                 <button className="bottoneIniziaGioco">Inizia il gioco</button>
             </Link>
 
