@@ -8,8 +8,8 @@
   }
   
   .elenco-bambini {
-    width: 1500px;
-    height: 650px;
+    width: 800px;
+    height: 500px;
     max-width: 1000px;
     margin: 20px auto;
     margin-bottom: 10px;
@@ -27,12 +27,12 @@
   }
   
   .main-content {
-    padding: 100px;
+    padding: 80px 80px;
   }
   
   /* Lista bambini */
   .children-list-elenco-bambini {
-    max-height: 300px;
+    max-height: 200px;
     overflow-y: auto;
     scrollbar-width: thin; /* Per Firefox */
     scrollbar-color: #888 #f1f1f1; /* Per Firefox */
@@ -87,22 +87,22 @@
     display: inline-block;
     padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 14px;
-    /*transition: background-color 0.3s, transform 0.2s;*/
+    transition: background-color 0.3s, transform 0.2s;
   }
   
   .add-child-button-elenco-bambini button {
     background-color: green;
     color: white;
-    margin-top: 100px;
+    margin-top: 80px;
     width: 100%;
     color: white;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
     text-align: center;
-    border: 5px solid black;
+    border: 0px solid black;
   }
   
   .add-child-button-elenco-bambini button:hover {

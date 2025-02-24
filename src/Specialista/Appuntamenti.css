@@ -6,7 +6,7 @@
     width: 90%;
     max-width: 500px;
     margin: 40px auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 .appuntamenti-titolo {
@@ -14,6 +14,7 @@
     color: #333;
     margin-bottom: 25px;
     font-size: 1.8rem;
+    font-family: 'Arial', sans-serif;
 }
 
 .input-group {
@@ -83,6 +84,7 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
+    
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -93,6 +95,7 @@
 .btn-cancella {
     background-color: #dc3545;
     color: white;
+    
 }
 
 .btn-conferma {

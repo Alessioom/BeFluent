@@ -2,13 +2,15 @@ import React from 'react';
 import './Logout.css';
 import { useNavigate } from 'react-router-dom';
 import LogoProfile from "../Components/UI/LogoProfile";
+import { useAuth } from '../Accesso/AuthContext'; // Importa il contesto di autenticazione
 
-const LogoutModal = () => {
+const Logout = () => {
 
+  const { logout } = useAuth(); // 👈 Funzione di logout dal contesto
   const navigate = useNavigate();
+
   const handleLogout = () => {
-    // Puoi inserire qui la logica per il logout (ad esempio, rimuovere il token di autenticazione)
-    // Dopo il logout, naviga alla Home
+    logout(); // Chiamata funzione di logout per rimuovere il token
     navigate('/');
   };
 
@@ -40,4 +42,4 @@ const LogoutModal = () => {
   );
 };
 
-export default LogoutModal;
+export default Logout;

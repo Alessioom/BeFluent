@@ -51,11 +51,17 @@ const CambioPsw = () => {
     setConnectionError('');
     setGeneralError('');
 
-     // Validazione PRIMA della chiamata API
-    if (newPassword !== confirmPassword) {
-      setPasswordError('Le password non coincidono!');
-      return;
-    }
+    // ✅ Validazione della password PRIMA della richiesta
+  const validationError = validatePassword(newPassword);
+  if (validationError) {
+    setPasswordError(validationError);
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    setPasswordError('Le password non coincidono!');
+    return;
+  }
 
     try {
       console.log('Token prima del cambio password:', localStorage.getItem('token'));
@@ -87,6 +93,11 @@ const CambioPsw = () => {
       const data = await response.json();
       console.log('Risposta dal server:', data);
 
+      // ✅ Se il server restituisce un nuovo token, aggiorniamolo
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+      login(data.token, data.specialistaId); // Aggiorna il contesto di autenticazione
+    }
      
     navigate('/Home/Specialista'); 
 
@@ -109,7 +120,6 @@ const CambioPsw = () => {
       <div className="navigation-buttons">
         <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
         <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" />
-        <NavButton to="/report" className="report-button" text="REPORT" />
         <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
         <NavButton to="#" className="strumenti-button" text="STRUMENTI" onClick={() => alert("Pagina in fase di implementazione!")} />
         <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />

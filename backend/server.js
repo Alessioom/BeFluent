@@ -273,7 +273,14 @@ app.put('/specialista/update-password', authMiddleware, async (req, res) => {
 
         await specialista.save();
 
-        res.status(200).json({ message: "✅ Password cambiata con successo!" });
+        // Genera un nuovo token JWT con il nuovo ID e password aggiornata
+        const token = jwt.sign({ id: specialista._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        // Restituisci il nuovo token nella risposta
+        res.status(200).json({
+            message: "✅ Password cambiata con successo!",
+            token: token // Invia il nuovo token al client
+        });
         
     } catch (error) {
         console.error("Errore durante il cambio della password:", error);
@@ -400,7 +407,16 @@ app.delete('/bambino/:id', async (req, res) => {
   });
 
 
- 
+
+  app.put("/bambino/:id", async (req, res) => {
+    try {
+        const bambino = await Bambino.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(bambino);
+    } catch (error) {
+        res.status(500).json({ error: "Errore nell'aggiornamento" });
+    }
+});
+
 
 // Avviare il server
 const PORT = process.env.PORT || 5000;

@@ -59,9 +59,16 @@ const HomeBambini = () => {
             </Link>
 
             <Link to="/login/bambino">
-            <button className="cardLogoutBambino">
-                <div className="logout-title">LOGOUT</div>
-            </button>
+                <button className="cardLogoutBambino">
+                    <div className="logout-title">LOGOUT</div>
+                </button>
+            </Link>
+
+
+            <Link to="/Profilo/Bambino" >
+                <button className="cardProfiloBambino">
+                    <div>PROFILO</div>
+                </button>
             </Link>
 
             <LogoProfile 

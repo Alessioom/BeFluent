@@ -57,7 +57,6 @@ const Report = () => {
             <div className="navigation-buttons">
                 <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
                 <NavButton to="/Elenco/Bambini" className="bambini-button" text="BAMBINI" />
-                <NavButton to="/report" className="report-button" text="REPORT" />
                 <NavButton to="/Impostazioni" className="settings-button-elenco" text="IMPOSTAZIONI" />
                 <NavButton to="#" className="strumenti-button" text="STRUMENTI" onClick={() => alert("Pagina in fase di implementazione!")} />
                 <NavButton to="/Logout" className="logout-button" text="LOGOUT" />

@@ -23,7 +23,6 @@ import AssegnaGioco from './Specialista/AssegnaGioco';
 //import Home from './Home';  // Componenti per le varie pagine
 import Report from './Specialista/Report';
 import RegistroReport from './Specialista/RegistroReport'; 
-//import Logout from './Logout';
 import { AuthProvider } from './Accesso/AuthContext';
 import PaginaBambino from './Specialista/PaginaBambino'
 import EserciziGiornalieri from './Bambini/EserciziGiornalieri';
@@ -38,6 +37,8 @@ import GiudizioOrtografico2 from './Bambini/GiudizioOrtografico2';
 import TestIniziale from './Bambini/TestIniziale';
 import TestIniziale1 from './Bambini/TestIniziale1';
 import ParlaConSpecialista from './Bambini/ParlaConSpecialista';
+import ProfiloBambino from './Bambini/ProfiloBambino';
+import EliminaAccountBambino from './Bambini/EliminaAccountBambino';
 
 
 function App() {
@@ -79,6 +80,8 @@ function App() {
           <Route path="/Test/Iniziale" element={<TestIniziale />} />
           <Route path="/Test/Iniziale/1" element={<TestIniziale1 />} />
           <Route path="/DialogoSpecialista" element={<ParlaConSpecialista />} />
+          <Route path="/Profilo/Bambino" element={<ProfiloBambino />} />
+          <Route path="/Elimina/Bambino" element={<EliminaAccountBambino />} />
         </Routes>
       </AuthProvider>
     </GameTimerProvider>
