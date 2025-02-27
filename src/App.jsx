@@ -6,7 +6,6 @@ import Home from './Home';
 import Login from './Accesso/Login';
 import LoginBambino from './Accesso/LoginBambino';
 import LoginSpecialistaForm from './Accesso/LoginSpecialistaForm';
-import RegistrazioneSpecialista from './Accesso/RegistrazioneSpecialista';
 import RegistrazioneSpecialistaForm from './Accesso/RegistrazioneSpecialistaForm';
 import PswDimenticata from './Accesso/PswDimenticata';
 import HomeSpecialista from './Specialista/HomeSpecialista';
@@ -51,7 +50,6 @@ function App() {
           <Route path="/login/bambino" element={<LoginBambino />} />
           <Route path="/Home/Specialista/:specialistaId" element={<HomeSpecialista />} />
           <Route path="/login/specialista/form" element={<LoginSpecialistaForm />} />
-          <Route path="/Registrazione/Specialista" element={<RegistrazioneSpecialista />} />
           <Route path="/Registrazione/Specialista/Form" element={<RegistrazioneSpecialistaForm />} />
           <Route path="/Psw/Dimenticata" element={<PswDimenticata />} />
           <Route path="/Home/Specialista" element={<HomeSpecialista />} />

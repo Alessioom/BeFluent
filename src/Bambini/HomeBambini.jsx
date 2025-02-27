@@ -6,28 +6,28 @@ import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
 
 const HomeBambini = () => {
-    const [bambino, setBambino] = useState(null);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      const fetchBambino = async () => {
-        const bambinoId = sessionStorage.getItem("bambinoId"); 
+    const [bambino, setBambino] = useState(null); // Stato per memorizzare i dati del bambino
+    const navigate = useNavigate(); // Hook per la navigazione
+ 
+    useEffect(() => { // Effettua il fetch dei dati del bambino (fetch = recupero dati)
+      const fetchBambino = async () => { 
+        const bambinoId = sessionStorage.getItem("bambinoId"); // Recupera l'ID del bambino dalla sessione
         console.log("Bambino ID recuperato:", bambinoId); // 🔍 Debug
     
         if (!bambinoId) {
-            navigate("/login/bambino"); 
+            navigate("/login/bambino");  // Se non c'è un ID del bambino, reindirizza al login
             return;
         }
     
         try {
-            const response = await axios.get(`http://localhost:5000/bambino/${bambinoId}`);
+            const response = await axios.get(`http://localhost:5000/bambino/${bambinoId}`); // Richiesta GET al server per i dati del bambino
             console.log("Dati ricevuti:", response.data); // 🔍 Debug
-            setBambino(response.data);
+            setBambino(response.data); // Imposta i dati del bambino nello stato
         } catch (error) {
             console.error("Errore nel recupero dei dati del bambino", error);
         }
     };
-        fetchBambino();
+        fetchBambino(); // Chiama la funzione di fetch dei dati del bambino
     }, [navigate]);
 
     return (

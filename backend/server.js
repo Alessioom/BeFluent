@@ -13,6 +13,11 @@ dotenv.config(); // Carica variabili d'ambiente
 
 const authMiddleware = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];  // Estrae il token dal campo "Authorization"
+    //Uso dell'operatore "optional chaining" (?.):
+    //Se l'header non esiste, restituisce undefined e non si verifica alcun errore.
+    //eseguito il parsing del token, si ottiene un array con due elementi: "Bearer" e il token vero e proprio.
+    //Con [1] si estrae il token vero e proprio.
+    // (parsing serve a dividere la stringa ottenuta dal bearer ed estrarre il token) 
 
     console.log("Token ricevuto:", token);  // Log per verificare il token
 
@@ -94,9 +99,9 @@ connect(process.env.MONGO_URI) // Rimuovi le opzioni
   
           // 5. 🔒 CRITTOGRAFA (HASHING) la password prima di salvarla
           console.log('Dati ricevuti:', req.body);
-          const salt = await genSalt(10);
+          const salt = await genSalt(10); // Genera il salt (10 caratteri casuali)
           console.log('Salt generato:', salt);
-          const passwordHash = await hash(password, salt);
+          const passwordHash = await hash(password, salt); // Genera l'hash della password
           console.log('Password hashata:', passwordHash);
   
           // 6. CREAZIONE DEL NUOVO SPECIALISTA
@@ -293,20 +298,23 @@ app.put('/specialista/update-password', authMiddleware, async (req, res) => {
 // 📌 API per registrare un bambino
 app.post('/registrazione/bambino', authMiddleware, async (req, res) => {
     try {
-        console.log(req.body);
-        const { nome, cognome, dataDiNascita, sesso, emailGenitore, ID } = req.body;
+        console.log(req.body); // Debug per vedere i dati ricevuti
+        const { nome, cognome, dataDiNascita, sesso, emailGenitore, ID } = req.body; // Estrae i dati dal corpo della richiesta
 
-        // L'ID dello specialista viene preso dal token JWT
+        // L'ID dello specialista viene preso dal token JWT, grazie a authMiddleware, che ha verificato JWT e popolato req.user con i dati dello specialista (id)
         const specialistaId = req.user.id; 
+
 
         if (!specialistaId) {
             return res.status(400).json({ error: 'ID dello specialista non trovato!' });
         }
 
+
         // Controllo se il bambino esiste già con quell'email
         const bambinoEsistente = await Bambino.findOne({ emailGenitore, specialistaId });
-        if (bambinoEsistente) return res.status(400).json({ error: "Bambino già registrato per questo specialista!" });
+        if (bambinoEsistente) return res.status(400).json({ error: "Bambino già registrato per questo specialista!" }); //400 = Bad Request
 
+        // Crea un nuovo bambino
         const nuovoBambino = new Bambino({
             nome,
             cognome,
@@ -316,30 +324,31 @@ app.post('/registrazione/bambino', authMiddleware, async (req, res) => {
             ID,
             specialistaId // Salva l'ID dello specialista nel database
         });
-
+        
+        //Salvataggio del Nuovo Bambino nel Database
         await nuovoBambino.save();
-        res.status(201).json({ message: "✅ Bambino registrato con successo!" });
+        res.status(201).json({ message: "✅ Bambino registrato con successo!" }); //201 = Created
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Errore durante la registrazione" });
+        res.status(500).json({ error: "Errore durante la registrazione" }); //500 = Internal Server Error
     }
 });
 
 
 // 📌 API per effettuare il login di un bambino
-app.post('/login/bambino', async (req, res) => {
-    const { ID } = req.body;
+app.post('/login/bambino', async (req, res) => { 
+    const { ID } = req.body; // Estrae l'ID dal corpo della richiesta
 
     try {
-        const bambino = await Bambino.findOne({ ID, isDeleted: false });
+        const bambino = await Bambino.findOne({ ID, isDeleted: false }); // Cerca il bambino per ID e verifica che non sia stato eliminato (isDeleted = false) (soft delete)
 
         if (!bambino) {
             return res.status(400).json({ error: 'ID non trovato' });
         }
 
-        res.json({ 
+        res.json({  // Invia la risposta con il messaggio e l'ID del bambino, una risposta json
             message: 'Login riuscito',
-            bambinoId: bambino._id  // 🔥 Assicurati che il server restituisca questo campo!
+            bambinoId: bambino._id  // Invia l'ID del bambino
         });
 
     } catch (error) {
@@ -347,6 +356,8 @@ app.post('/login/bambino', async (req, res) => {
     }
 });
 
+
+// 📌 API per recuperare i bambini di uno specialista
 app.get('/bambini/', authMiddleware, async (req, res) => {
     try {
         const specialistaId = req.user.id;
@@ -362,12 +373,12 @@ app.get('/bambini/', authMiddleware, async (req, res) => {
 // 📌 API per recuperare un bambino per ID
 app.get('/bambino/:id', async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.params.id; // Estrae l'ID dalla richiesta
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ error: 'ID bambino non valido' });
         }
 
-        const bambino = await Bambino.findById(id).where('isDeleted').equals(false); // findById, non findBy
+        const bambino = await Bambino.findById(id).where('isDeleted').equals(false); // Cerca il bambino per ID e verifica che non sia stato eliminato (isDeleted = false)
 
         console.log("Bambino trovato (o null):", bambino);
 
@@ -375,7 +386,7 @@ app.get('/bambino/:id', async (req, res) => {
             return res.status(404).json({ error: 'Bambino non trovato' });
         }
         console.log("Sto per inviare la risposta JSON");
-        res.json(bambino);
+        res.json(bambino); // Invia il bambino come risposta JSON
         console.log("Risposta JSON inviata");
     } catch (error) {
         console.error("Errore nel recupero del bambino:", error);
@@ -389,9 +400,9 @@ app.delete('/bambino/:id', async (req, res) => {
       const bambinoId = req.params.id;
       
       // Esegui il soft delete (aggiorna il flag isDeleted)
-      const bambino = await Bambino.findByIdAndUpdate(
+      const bambino = await Bambino.findByIdAndUpdate( 
         bambinoId, 
-        { isDeleted: true }, 
+        { isDeleted: true }, // Imposta il flag isDeleted a true
         { new: true }  // Restituisci il bambino aggiornato
       );
       
@@ -408,10 +419,11 @@ app.delete('/bambino/:id', async (req, res) => {
 
 
 
+// 📌 API per aggiornare i dati di un bambino
   app.put("/bambino/:id", async (req, res) => {
     try {
-        const bambino = await Bambino.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(bambino);
+        const bambino = await Bambino.findByIdAndUpdate(req.params.id, req.body, { new: true }); // Aggiorna il bambino e restituisce il documento aggiornato
+        res.json(bambino); // Invia il bambino aggiornato come risposta JSON
     } catch (error) {
         res.status(500).json({ error: "Errore nell'aggiornamento" });
     }

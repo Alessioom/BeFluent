@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HomeSpecialista.css'; 
-import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BackButton from "../Components/UI/BackButton-ui";
 import NavButton from "../Components/UI/NavButton";
 import LogoProfile from "../Components/UI/LogoProfile";
-//import Specialista from '../../backend/models/Specialista';
 import { useAuth } from '../Accesso/AuthContext';
 
 function HomeSpecialista() {
-  //const { specialistaId } = useParams(); // Recupera lo specialistaId dai parametri della route
   const [nomeSpecialista, setNomeSpecialista] = useState(""); 
   const [sessoSpecialista, setSessoSpecialista] = useState(""); // Stato per memorizzare il sesso dello specialista
   const navigate = useNavigate();
-  const [bambini, setBambini] = useState([]); // Stato per memorizzare i bambini
   const { auth } = useAuth(); // Usa useAuth per accedere al contesto
-  const [loading, setLoading] = useState(true); // Stato di caricamento
-  //const [specialistaId, setSpecialistaId] = useState(null); // Inizializza con null
-  //const token = auth?.token;
 
 
   useEffect(() => {
@@ -35,7 +29,7 @@ function HomeSpecialista() {
       return;
     }
  
-  // Recupera i dati dello specialista e dei bambini con axios
+  // Recupera i dati dello specialista con axios
   axios.get(`http://localhost:5000/specialista/${specialistaId}`, {
     headers: {
       'Authorization': `Bearer ${token}`, // Aggiungi il token nell'header della richiesta
@@ -45,26 +39,15 @@ function HomeSpecialista() {
     .then((response) => {
       setNomeSpecialista(response.data.nome); // Imposta il nome dello specialista
       setSessoSpecialista(response.data.sesso); // Imposta il sesso dello specialista
-      return axios.get(`http://localhost:5000/bambini/`, {
-        headers: {
-          'Authorization': `Bearer ${token}`, // Aggiungi il token anche per questa richiesta
-        }
-      });
-    })
-    .then((response) => {
-      setBambini(response.data); // Imposta i dati dei bambini
-      setLoading(false); // Dati caricati, quindi aggiorniamo lo stato di caricamento
+      
     })
     .catch((err) => {
       console.error("Si è verificato un errore:", err);
-      setLoading(false); // Termina il caricamento in caso di errore
       navigate('/Login/Specialista/Form'); //In caso di errore riporta al login
     });
-}, [auth, navigate]); // auth come dipendenza
+}, [auth, navigate]); // auth, navigate come dipendenza
 
-if (loading) {
-  return <div>Caricamento in corso...</div>; // Visualizza un messaggio di caricamento mentre i dati vengono recuperati
-}
+
 
 // Logica per il saluto personalizzato
 const saluto = sessoSpecialista === 'maschio' 

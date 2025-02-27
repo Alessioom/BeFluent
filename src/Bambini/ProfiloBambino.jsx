@@ -6,14 +6,14 @@ import BackButton from "../Components/UI/BackButton-ui";
 import LogoProfile from "../Components/UI/LogoProfile";
 
 const ProfiloBambino = () => {
-    const [bambino, setBambino] = useState(null);
-    const [isEditing, setIsEditing] = useState(false);
-    const [formData, setFormData] = useState({});
-    const navigate = useNavigate();
+    const [bambino, setBambino] = useState(null); // Stato per memorizzare i dati del bambino
+    const [isEditing, setIsEditing] = useState(false); // Stato per abilitare la modifica dei dati
+    const [formData, setFormData] = useState({}); // Stato per memorizzare i dati del form
+    const navigate = useNavigate(); 
 
     useEffect(() => {
-        const fetchBambino = async () => {
-            const bambinoId = sessionStorage.getItem("bambinoId");
+        const fetchBambino = async () => {  // Funzione per recuperare i dati del bambino
+            const bambinoId = sessionStorage.getItem("bambinoId"); // Recupera l'ID del bambino dalla sessione
             console.log("Bambino ID recuperato:", bambinoId);
 
             if (!bambinoId) {
@@ -22,9 +22,9 @@ const ProfiloBambino = () => {
             }
 
             try {
-                const response = await axios.get(`http://localhost:5000/bambino/${bambinoId}`);
+                const response = await axios.get(`http://localhost:5000/bambino/${bambinoId}`); // Richiedi i dati del bambino
                 console.log("Dati ricevuti:", response.data);
-                setBambino(response.data);
+                setBambino(response.data); // Imposta i dati del bambino
                 setFormData(response.data); // Inizializza i campi del form
             } catch (error) {
                 console.error("Errore nel recupero dei dati del bambino", error);
@@ -34,14 +34,16 @@ const ProfiloBambino = () => {
     }, [navigate]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({ ...formData, [e.target.name]: e.target.value }); // Aggiorna i dati del form
+        // Aggiorna l'oggetto formData usando il nome dell'input come chiave
     };
 
     const handleSave = async () => {
         try {
-            await axios.put(`http://localhost:5000/bambino/${bambino._id}`, formData);
-            setBambino(formData);
-            setIsEditing(false);
+            //Quando viene cliccato il tasto salva viene chiamata una funzione put per aggiornare i dati del bambino
+            await axios.put(`http://localhost:5000/bambino/${bambino._id}`, formData); 
+            setBambino(formData); 
+            setIsEditing(false);  // Disabilita la modifica
         } catch (error) {
             console.error("Errore nell'aggiornamento dei dati", error);
         }
@@ -59,7 +61,7 @@ const ProfiloBambino = () => {
                                     type="text" 
                                     name="nome" 
                                     value={formData.nome || ""} 
-                                    onChange={handleChange} 
+                                    onChange={handleChange}  // Quando il valore cambia, chiama la funzione handleChange
                                 />
                             </div>
                             <div>
@@ -84,6 +86,7 @@ const ProfiloBambino = () => {
                                     type="date" 
                                     name="dataDiNascita" 
                                     value={formData.dataDiNascita ? new Date(formData.dataDiNascita).toISOString().split('T')[0] : ""} 
+                                    // formatta la data in modo che sia compatibile con l'input di tipo date
                                     onChange={handleChange} 
                                 />
                             </div>
@@ -113,9 +116,9 @@ const ProfiloBambino = () => {
 
                 <div className="buttons">
                     {isEditing ? (
-                        <button className="save-btn" onClick={handleSave}>Salva</button>
+                        <button className="save-btn" onClick={handleSave}>Salva</button> // Quando viene cliccato il tasto salva viene chiamata la funzione handleSave
                     ) : (
-                        <button className="edit-btn" onClick={() => setIsEditing(true)}>Modifica</button>
+                        <button className="edit-btn" onClick={() => setIsEditing(true)}>Modifica</button> // Quando viene cliccato il tasto modifica viene abilitata la modifica
                     )}
                     
                     

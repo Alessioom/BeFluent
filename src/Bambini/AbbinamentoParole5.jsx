@@ -5,7 +5,7 @@ import "./AbbinamentoParole5.css";
 import { Link } from "react-router-dom";
 
 const AbbinamentoParole5 = () => {
-    const { timeElapsed, stopTimer } = useContext(GameTimerContext);
+    const { timeElapsed, stopTimer } = useContext(GameTimerContext); // Estraiamo il tempo trascorso e la funzione per fermare il timer
 
     useEffect(() => {
         stopTimer(); // Ferma il timer quando si carica la pagina finale

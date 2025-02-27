@@ -83,7 +83,7 @@ const RegistrazioneSpecialistaForm = () => {
     try {
       const res = await axios.post('http://localhost:5000/registrazione/specialista', formDataNormalizzato);
       setMessaggio(res.data.message);
-      setTimeout(() => navigate('/login'), 2000); // Reindirizza dopo 2 secondi
+      setTimeout(() => navigate('/Login/Specialista/Form'), 2000); // Reindirizza dopo 2 secondi
     } catch (error) {
       console.error("Errore nella registrazione:", error);
       setMessaggio(error.response?.data?.error || "Errore durante la registrazione");

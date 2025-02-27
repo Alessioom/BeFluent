@@ -9,11 +9,14 @@ const AbbinamentoParole2 = () => {
     const [feedback, setFeedback] = useState("");
     const [showNextStep, setShowNextStep] = useState(false);
     const { timeElapsed, startTimer } = useContext(GameTimerContext);
+    //a noi interessa soltanto il tempo trascorso e la funzione per avviare il timer
+
     const navigate = useNavigate();
+
 
     useEffect(() => {
         startTimer(); // Quando la pagina si carica, il timer riparte da zero
-    }, []);
+    }, []); // Array vuoto [] per farlo partire solo una volta
 
     const handleChoice = (choice) => {
         if (choice === "GN" || choice === "NI") {
@@ -41,7 +44,7 @@ const AbbinamentoParole2 = () => {
             />
 
             <div className="titleAbbinamentoParole2">Scegli tra le opzioni quella corretta per completare la parola!🎮📖</div>
-            <div className="timerAbbinamentoParole">Tempo trascorso: {timeElapsed} secondi</div>
+            <div className="timerAbbinamentoParole">Tempo trascorso: {timeElapsed} secondi</div> {/*Il valore timeElapsed viene usato per mostrare sullo schermo quanti secondi sono passati*/}
 
             <div className="wordExampleAbbinamentoParole2">S P U _ _ A </div>
             <div className="optionsAbbinamentoParole2">

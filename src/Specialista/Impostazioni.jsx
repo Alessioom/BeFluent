@@ -9,8 +9,6 @@ import LogoProfile from "../Components/UI/LogoProfile";
 import jwt_decode from 'jwt-decode';
 
 
-
-
 const Impostazioni = () => {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
@@ -24,7 +22,7 @@ const Impostazioni = () => {
   const [specialistaId, setSpecialistaId] = useState(null);
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
 
-  // --- Gestione del Token e dello specialistaId (Migliorata) ---
+  // --- Gestione del Token e dello specialistaId ---
   useEffect(() => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -49,7 +47,7 @@ const Impostazioni = () => {
   }, [navigate]); // Aggiunta navigate alle dipendenze
 
 
-  // --- Caricamento dei Dati dello Specialista (Migliorato) ---
+  // --- Caricamento dei Dati dello Specialista ---
   useEffect(() => {
       if (specialistaId) {
           axios.get(`http://localhost:5000/specialista/${specialistaId}`, {
@@ -70,7 +68,7 @@ const Impostazioni = () => {
               // Gestisci l'errore, ad esempio mostrando un messaggio all'utente
           });
       }
-  }, [specialistaId]); // Dipendenza corretta: solo specialistaId
+  }, [specialistaId]); // Dipendenza specialistaId
 
 
   const handleChange = (e) => {
@@ -128,7 +126,7 @@ const Impostazioni = () => {
           <button
             onClick={() => {
               setIsEditing(false); 
-              handleSave(); // Aggiungi la logica per salvare i dati quando clicchi su Salva
+              handleSave(); //logica per salvare i dati quando clicchi su Salva
             }}
             className={`save-button-imp ${isEditing ? 'active' : ''}`} // Aggiungi la classe 'active' solo quando sei in modalità modifica
           >
@@ -186,8 +184,6 @@ const Impostazioni = () => {
               </label>
             </div>        
             </div>
-            <div className="language-label">Lingua</div>
-            <div className="language-box-imp">ITALIANO</div>   
           </div>
           <BackButton onClick={() => navigate(`/Home/Specialista/${specialistaId}`)} />
         
