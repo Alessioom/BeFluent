@@ -5,6 +5,8 @@ import BackButton from "../Components/UI/BackButton-ui";
 import NavButton from "../Components/UI/NavButton";
 import LogoProfile from "../Components/UI/LogoProfile";
 import { useAuth } from '../Accesso/AuthContext';
+import axios from 'axios';
+
 
 function ElencoBambini() {
   const { auth } = useAuth();  
@@ -22,15 +24,13 @@ function ElencoBambini() {
           return;
         }
   
-        const response = await fetch(`http://localhost:5000/bambini`, {
-          method: "GET",
+        const response = await axios.get('http://localhost:5000/bambini', {
           headers: {
             Authorization: `Bearer ${token}`, // Invia il token JWT
           }
         });
-
-        const data = await response.json();
-        setBambini(data);
+  
+        setBambini(response.data); // Risultato dell'API viene passato direttamente
       } catch (error) {
         console.error("Errore nel recupero dei bambini:", error);
       }
@@ -85,7 +85,7 @@ function ElencoBambini() {
             <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
           </div>
 
-          <BackButton onClick={() => navigate("/Home/Specialista")} />
+          <BackButton />
         </div>
       </div>
     </div>

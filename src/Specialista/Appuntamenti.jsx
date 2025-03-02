@@ -43,7 +43,7 @@ const Appuntamenti = ({ bambinoId, onAppuntamentoConfermato, onCancel }) => {
       const handleConferma = () => {
         // Validazione
         if (!nome || !data) {
-          alert('Inserisci nome e data.'); // Sostituisci con una notifica migliore (toast, modal, ecc.)
+          alert('Inserisci nome e data.'); // Da sostituire con una notifica migliore (toast, modal)
           return;
         }
         const dataAppuntamento = new Date(data); //Crea una copia per non modificare direttamente lo stato
@@ -51,11 +51,11 @@ const Appuntamenti = ({ bambinoId, onAppuntamentoConfermato, onCancel }) => {
 
         console.log('Dati appuntamento:', { bambinoId: id, nome, data: dataAppuntamento.toISOString() }); // Usa l'ID dalla URL
 
-    // Sostituisci con la chiamata API!
+    // Sostituire con la chiamata API!
         // axios.post('/api/appuntamenti', { bambinoId: id, nome, data: dataAppuntamento.toISOString() })
         //     .then(response => {
         //         // Gestisci il successo (es. reindirizza)
-        navigate(`/bambino/${id}`); // Esempio di reindirizzamento
+        //navigate(`/bambino/${id}`); // Esempio di reindirizzamento
         //     })
         //     .catch(error => {
         //         // Gestisci l'errore
@@ -155,7 +155,7 @@ const Appuntamenti = ({ bambinoId, onAppuntamentoConfermato, onCancel }) => {
                     <NavButton to="/Logout" className="logout-button" text="LOGOUT" />
                 </div>
 
-                <BackButton onClick={() => navigate("/Pagina/Bambino")} /> 
+                <BackButton />
         </div>
         </div>
     );

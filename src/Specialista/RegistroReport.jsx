@@ -17,13 +17,6 @@ const RegistroReport = () => {
     ]);
     const [childInfo, setChildInfo] = useState({ nome: 'Mario', cognome: 'Rossi', ID: id }); // Usa l'ID
 
-
-    const handleBack = () => {
-        navigate(-1);
-    }
-
-
-
     return (
         <div>
             <LogoProfile
@@ -41,7 +34,7 @@ const RegistroReport = () => {
                 <NavButton to="/Logout" className="logout-button" text="LOGOUT" />
             </div>
 
-            <BackButton onClick={handleBack} />
+            <BackButton />
 
             <div className="registro-report-container">
                 <h1>Registro Report di {childInfo.nome} {childInfo.cognome} (ID: {childInfo.ID})</h1>

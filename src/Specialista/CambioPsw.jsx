@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Accesso/AuthContext';
 import axios from 'axios';
 
+
 const CambioPsw = () => {
   const navigate = useNavigate();
   const [oldPassword, setOldPassword] = useState('');
@@ -16,14 +17,10 @@ const CambioPsw = () => {
   const [connectionError, setConnectionError] = useState('');
   const [generalError, setGeneralError] = useState('');
   const { login } = useAuth(); // Ottieni la funzione login
-  
+  const [loading, setLoading] = useState(false); // Loader
+  const [success, setSuccess] = useState(false); // Modale di successo
 
-  const handleBack = () => {
-    navigate(-1); // Navigate back one step in history
-  };
-
-
-  //  Funzione di validazione della password (la stessa per la registrazione)
+  // Funzione di validazione della password (la stessa per la registrazione)
   const validatePassword = (password) => {
     if (password.length < 8) {
         return "La password deve contenere almeno 8 caratteri.";
@@ -51,7 +48,7 @@ const CambioPsw = () => {
     setConnectionError('');
     setGeneralError('');
 
-    // ✅ Validazione della password PRIMA della richiesta
+    // Validazione della password PRIMA della richiesta
   const validationError = validatePassword(newPassword);
   if (validationError) {
     setPasswordError(validationError);
@@ -63,53 +60,55 @@ const CambioPsw = () => {
     return;
   }
 
-    try {
-      console.log('Token prima del cambio password:', localStorage.getItem('token'));
-      const response = await fetch('http://localhost:5000/specialista/update-password', {
-        method: 'PUT',
+  setLoading(true); // Mostra il loader
+
+  try {
+    const response = await axios.put(
+      'http://localhost:5000/specialista/update-password',
+      {
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+      },
+      {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`, // Aggiungi token JWT
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
-        body: JSON.stringify({         
-          oldPassword: oldPassword,
-          newPassword: newPassword,
-        }),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Errore durante la richiesta:', errorData);
-
-        // Gestione errori specifici
-        if (response.status === 400) {
-          setPasswordError(errorData.error || 'Errore nella validazione della password');
-        } else {
-          setGeneralError(errorData.error || 'Errore durante il cambio della password');
-        }
-        return; // Esci dalla funzione se c'è un errore
       }
-  
-      const data = await response.json();
-      console.log('Risposta dal server:', data);
+    );
 
-      // ✅ Se il server restituisce un nuovo token, aggiorniamolo
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-      login(data.token, data.specialistaId); // Aggiorna il contesto di autenticazione
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+      login(response.data.token, response.data.specialistaId);
+
+      setSuccess(true); // Mostra modale successo
+      setTimeout(() => {
+        navigate('/Home/Specialista'); // Redirect dopo 3 secondi
+      }, 3000);
     }
-     
-    navigate('/Home/Specialista'); 
-
-
   } catch (error) {
-    // ... (gestione degli errori di rete)
-      console.error('Errore di rete o altro:', error);
+    if (error.response) {
+      if (error.response.status === 400) {
+        setPasswordError(error.response.data.error || 'Errore nella validazione della password');
+      } else {
+        setGeneralError(error.response.data.error || 'Errore durante il cambio della password');
+      }
+    } else {
       setConnectionError('Errore di connessione. Riprova più tardi.');
+    }
+  } finally {
+    setLoading(false); // Nasconde il loader alla fine
   }
 };
+
   return (
     <div>
+    {success && (
+      <div className="success-modal">
+        ✅ Password cambiata con successo!
+      </div>
+    )}
+
       <LogoProfile
         logoSrc="/BeFluent_logo_testo.png"
         profileSrc="/iconaDottore.png"
@@ -125,9 +124,9 @@ const CambioPsw = () => {
         <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
       </div>
 
-      <div className="back-button-container">
-        <BackButton onClick={handleBack} />
-      </div>
+   
+        <BackButton />
+
 
       <div className="container-cambio">
         <div className="title-cambio">CAMBIO PASSWORD</div>
@@ -171,7 +170,15 @@ const CambioPsw = () => {
             />
           </div>
 
-          <button type="submit" className="button-cambio">CONFERMA</button>
+          <button type="submit" className="button-cambio" disabled={loading}>
+  {loading ? (
+    <>
+      Aggiornamento in corso...
+      <span className="spinner"></span>
+    </>
+  ) : 'CONFERMA'}
+</button>
+
         </form>
       </div>
     </div>

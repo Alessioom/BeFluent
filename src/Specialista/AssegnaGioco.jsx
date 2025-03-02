@@ -31,7 +31,7 @@ const AssegnaGioco = () => {
     };
 
     const handleSalvaGioco = () => {
-        // Validazione (assicurati che tutti i campi obbligatori siano compilati)
+        // Validazione (tutti i campi obbligatori siano compilati)
         if (!tipoGioco || !difficolta || !titolo || !domanda || !rispostaVera) {
             alert('Compila tutti i campi obbligatori.');
             return;
@@ -48,13 +48,13 @@ const AssegnaGioco = () => {
             domanda,
             rispostaVera,
             risposta2,
-            risposta3,  // Includi le nuove risposte
+            risposta3,
             risposta4,
         };
 
         console.log('Nuovo gioco:', nuovoGioco);
 
-        // Sostituisci con la TUA chiamata API (axios.post)
+        // Sostituire con la chiamata API (axios.post)
         // axios.post('/api/giochi', nuovoGioco)
         //     .then(response => {
         //         console.log('Gioco salvato:', response.data);
@@ -65,7 +65,7 @@ const AssegnaGioco = () => {
         //         console.error('Errore nel salvataggio del gioco:', error);
         //         alert('Errore nel salvataggio del gioco.');
         //     });
-        navigate(`/bambino/${id}`);
+        //navigate(`/bambino/${id}`);
     };
 
 

@@ -7,14 +7,10 @@ import { useNavigate } from 'react-router-dom';
 const EliminaAccount = () => {
     const navigate = useNavigate();
 
-    const handleBack = () => {
-        navigate(-1); // Navigate back one step in history
-    }
-
     const handleDelete = () => {
-        // Esegui l'operazione di eliminazione, o mostra un avviso di conferma
+        // operazione di eliminazione, o mostra un avviso di conferma
         alert('Il tuo account verrà eliminato!');
-        // Puoi anche aggiungere una navigazione o chiamata API qui
+        // aggiungere una navigazione o chiamata API qui
     };
     
 
@@ -45,9 +41,7 @@ const EliminaAccount = () => {
                     <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
                 </div>
 
-                <div className="back-button-container">
-                    <BackButton onClick={handleBack} />
-                </div>
+                <BackButton />
             </div>
         </>
     );

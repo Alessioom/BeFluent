@@ -14,10 +14,6 @@ const PaginaBambino = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    const handleBack = () => {
-        navigate(-1); // Navigate back one step in history
-      };
-
       // Recupera i dettagli del bambino tramite l'ID
       const fetchBambino = async () => {
         try {
@@ -34,7 +30,7 @@ const PaginaBambino = () => {
 
     useEffect(() => {
         fetchBambino(); // Chiama la funzione per ottenere i dati quando il componente è montato
-    }, [id]); // La dipendenza di "id" assicura che la funzione venga richiamata ogni volta che cambia l'ID
+    }, [id]); // La dipendenza di "id" del bambino assicura che la funzione venga richiamata ogni volta che cambia l'ID
     
       if (loading) return <div>Caricamento...</div>;  // Aggiungi un controllo di caricamento
       if (error) return <div>{error}</div>;  // Gestisci eventuali errori
@@ -50,7 +46,6 @@ const PaginaBambino = () => {
         //  Finestra di conferma *PRIMA* della chiamata API
         if (window.confirm(`Sei sicuro di voler eliminare ${bambino.nome} ${bambino.cognome}?`)) {
             try {
-                // Assicurati di includere l'header di autorizzazione anche qui!
                 await axios.delete(`http://localhost:5000/bambino/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -66,14 +61,6 @@ const PaginaBambino = () => {
         }
     };
 
-    // Funzioni per gestire i pulsanti "ASSEGNA GIOCO", "PIANIFICA APPUNTAMENTO", "AGGIUNGI REPORT"
-    const handleAssegnaGioco = () => {
-        navigate(`/assegna-gioco/${id}`); // Assicurati che la rotta sia corretta
-    };
-
-    const handleAggiungiReport = () => {
-        navigate(`/Report/${id}`); // Assicurati che la rotta sia corretta
-    };
 
       return (
         <div>
@@ -93,16 +80,14 @@ const PaginaBambino = () => {
         <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
       </div>
 
-
-      <BackButton onClick={() => navigate("/Elenco/Bambini")} /> 
+      <BackButton />
   
-
         <div className="bambino-container">
       <div className="titolo-bambino"> Benvenuto nella pagina di:</div>
       <div className="informazioni-bambino"> {bambino.nome} {bambino.cognome} </div>
 </div>
 
-       {/* Table for displaying bambino data */}
+       {/* Tabella per la visualizzazione dei dati del bambino */}
        <div className="bambino-table-container">
                 <table className="bambino-table">
                     <thead>
@@ -146,7 +131,7 @@ const PaginaBambino = () => {
             </div>
 
 
-             {/* Contenitore dei pulsanti modificato */}
+             {/* Contenitore dei pulsanti */}
              <div className="azioni-bambino-container">
                 <div className="pulsanti-raggruppati">
                 <Link to={`/Assegna/Gioco/${id}?nome=${bambino.nome}&cognome=${bambino.cognome}`} className="button-bamb assegna-gioco">

@@ -82,7 +82,7 @@ const saluto = sessoSpecialista === 'maschio'
       <NavButton to="#" className="strumenti-button" text="STRUMENTI" onClick={() => alert("Pagina in fase di implementazione!")} />
       <NavButton to="/Logout" className="logout-button-elenco" text="LOGOUT" />
 
-      <BackButton onClick={() => navigate("/Login/Specialista/Form")} /> 
+      <BackButton />
 
 
       {/* testo befluent */}

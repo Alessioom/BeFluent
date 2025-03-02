@@ -185,7 +185,7 @@ const Impostazioni = () => {
             </div>        
             </div>
           </div>
-          <BackButton onClick={() => navigate(`/Home/Specialista/${specialistaId}`)} />
+          <BackButton />
         
         <div className="navigation-buttons">
           <NavButton to="/Home/Specialista" className="home-button" text="HOME" />
